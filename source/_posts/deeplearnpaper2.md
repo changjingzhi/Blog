@@ -5,7 +5,7 @@ tags: 深度学习论文
 ---
 
 ## 参考文献
-
+2014年
 [中英文对照翻译](https://blog.csdn.net/C_chuxin/article/details/82833070)
 [VGG论文解读](https://zhuanlan.zhihu.com/p/460777014)
 [原文](https://arxiv.org/pdf/1409.1556)
@@ -40,7 +40,7 @@ VGGNet以下6种不同结构，我们以通常所说的VGG-16(即下图D列)为�
 
 ## 摘要 Abstract
 
-In this work we investigate the effect of the convolutional network depth on itsaccuracy in the large-scale image recognition setting. Ourmain contribution isa thorough evaluation of networks of increasing depth usingan architecture withvery small (3×3) convolution filters, which shows that a significant improvementon the prior-art configurations can be achieved by pushing the depth to 16–19weight layers. These findings were the basis of our ImageNet Challenge 2014submission, where our team secured the first and the second places in the localisa-tion and classification tracks respectively. We also show that our representationsgeneralise well to other datasets, where they achieve state-of-the-art results. Wehave made our two best-performing ConvNet models publicly available to facili-tate further research on the use of deep visual representations in computer vision.
+In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. Ourmain contribution is a thorough evaluation of networks of increasing depth usingan architecture withvery small (3×3) convolution filters, which shows that a significant improvementon the prior-art configurations can be achieved by pushing the depth to 16–19 weight layers. These findings were the basis of our ImageNet Challenge 2014 submission, where our team secured the first and the second places in the localisa-tion and classification tracks respectively. We also show that our representations generalise well to other datasets, where they achieve state-of-the-art results. Wehave made our two best-performing ConvNet models publicly available to facili-tate further research on the use of deep visual representations in computer vision.
 
 
 在这项工作中，我们研究了卷积网络深度对其在大规模图像识别设置中的准确性的影响。我们的主要贡献是使用一个非常小的(3×3)卷积filter的架构对增加深度的网络进行了彻底的评估，这表明通过将深度提升到16 - 19个weight层，可以显著改善先前的配置。这些发现是我们提交ImageNet挑战赛2014的基础，我们的团队分别获得了本地化和分类的第一名和第二名。我们还展示了我们的成果可以很好地推广到其他数据集，在这些数据集上他们可以得到最优结果。我们已经公开了两个性能最好的卷积神经网络模型，以促进在计算机视觉中使用深度视觉表示的进一步研究。
@@ -62,5 +62,344 @@ B和同类型filter size为5×5的网络进行了对比，发现其top-1错误�
 ## 挖坑
 
 ### 使用VGG来实现垃圾的40分类
+
+1. 第一步准备训练集，固定数据集（当然也可以不固定数据集，但是在对比实验中一定要固定数据集划分）
+utils.py文件,这个文件的作业是产生2个csv文件，固定训练集和测试集
+```
+import os
+import csv
+import numpy as np
+train_path = "train_data.csv"
+val_path = "val_data.csv"
+
+train_percent = 0.9
+
+def create_data_txt(path):
+    f_train = open(train_path,"w",newline="")
+    f_val = open(val_path,"w",newline="")
+    train_writer = csv.writer(f_train)
+    val_writer = csv.writer(f_val)
+
+    for cls,dirname in enumerate(os.listdir(path)):
+        flist = os.listdir(os.path.join(path,dirname))
+        np.random.shuffle(flist)
+        fnum = len(flist)
+        for i,filename in enumerate(flist):
+            if i < fnum*train_percent:
+                train_writer.writerow([os.path.join(path,dirname,filename),str(cls)])
+            else:
+                val_writer.writerow([os.path.join(path, dirname, filename), str(cls)])
+
+    f_train.close()
+    f_val.close()
+
+
+if __name__ == "__main__":
+    create_data_txt("data_garbage")
+
+```
+
+dataset.py 文件根据utisl.py文件来对数据进行数据预处理操作。
+```
+import torch
+from PIL import Image
+from torchvision import transforms,utils
+from torch.utils.data import Dataset,DataLoader
+import matplotlib.pyplot as plt
+
+train_tf = transforms.Compose([
+    # transforms.RandomResizedCrop(size=(224,224), scale=(0.9,1.1)),
+    transforms.Resize(224),
+    transforms.CenterCrop((224,224)),
+    transforms.RandomRotation(10),
+    transforms.ColorJitter(brightness=(0.9,1.1),contrast=(0.9,1.1)),
+    # transforms.Resize((50,50)),
+    transforms.ToTensor(),
+])
+
+val_tf = transforms.Compose([
+    transforms.Resize(224),
+    transforms.CenterCrop((224, 224)),
+    # transforms.Grayscale(1),
+    transforms.ToTensor(),
+])
+
+#自定义数据集
+class Animals_dataset(Dataset):
+    def __init__(self,istrain=True):
+        if istrain:
+            f = open("train_data.csv", "r")
+        else:
+            f = open("val_data.csv", "r")
+        self.dataset = f.readlines()
+        f.close()
+        self.istrain = istrain
+
+    def __len__(self):
+        return len(self.dataset)
+
+    def __getitem__(self, index):
+        data = self.dataset[index]
+        img_path = data.split(",")[0]
+        cls = int(data.split(",")[1])
+
+        img_data = Image.open(img_path).convert("RGB")
+        if self.istrain:
+            dst = train_tf(img_data)
+        else:
+            dst =val_tf(img_data)
+
+        return dst,torch.tensor(cls)
+
+def visulization():
+    train_dataset = Animals_dataset(True)
+    train_dataloader = DataLoader(train_dataset, batch_size=16, shuffle=True)
+
+    examples = enumerate(train_dataloader)
+    batch_index,(data, lable) = next(examples)
+    print(data.shape)
+
+    grid = utils.make_grid(data)
+    plt.imshow(grid.numpy().transpose(1,2,0))
+    plt.show()
+
+if __name__ == "__main__":
+    visulization()
+```
+
+train.py 训练模型的代码
+
+```
+import torch
+from torch import optim,nn
+from torch.utils.data import DataLoader
+from dataset import *
+from torchvision import models
+from matplotlib import pyplot as plt
+
+m = nn.Softmax(dim=1)
+def train(method="normal",ckpt_path=""):
+    # 数据集和数据加载器
+    train_dataset = Animals_dataset(True)
+    train_dataloader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+    val_dataset = Animals_dataset(False)
+    val_dataloader = DataLoader(val_dataset, batch_size=32, shuffle=False)
+
+    #模型
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")#系统自己决定有啥训练
+    if method=="normal":
+        model = models.vgg16(num_classes=40,dropout=0.45).to(device)
+    elif method=="step1":
+        model=models.vgg16(weights=models.VGG16_Weights.IMAGENET1K_V1)
+        for i in model.parameters():
+            i.requires_grad=False
+        model.classifier=nn.Sequential(
+            nn.Linear(512*7*7,2048),
+            nn.ReLU(True),
+            nn.Dropout(p=0.35),
+            nn.Linear(2048,1024),
+            nn.ReLU(True),
+            nn.Dropout(p=0.35),
+            nn.Linear(1024,40)
+        )
+        model.to(device)
+    elif method=="step2":
+        model=models.vgg16()
+        model.classifier=nn.Sequential(
+            nn.Linear(512 * 7 * 7, 2048),
+            nn.ReLU(True),
+            nn.Dropout(p=0.35),
+            nn.Linear(2048, 1024),
+            nn.ReLU(True),
+            nn.Dropout(p=0.35),
+            nn.Linear(1024, 40)
+        )
+        model.load_state_dict(torch.load("model/vgg16_step1_trush.pth"))
+        model.to(device)
+    print("train on ",device)
+    #损失函数（二分类交叉熵）
+    loss_fn = nn.CrossEntropyLoss()
+
+    #优化器
+    optimizer = optim.SGD(model.parameters(),lr=0.01,momentum=0.9)
+
+    #断点恢复
+    start_epoch = 0
+    if ckpt_path != "":
+        checkpoint = torch.load(ckpt_path)
+        model.load_state_dict(checkpoint["net"])
+        optimizer.load_state_dict(checkpoint["optimizer"])
+        start_epoch = checkpoint["epoch"] + 1
+
+    #训练
+    train_loss_arr = []
+    train_acc_arr = []
+    val_loss_arr = []
+    val_acc_arr = []
+
+    for epoch in range(10):
+        train_loss_total = 0 #所有batch的loss累加值
+        train_acc_total = 0 #所有batch的acc累加值
+        val_loss_total = 0
+        val_acc_total = 0
+
+        model.train()#标志此时为训练状态，启用dropout随机失活，否则不启用
+        for i,(train_x,train_y) in enumerate(train_dataloader):
+            train_x = train_x.to(device)
+            train_y = train_y.to(device)
+
+            #前向传播
+            train_y_pred = model(train_x)
+            train_loss = loss_fn(train_y_pred,train_y)
+            train_acc = (m(train_y_pred).max(dim=1)[1]==train_y).sum()/train_y.shape[0]
+            train_loss_total += train_loss.data.item()
+            train_acc_total += train_acc.data.item()
+            #反向传播
+            train_loss.backward()
+             #梯度下降
+            optimizer.step()
+            optimizer.zero_grad()
+
+            print("epoch:{} train_loss:{} train_acc:{}".format(epoch, train_loss.data.item(), train_acc.data.item()))
+
+        train_loss_arr.append(train_loss_total / len(train_dataloader)) #平均值
+        train_acc_arr.append(train_acc_total / len(train_dataloader))
+
+        #测试集
+        for j, (val_x, val_y) in enumerate(val_dataloader):
+            val_x = val_x.to(device)
+            val_y = val_y.to(device)
+            #前向传播
+            val_y_pred,_,_ = model(val_x)
+            val_loss = loss_fn(val_y_pred,val_y)
+            val_acc = (m(val_y_pred).max(dim=1)[1]==val_y).sum()/val_y.shape[0]
+            val_loss_total += val_loss.data.item()
+            val_acc_total += val_acc.data.item()
+
+        val_loss_arr.append(val_loss_total / len(val_dataloader))  # 平均值
+        val_acc_arr.append(val_acc_total / len(val_dataloader))
+        print("epoch:{} val_loss:{} val_acc:{}".format(epoch, val_loss_arr[-1], val_acc_arr[-1]))
+        #保存模型（断点连续）
+        checkpoint={
+            "net":model.state_dict(),
+            "optimizer":optimizer.state_dict(),
+            "epoch":epoch
+        }
+        torch.save(checkpoint,"checkpoint/ckpt.pth")
+
+
+    plt.subplot(1,2,1) #画布一分为二,1行2列，用第一个
+    plt.title("loss")
+    plt.plot(train_loss_arr,"r",label = "train")
+    plt.plot(val_loss_arr,"b",label = "val")
+    plt.legend()
+
+    plt.subplot(1, 2, 2)  # 画布一分为二,1行2列，用第一个
+    plt.title("acc")
+    plt.plot(train_acc_arr, "r", label="train")
+    plt.plot(val_acc_arr, "b", label="val")
+    plt.legend()
+    plt.savefig("loss/loss_acc_vgg.png")
+
+    plt.show()
+
+    #保存模型
+    #1.torch.save()
+    #2.文件的后缀名：.pt、.pth、.pkl
+    torch.save(model.state_dict(),"model/vgg_trush.pth")
+    print("保存模型成功!")
+
+
+if __name__ == "__main__":
+    train()
+
+
+```
+
+test.py测试模型的代码
+```
+import torch.cuda
+
+from torchvision import models
+import os
+from torch import nn
+from dataset import *
+from PIL import Image
+from torch.utils.data import DataLoader
+from dataset import *
+from sklearn.metrics import recall_score, f1_score, precision_score, confusion_matrix
+from matplotlib import rcParams
+rcParams['font.family'] = 'SimHei'
+
+m = nn.Softmax(dim=1)
+labels = os.listdir("data_garbage")
+
+def evaluate():
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model = models.googlenet(num_classes=40).to(device)
+    model.load_state_dict(torch.load("model/vgg_trush.pth"))
+    model.eval()
+
+    img = Image.open("tests/5.jpg")
+    dst = val_tf(img).to(device)
+    dst = torch.unsqueeze(dst, dim=0)   # (1, 3, 224, 224)
+    y_hat = model(dst)
+
+    values = m(y_hat).sort(dim=1, descending=True)[0][0]
+    index = m(y_hat).sort(dim=1, descending=True)[1][0]
+    for i in range(5):
+        print("{:} - {:.5f}".format(labels[index[i]], values[i]))
+
+    plt.imshow(img)
+    plt.show()
+
+def val():
+    # 数据集和数据加载器
+    val_dataset = Animals_dataset(False)
+    val_data_loader = DataLoader(val_dataset, batch_size=128, shuffle=False, drop_last=True)
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model = models.googlenet(num_classes=40).to(device)
+    model.load_state_dict(torch.load("model/vgg_trush.pth"))
+    model.eval()
+
+    val_y_total = []
+    val_y_pred_total = []
+    for val_x, val_y in val_data_loader:
+        val_x = val_x.to(device)
+        val_y_pred = model(val_x).cpu()
+
+        val_y_total.extend(val_y.cpu().numpy())    # 将列表中的数据取出来追加
+        val_y_pred_total.extend(m(val_y_pred).max(dim=1)[1].cpu().numpy())
+
+    p = precision_score(val_y_total, val_y_pred_total, average="weighted")
+    recall = recall_score(val_y_total, val_y_pred_total, average="weighted")
+    f1 = f1_score(val_y_total, val_y_pred_total, average="weighted")
+
+    print("precision: {:.5f}, recall={:.5f}, f1={:.5f}".format(p, recall, f1))
+
+    cm = confusion_matrix(val_y_total, val_y_pred_total)
+
+    plt.imshow(cm, cmap=plt.cm.Blues)
+    plt.xticks(range(40), labels=labels)
+    plt.yticks(range(40), labels=labels)
+
+    plt.colorbar()
+    plt.xlabel("预测值")
+    plt.ylabel("真实值")
+    thresh = cm.mean()
+    for i in range(40):
+        for j in range(40):
+            info = cm[j, i]
+            plt.text(i, j, info, color="white" if info>thresh else "black")
+    plt.savefig("confusion_matrix.jpg")
+    plt.show()
+
+
+if __name__ == "__main__":
+    evaluate()
+
+
+```
 
 ### 什么是感受野？

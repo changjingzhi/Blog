@@ -27,7 +27,7 @@ python包含这么多的数据类型，其中的列表（list）和数组（arra
 ```
 import numpy as np
 lst1= [[3.14, 2.17,0,1,2],[1,2,3,4,5]] # 一个二维列表
-nd1 = np.array(lst1)
+nd1 = np.array(lst1)# 使用np.array()将列表数据类型转换成np数据类型
 print(nd1) # 显示的结果为一个二维列表
 print(type(nd1)) # 显示结果为<class 'numpy.ndarray'>    
 ```
@@ -37,7 +37,7 @@ print(type(nd1)) # 显示结果为<class 'numpy.ndarray'>
 import numpy as np
 
 nd1 = np.random.random([3,3]) # 产生一个[3,3]ndarray，范围为0-1之间的随机数。
-np.random.seed(123) # 为了每次生成同一份数据，可以指定一个随机种子，生成的随机数据是固定的。
+np.random.seed(123) # 为了每次生成同一份数据，可以指定一个随机种子，而后生成的随机数据是固定的。
 nd2 = np.random.random(2,3) # 产生一个[2,3]的ndarray
 np.random.shuffle(nd2) # 随机打乱nd2中的数据。
 nd3 = np.random.uniform(2,3) # 生成均匀分布的随机数
@@ -82,7 +82,7 @@ print(np.linspace(0,1,10)) # 产生10个数，间隔为0.111111
 ```
 
 6. 获取数据。
-数据生成后，如何读取数据，常用数据的的方法。
+数据生成后，如何读取数据，常用数据的的方法。（类似于python数据切片的方法）
 ```
 import numpy as np
 np.random.seed(2024)
@@ -98,6 +98,218 @@ nd2[:,1:3] # 截取多维数组中，指定的列，读取第2，3列。
 7. Numpy的算术运算
 在机器学习和深度学习中，涉及大量的数组或矩阵运算，这里介绍两种常用的运算。一种是对应元素相乘，又称逐元乘法（Element-Wisr Product）运算符为np.multiply()或*。一种是点积或内积元素，运算符为np.dot()
 
+逐元乘法
+```
+a = np.array([[1,2],[-1,4]])
+b = np.array([[2,0],[3,4]])
+a*b
+
+# 结果为array([2,0],[-3,16]) , 运算过程为 1*2 = 2， 2*0 = 0 ， -1*3 = -3， 4*4 =16
+# 另外一种写法，np.multiply(a,b) 结果和上面一样
+# Numpy数组不仅可以和数组进行对应元素相乘，还可以和单一数值（或称为标量）来进行运算
+```
+点积运算（Dot Product）又可以称为内积，在Numpy用np.dot表示
+```
+X1 = np.array([[1,2],[3,4]])
+X2 = np.array([[5,6,7],[8,9,10]])
+X3 = np.dot(X1,X2)
+print(X3)
+# 结果为[[21,24,27],[47,54,61]]
+# 运算方法，1*5+2*8 = 21, 1*6 + 2*9=24, 1*7+2*7=27 
+# 3*5+4*8 = 47,3*6+4*9=54, 3*7+4*10=61
+```
+
+8. 数组变形
+在机器学习和深度学习任务中，通常需要将处理好的数据以模型能够接收的格式进行输入，然后进行一系列运算，最终返回一个处理结果。然而由于不同模型所接受的输入格式不一样，往往需要先对其进行一系列变形和运算，从而将数据处理成符合模型要求的格式。
+更改数组的形状。方法有
+```
+# arr.reshape(),将向量arr维度进行改变，不修改向量本身
+# arr.resize(), 重新将向量arr维度进行改变，修改向量本身
+# arr.T ,对向量进行转置
+# arr.ravel ，对向量arr进行展平，即将多维数组变成1维数组，不会产生原数组的副本
+# arr.flatten，对向量arr进行展平，即将多维数值变成1维数组，返回原数组的副本
+# arr.squeeze(), 只能对维度为1的进行降维。对多维数组使用时不会进行任何报错，但是不会产生任何影响
+# arr.transpose，对高维矩阵进行轴转换
+import numpy as np
+
+arr = np.arange(10)
+print(arr.reshape(2,5))
+# 指定维度时可以只指定行数和列数，其他用-1代替
+print(arr.reshape([5,-1]))
+print(arr)
+print(arr.reshape([-1,5]))
+
+#结果[[0 1 2 3 4]
+ [5 6 7 8 9]]
+[[0 1]
+ [2 3]
+ [4 5]
+ [6 7]
+ [8 9]]
+arr [0 1 2 3 4 5 6 7 8 9] # 没有对arr本身进行修改
+[[0 1 2 3 4]
+ [5 6 7 8 9]]
+```
+
+使用resize来修改向量维度，
+```
+import numpy as np
+arr = np.arange(10)
+print(arr)
+arr.resize(2,5) # 直接对向量修改，不像arr.reshape没有对向量进行修改。
+print(arr)
+```
+
+向量转置 ,T
+
+```
+import numpy as np
+
+arr = np.arange(12).reshape(3,4)#注这里重新进行赋值了，reshape保存了下来
+print(arr)
+print(arr.T)
+```
+
+向量展平.ravel
+```
+import numpy as np
+arr = np.arange(6).reshape(2,-1)
+print(arr)
+print('按照列优先，展平')
+print(arr.ravel('F'))
+print('按照行优先，展平')
+print(arr.ravel())
+```
+
+矩阵转换为向量，这种需求经常出现在卷积神经网络与全连接之间，用于数据的展平,flatten
+
+```
+import numpy as np
+a = np.floor(10*np.random.random(3,4))
+print(a)
+print(a.flatten()) # 需要注意的是一些方法是直接对向量进行修改，一些没有对向量进行修改，这点需要注意。
+```
+
+降维操作，我也是经常使用的一个方法，squeeze 主要用来降维，把矩阵中含有1的维度去掉，在pytorch中还有一种与之相反的一种操作，torch.unsqueeze()
+```
+import numpy as np
+arr =np.arange(3).reshape(3,1)
+print(arr.shape) # 3,1
+print(arr.squeeze().shape) # (3,)
+arr1 = np.arange(6).reshpe(3,1,2,1)
+print(arr1.shape) # (3,1,2,1)
+print(arr1.squeeze().shape) #(3,2)
+```
+
+高维转换，transpose，这个在深度学习中经常使用，比如把RGB转换为GBR
+```
+import numpy as np
+arr = np.arange(24).reshape(2,3,4)
+print(arr.shape) # (2,3,4) 注意这里为什么shape不用加括号，因为shape是一个np的属性，而不是方法。在构建一个class时，有属性和方法的区别，这里挖个坑
+print(arr.transpose().shape) # (3,4,2)
+```
+
+9. 合并数组
+```
+# np.append ,内存占用大
+# np.concatenate 没有内存占用问题
+# np.stack, 沿着新的轴加入一系列数组
+# 对于append 和concatenate ，待合并的数组必须有相同的行数或列数（满足一个即可）
+```
+
+append合并一维数组
+```
+import numpy as np
+a = np.array([1,2,3])
+b = np.array([4,5,6])
+c = np.append(a,b)
+print(c)
+```
+合并多维数组
+```
+import numpy as np
+a = np.arange(4).reshape(2,2)
+b = np.arange(4).reshape(2,2)
+c = np.append(a,b,axis=0)
+print('按行合并后的结果')
+print(c)
+print('合并后数据维度'，c.shape) 
+# 按例合并
+d = np.append(a,b,axis=1)
+print('按列进行合并')
+print(d)
+print('合并后的数据维度',d.shape)
+```
+
+concatenate沿指定轴连接数组或矩阵
+```
+import numpy as np
+a = np.array([[1,2],[3,4]])
+b = np.array([5,6])
+c = np.concatenate((a,b),axis=0)
+print(c)
+d = np.concatenate((a,b.T),axis=1)
+print(d)
+```
+
+stack 沿着固定轴堆积或矩阵
+```
+import numpy as np
+a = np.array([[1,2],[3,4]])
+b = np.array([[5,6],[7,8]])
+print(np.stack((a,b),axis=0))
+```
+
+11. 通用函数
+sqrt ,计算序列化数据的平方根
+sin,cos 三角函数
+abs ， 计算序列化数据的绝对值
+dot， 矩阵运算
+log,log10,log2， 对数函数
+exp, 指数函数
+cumsum,cumproduct , 累计求和，求积
+sum ,对一个序列化数据进行求和
+mean ， 计算均值
+median ，计算中位数
+std , 计算标准差
+var ， 计算方差
+```
+import time 
+import math
+import numpy as np
+
+x = [i * 0.001 for i in np.arange(1000000)]
+start = time.clock()
+for i , t in enumerate(x):
+    x[i] = math.sin(t)
+print('math.sin:',time.clock()-start)
+
+x = [i*0.001 for i in np.arange(100000)]
+x = np.array(x)
+start =time.clock()
+np.sin(x)
+print('numpy.sin:',time.clock()-start)
+```
+
+12. 广播机制
+Numpy 中的Universal functional 中要求输入的数组shape是一致的，当数组的shape不相等时，则会使用广播机制。但是使用广播机制需要满足一定的规则，否则将出错。
+1） 让所有输入数组都向其中的shape最长的数组看齐，不足的部分则通过在前面加1补齐。
+2） 输出数组的shape是输出数组shape的各个轴上的最大值
+3)  如果输入数组的某个轴和输出数组的对于长度相同或者某个轴的长度为1时，这个数组能被用来计算，否则出错
+4） 当输入数组的某个轴的长度为1时，沿着此轴运算时都用（或复制）此轴上的第一组值。
+
+```
+import numpy as np
+A  = np.arange(0,40,10).reshape(4,1)
+B = np.arange(0,3)
+print('A矩阵的形状:{},B矩阵的形状：{}'.format(A.shape,B.shape))
+C = A + B
+print('C矩阵的形状：{}'.format(C.shape))
+print(C)
+```
+
+### 总结
+Numpy是深度学习的入门库，学习是很重要的。这里只是列举了一些主要内容，如果想要了解更多的内容，可以登录Numpy官网（http://www.Numpy.org/）查看更多的内容。
 
 ## 挖坑
 ### 向量和数组之间的关系是什么？向量的定义是什么？

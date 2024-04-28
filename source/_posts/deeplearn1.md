@@ -14,7 +14,7 @@ tags: 深度学习
 # 这个坑的流程是什么？
 1. 先讲pytorch
 2. 基于pytorch实现一些经典网络，完成一些案例
-3. 看论文，介绍一些经典的论文，比如AlexNet，VGG，CNN，GoolgeNet，shuffleNet
+3. 看论文，介绍一些经典的论文，比如AlexNet，VGG，CNN，GoolgeNet，Unet，shuffleNet
 4. 开始跑yolo，更改网络模块。
 
 注： 这里只是一个流程，在开始后会有更多的坑需要去填的。
