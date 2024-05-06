@@ -95,3 +95,7 @@ size 是从1到7，数字越小字体越小，浏览器默认是3
 <font color=#F025AB size=5>我的颜色是#F025AB，大小是5</font>
 
 ```
+
+### 生成requirements.txt文件
+1. 如果你使用了虚拟环境（virtualenv）来管理项目依赖，可以在激活虚拟环境后运行pip freeze > requirements.txt命令来生成requirements.txt文件。
+2. 使用pipreqs：pipreqs是一个可以根据Python代码中的import语句生成requirements.txt文件的工具。你可以通过以下命令安装pipreqs：`pip install pipreqs`, 然后在项目的根目录运行以下命令：`pipreqs .` 这将在当前目录下生成一个requirements.txt文件，其中包含了项目所需的所有包及其版本信息。

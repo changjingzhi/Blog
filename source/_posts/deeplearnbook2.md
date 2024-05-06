@@ -214,6 +214,8 @@ print(arr.transpose().shape) # (3,4,2)
 # np.append ,内存占用大
 # np.concatenate 没有内存占用问题
 # np.stack, 沿着新的轴加入一系列数组
+# np.hstack ，堆栈数组垂直顺序（行）
+# np.vstack ,堆栈数组垂直顺序（列）
 # 对于append 和concatenate ，待合并的数组必须有相同的行数或列数（满足一个即可）
 ```
 
@@ -451,3 +453,33 @@ show_car_info(my_electric_car)
 棕色：数字。
 橙色：内置函数和模块的名称。
 灰色：注释。
+
+### 怎么对通道数位置的npy数据进行叠加
+思路分析，
+x = np.array([1 ,  2]) # shape为(1,2)
+y = np.array([3 ,  4]) # shape为(1,2)
+怎么叠加np为[[1 , 2],[3 ,4]] #shape为(2,2)
+```
+import numpy as np
+
+x = np.array([1, 2])  # shape为(2,)
+y = np.array([3, 4])  # shape为(2,)
+
+z = np.vstack((x, y))  # 叠加x和y，得到z
+print(z)  # 输出结果为[[1 2]
+          #           [3 4]]
+print(z.shape)  # 输出结果为(2, 2)
+
+```
+堆栈数组垂直顺序（行）
+```
+import numpy as np
+
+x = np.array([1, 2])  # shape为(2,)
+y = np.array([3, 4])  # shape为(2,)
+
+z = np.hstack((x, y))  # 堆叠x和y，得到z
+print(z)  # 输出结果为[1 2 3 4]
+print(z.shape)  # 输出结果为(4,)
+
+```
