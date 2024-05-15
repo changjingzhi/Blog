@@ -15,11 +15,11 @@ import numpy as np
 
 img = np.zeros((5,5,3),dtype=np.uint8)
 
-img.itemset((0,0,0),255) 
-img.itemset((1,1,1),255)
-img.itemset((2,2,0),255)
-img.itemset((2,2,1),255) #中间的白色区块。 
-img.itemset((2,2,2),255)
+img.itemset((0,0,0),255) # 蓝色区块，位于（0 x轴，0 y轴，0通道位置） 注： 如下图，对于
+img.itemset((1,1,1),255) # 绿色区块，位于（1 x轴， 1 y轴，1通道位置 ） 
+img.itemset((2,2,0),255) # 
+img.itemset((2,2,1),255) # 中间的白色区块。 
+img.itemset((2,2,2),255) # 
 img.itemset((3,3,2),255)
 img.itemset((4,4,1),255)
 img.itemset((0,4,0),255)
@@ -33,6 +33,125 @@ cv2.imshow('img',img)
 cv2.waitKey()
 cv2.destroyAllWindows()
 ```
+![代码结果](pic/sdxxtx1.png)
+## 对图像进行截取操作
+剪裁图片
+![功夫熊猫](pic/kongfu_panda.jpg)
+
+```
+import cv2
+import matplotlib.pyplot as plt
+def show_plt(path):
+    # 显示原始图片
+    image_path = path
+    image = plt.imread(image_path)
+    plt.imshow(image)
+    plt.axis('off')
+    plt.show()
+
+def mian(path):
+    img = cv2.imread(path)
+    if img is not None:
+        ROI1 = img[79:510,345:670,:] # 可以看出 先是y轴，而后是x轴，最后是通道
+        ROI2 = img[70:340,35:250,:] 
+        ROI3 = img[227:499,213:356,:]
+        ROI4 = img[250:510,605:751,:]
+        ROI5 = img[53:421,675:969,:]
+
+        cv2.imshow('ROI1',ROI1)
+        cv2.imshow('ROI2',ROI2)
+        cv2.imshow('ROI3',ROI3)
+        cv2.imshow('ROI4',ROI4)
+        cv2.imshow('ROI5',ROI5)
+        key = cv2.waitKey(0) # 等待按键，
+        if key == ord('q'):
+            cv2.destroyAllWindows() # 关闭窗口
+    else:
+        print('failed to load image')
+
+if __name__ == '__main__':
+    show_plt('1/kongfu_panda.jpg')
+    mian('1/kongfu_panda.jpg')
+
+```
+结果图片
+![剪切结果](pic/tpcl1.png)
+
+![处理图片](pic/tpcl2.png)
+```
+import cv2
+import numpy as np
+
+def main(path):
+    img = cv2.imread(path)
+    print(img.shape)
+    if img is not None:
+        face = np.random.randint(0,255,(600,445,3)) # 随机产生掩盖矩阵
+        img[50:650,364:809,:] = face # 将图片的重新赋值
+        cv2.namedWindow('Data Masking',0)
+        cv2.resizeWindow('Data Masking',500,500) # 对现实的图片进行缩放，缩放到（500，500）
+        cv2.imshow('Data Masking',img)
+        cv2.waitKey() # 这样写的原因是保持图片的一直显示,否则一闪而逝
+        cv2.destroyAllWindows()
+    else:
+        print('falied to load image')
+
+if __name__ == '__main__':
+    main("1/police_story.png")
+```
+![处理图片](pic/tpcl3.png)
+
+显示RGB通道的图片内容
+```
+import cv2
+
+lena = cv2.imread('1/lena_color.jpg')
+
+if lena is not None:
+    cv2.imshow('lean',lena)
+    print('img.shape',img.shape)
+    print('img.size',img.size)
+    print('omg.dtype',img.dtype)
+    b = lena[:,:,0]
+    g = lena[:,:,1]
+    r = lena[:,:,2]
+    cv2.imshow('r',r)
+    cv2.imshow('g',g)
+    cv2.imshow('b',b)
+    img1 = cv2.resize(img,(600,600)) # 调整图像本身的大小
+     img1 = cv2.merge([g,r,b]) # cv2.merge可以调整BGR图像通道为自定义的[g,r,b]
+else:
+    print('failed to load image')
+
+cv2.waitKey()
+cv2.destroyAllWindows()
+# 可以看到基本的信息都包含，只不过是灰度的图像
+```
+![通道显示](pic/tpcl5.png)
+
+```
+import numpy as np
+import cv2
+
+img1=np.array([[178,83,29],[202,200,158],[27,177,162]],dtype=np.uint8)
+img2=np.array([[26,48,57],[52,153,8],[10,232,7]],dtype=np.uint8)
+
+print("img1\n", img1)
+print("img1\n", img2)
+print("img1+img2\n",img1+img2)
+
+
+cv2.namedWindow('img',cv2.WINDOW_NORMAL)
+cv2.imshow("img",img1+img2)
+cv2.resizeWindow('img',500,500)
+key = cv2.waitKey()
+if key == ord('q'):
+    cv2.destroyAllWindows()
+```
+![3x3矩阵显示](pic/tpcl6.png)
+
+
+
 ## 处理方法
 1. 二值化处理：这是最基本的阈值处理方法。对于每个像素，我们选择一个阈值。如果像素值大于阈值，我们将其设置为一个值（通常是白色），如果像素值小于或等于阈值，我们将其设置为另一个值（通常是黑色）。这样我们就得到了一个二值图像。
 2. 反二值化处理：这是二值化处理的反向操作。如果像素值大于阈值，我们将其设置为一个值（通常是黑色），如果像素值小于或等于阈值，我们将其设置为另一个值（通常是白色）。
@@ -40,6 +159,8 @@ cv2.destroyAllWindows()
 4. 超阈值零处理：对于每个像素，如果其值大于阈值，我们保持其原值不变。如果像素值小于或等于阈值，我们将其设置为零。
 5. 低阈值零处理：这是超阈值零处理的反向操作。如果像素值大于阈值，我们将其设置为零。如果像素值小于或等于阈值，我们保持其原值不变。
 6. 自适应阈值处理：这是一种更复杂的方法，它不使用固定的阈值。相反，它根据像素周围的小区域计算阈值。因此，对于同一张图片上的不同区域，我们可以有不同的阈值。这对于当图像的光照条件变化很大时，例如，一半是明亮的，一半是暗淡的图像，非常有用。
+
+
 
 ## 实现代码
 ```
@@ -84,6 +205,8 @@ cv2.imwrite('adaptive_image.jpg', adaptive_image)
 ![自适应阈值处理图像](pic/adaptive_image.jpg)
 
 ### 挖更大的坑，opencv库。
+
 ### 彩色图像怎么转换为二维图像的？
 首先灰度图像中的一个像素点的范围为0-255，彩色图像可以理解为3个灰度图重合。
+
 ### 需要深度解析代码中的含义，比如一个参数有什么用处。

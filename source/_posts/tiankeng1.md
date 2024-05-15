@@ -143,3 +143,5 @@ show_car_info(my_electric_car)
 棕色：数字。
 橙色：内置函数和模块的名称。
 灰色：注释。
+
+### github上传远端仓库

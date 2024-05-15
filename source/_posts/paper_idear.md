@@ -29,11 +29,15 @@ tags: 填坑
 2. RMSprop
 
 ## 评估指标
-1. ACC
-2. pression
-3. Recall
-4. F1-score
-5. 混淆矩阵
+怎么进行评估，
+![二分类示意图](pic/predict.jpg)
+True Positives (TP)：正类别样本中被正确预测为正类别的数量。True Negatives (TN)：负类别样本中被正确预测为负类别的数量。False Positives (FP)：负类别样本中被错误预测为正类别的数量。False Negatives (FN)：正类别样本中被错误预测为负类别的数量。
+1. ACC （准确率） ( TP+TN )  / (TP+TN+FP+FN)
+2. pression (精确率) (TP/TP+FP) 
+3. Recall (Sensitivity，灵敏度) (TP / TP+FN )
+4. F1-score (F1 值) （2 x (precision x Recall)/(precision + Recall )）
+5. Specificity (特异性) （TN / (TN + FP )）
+6. 混淆矩阵
 
 
 ## 数据输入

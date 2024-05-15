@@ -7,7 +7,7 @@ tags: 深度学习论文
 [参考博客-知乎](https://zhuanlan.zhihu.com/p/577709208)
 [论文原文链接](https://arxiv.org/pdf/2210.13452)
 [读论文博客](https://zhuanlan.zhihu.com/p/579175302)
-[原文代码](https://zhuanlan.zhihu.com/p/579175302)
+[原文代码](https://github.com/sail-sg/metaformer)
 
 
 ## 原文参考
