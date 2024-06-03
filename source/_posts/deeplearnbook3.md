@@ -152,6 +152,71 @@ if key == ord('q'):
 
 
 
+对图片进行缩放
+
+```
+import cv2
+
+img = cv2.imread('img/lena_color.jpg')
+
+if img is not None:
+    dst = cv2.resize(img,(600,600)) ## 将lena_color.jpg 放大到600*600
+    dst1 = cv2.resize(img,(50,50)) ## 将lena_color.jgp 缩小到50*50
+    dst2 = cv2.resize(img,None,fx =2,fy=1.5) ##  将lena_color.jgp 在水平方向放大到2位，垂直方向放大到1.5倍
+    cv2.imshow('img',img)
+    cv2.imshow('dst',dst)
+    cv2.imshow('dst1',dst1)
+    cv2.imshow('dst2',dst2)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
+
+
+```
+
+```
+import cv2
+import numpy as np
+
+# 读取图像
+img = cv2.imread('img/lena_color.jpg')
+
+# 获取图像中心坐标
+center = tuple(np.array(img.shape[1::-1]) / 2)
+
+# 顺时针旋转60度
+rotation_matrix = cv2.getRotationMatrix2D(center, -60, 1) ##  a、以图像中心为旋转中心，顺时针旋转60度，
+img_rotated = cv2.warpAffine(img, rotation_matrix, img.shape[1::-1], flags=cv2.INTER_LINEAR)
+
+# 缩小为原来的0.4倍
+img_resized = cv2.resize(img_rotated, None, fx=0.4, fy=0.4, interpolation=cv2.INTER_LINEAR)
+
+# 创建新的画布
+canvas = np.zeros_like(img)
+
+# 计算平移后的位置
+offset = (50, 25)
+new_position = tuple(np.array(offset) + np.array((0, 0)))
+
+# 在新的画布上粘贴图像
+canvas[new_position[1]:new_position[1]+img_resized.shape[0], new_position[0]:new_position[0]+img_resized.shape[1]] = img_resized
+
+# 显示图像
+cv2.imshow('Result', canvas)
+cv2.imshow('orangin',img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+```
+
+
+对图片进行形态学操作
+掌握图像形态学的基本原理和常用算法。学会使用形态学操作进行图像处理，如噪声去除、边缘检测、特征提取等。培养分析和解决图像处理问题的能力。
+
+
+```
+
+
+```
 ## 处理方法
 1. 二值化处理：这是最基本的阈值处理方法。对于每个像素，我们选择一个阈值。如果像素值大于阈值，我们将其设置为一个值（通常是白色），如果像素值小于或等于阈值，我们将其设置为另一个值（通常是黑色）。这样我们就得到了一个二值图像。
 2. 反二值化处理：这是二值化处理的反向操作。如果像素值大于阈值，我们将其设置为一个值（通常是黑色），如果像素值小于或等于阈值，我们将其设置为另一个值（通常是白色）。

@@ -7,7 +7,13 @@ tags: 填坑
 ## 数据预处理
 1. 傅里叶变换 （时间域变换为频域）
 2. 归一化（零归一化，批归一化，层归一化）
-
+3. 数据增强操作。
+guding_channl/AD -> 训练集大小: 64
+guding_channl/AD -> 测试集大小: 8
+guding_channl/CN -> 训练集大小: 97
+guding_channl/CN -> 测试集大小: 8
+guding_channl/MCI -> 训练集大小: 95
+guding_channl/MCI -> 测试集大小: 6
 
 ## 激活函数
 1. startRule
@@ -56,3 +62,4 @@ True Positives (TP)：正类别样本中被正确预测为正类别的数量。T
 4. 使用图像处理的模型结构。
 5. 公开数据集的二分类结果，对比论文。
 6. 验证选取合适的数据预处理方法是合适的。(注：数据预处理+深度学习模型架构。)
+

@@ -4,6 +4,11 @@ date: 2024-04-19 16:47:36
 tags: 感悟
 ---
 
+
+<audio controls>
+  <source src="https://github.com/changjingzhi/changjingzhi.github.io/blob/master/pic/shueibi7.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
 # what is important in life？（生命中什么最重要？）
 
 ### Today, I can't help but ask myself what is most important in life. I don't think I can answer the question because I don't know how to answer the question. But I think I may have a clue to this problem, thinking from my 20 years of experience, I often worry about what I don't have, but the result of worrying is only worrying itself, which does nothing to change the status quo, or makes the result worse. I thought I needed to get rid of this worry, so I saw death, I saw history, the flow of the past, the men. I have learned that nothing is permanent in the face of death, and that time diminishes everything. So I saw the past, the future, in the past regret and anxiety about the future saw the present, the past is gone, the future future, instead of falling into the past regret and anxiety about the future, why not change a mentality to spend the present. Life has no meaning, instead of blindly looking for the meaning of the castle in the air, it is better to spend the present with gratitude for the past and hope for the future. Look to the future based on the present, not to worry about the future, the future is not to worry, but to create. For the present attitude, not happy with things, not sad. Lief is short, kiss slowly, laugh insanely, love truly and forgive quickly.

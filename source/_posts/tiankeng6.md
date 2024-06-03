@@ -10,6 +10,7 @@ tags: 填坑
 [Gymnasim官网](https://gymnasium.farama.org/)
 [github上的代码](https://github.com/luozhiyun993/FlappyBird-PPO-pytorch)
 [动手强化学习](https://hrl.boyuai.com/chapter/)
+[动手强化学习代码](https://github.com/jalaxy33/learn-lr)
 [tensorflow实现的强化学习](https://github.com/alexzhuustc/gym-flappybird)
 [tensorflow+gym实现的flyappybird](https://github.com/alexzhuustc/gym-flappybird)
 [问答网站](https://stackoverflow.com/questions/69442971/error-in-importing-environment-openai-gym)
@@ -23,6 +24,14 @@ tags: 填坑
 强化学习中模型和环境交互，对于模型的目的来讲，就是从环境中取得最大的奖励值，主要在于策略的更新方法。
 参数更新方法：价值更新、梯度更新。输出的值，连续的值，离散的值。
 
+强化学习的构成元素：
+1. 智能体（Agent）： 人工智能操作的游戏角色，它就是这个游戏的主要玩家。
+2. 环境（Environment） ： 提供游玩的条件，agent做出的任何选择都会得到游戏环境的反馈。
+3. 状态（State）： 游戏汉奸内所有元素所处的状态，基于环境来进行反馈。
+4. 行动（action）: agent做出的行为来随着状态变化而变化。
+5. 奖励（Reward）： agent的目标在于获取更高的奖励，根据环境的反馈，如果反馈是负向的也可以被描述为惩罚。
+6. 目标（Goal）： 在合理设置奖励后，目标应该被表示为最大化奖励之和。
+整个强化学习的过程，是为了学到好的策略（Policy）,本质上就是学习在某个状态下应该采取什么样的行动。
 
 目前已经有的算法; 
 ## 游戏选择 FlappyBird
@@ -572,7 +581,7 @@ plt.show()
 
 打砖块的游戏的输入为(4, 84, 84)，动作有4个有四个动作( 0 , 1 , 2 , 3 )，奖励为分数。对于Flappy Bird for Gymnasium环境中游戏action 为（180，）The LIDAR sensor 180 readings， action space 为 0 do nothing， 1 为 flap 奖励为0.1 - every frame it stays alive，1.0 - successfully passing a pipe，1.0 - dying， 0.5 - touch the top of the screen 输入有点少。
 
-## 第四步，使用dqn网络 
+## 第四步，使用DQN网络 
 
 笔记： 函数的方法（DQN）和基于策略的方法（REINFORCE），其中基于值函数的方法只学习一个价值函数，而基于策略的方法只学习一个策略函数。那么，一个很自然的问题是，有没有什么方法既学习价值函数，又学习策略函数呢？答案就是 Actor-Critic。在 REINFORCE 算法中，目标函数的梯度中有一项轨迹回报，用于指导策略的更新。Actor 的更新采用策略梯度的原则，之前路走偏了使用了价值策略来更新参数，不容易收敛。
 
@@ -935,8 +944,363 @@ plt.title('Actor-Critic on {}'.format(env_name))
 plt.show()
 
 ```
-结果不怎么样，一直维持到0.8 左右。agent一直没有行动。某种程度上是数据输入太少了，论文中的结果怎么好我看不懂，真的服了。
+结果不怎么样，一直维持到0.8 左右。agent一直没有行动。某种程度上是数据输入太少了，论文中的结果怎么好我看不懂，真的服了。更换算法，
 
+## 第五步ppo算法.
+代码 详细代码我放在了github上[github链接](https://github.com/changjingzhi/FlappyBird-with-ppo) 
+配置文件，rl_utils
+```
+from tqdm import tqdm
+from abc import ABC, abstractmethod
+import numpy as np
+import torch
+import collections
+import random
+import gymnasium as gym
+import flappy_bird_gymnasium
+
+
+class BasePolicy(ABC):
+    """
+    策略类的抽象基类
+    """
+    def __init__(self):
+        assert True
+
+    @abstractmethod
+    def take_action(self, state:np.ndarray) -> int:
+        raise NotImplementedError
+
+    @abstractmethod
+    def update(self, transition_dict:dict):
+        raise NotImplementedError
+
+
+class ReplayBuffer:
+    ''' 经验回放池 '''
+    def __init__(self, capacity:int):
+        self.buffer = collections.deque(maxlen=capacity)    # 队列,先进先出
+
+    def add(self, state:np.ndarray, action:int, reward:float, next_state:np.ndarray, done:bool):     # 将数据加入buffer
+        self.buffer.append((state, action, reward, next_state, done)) 
+
+    def sample(self, batch_size:int):   # 从buffer中采样数据,数量为batch_size
+        transitions = random.sample(self.buffer, batch_size)
+        state, action, reward, next_state, done = zip(*transitions)
+        return np.array(state), action, reward, np.array(next_state), done 
+
+    def size(self) -> int:  # 目前buffer中数据的数量
+        return len(self.buffer)
+
+
+def moving_average(a:list, window_size:int) -> np.ndarray:
+    cumulative_sum = np.cumsum(np.insert(a, 0, 0)) 
+    middle = (cumulative_sum[window_size:] - cumulative_sum[:-window_size]) / window_size
+    r = np.arange(1, window_size-1, 2)
+    begin = np.cumsum(a[:window_size-1])[::2] / r
+    end = (np.cumsum(a[:-window_size:-1])[::2] / r)[::-1]
+    return np.concatenate((begin, middle, end))
+
+
+def train_on_policy_agent(env:gym.Env, agent:BasePolicy, num_episodes:int) -> list:
+    return_list = []
+    for i in range(10):
+        with tqdm(total=int(num_episodes/10), desc='Iteration %d' % i) as pbar:
+            for i_episode in range(int(num_episodes/10)):
+                episode_return = 0
+                transition_dict = {'states': [], 'actions': [], 'next_states': [], 'rewards': [], 'dones': []}
+                state,_ = env.reset()
+                done = False
+                while not done:
+                    action = agent.take_action(state)
+                    next_state, reward, done, _,info = env.step(action)
+                    transition_dict['states'].append(state)
+                    transition_dict['actions'].append(action)
+                    transition_dict['next_states'].append(next_state)
+                    transition_dict['rewards'].append(reward)
+                    transition_dict['dones'].append(done)
+                    state = next_state
+                    episode_return += reward
+                return_list.append(episode_return)
+                agent.update(transition_dict)
+                if (i_episode+1) % 10 == 0:
+                    pbar.set_postfix({
+                            'episode': '%d' % (num_episodes/10 * i + i_episode+1), 
+                            'return': '%.3f' % np.mean(return_list[-10:])
+                        })
+                pbar.update(1)
+    return return_list
+
+
+def train_off_policy_agent(
+        env:gym.Env, agent:BasePolicy, num_episodes:int, 
+        replay_buffer:ReplayBuffer, minimal_size:int, batch_size:int
+    ) -> list:
+    return_list = []
+    for i in range(10):
+        with tqdm(total=int(num_episodes/10), desc='Iteration %d' % i) as pbar:
+            for i_episode in range(int(num_episodes/10)):
+                episode_return = 0
+                state = env.reset()
+                done = False
+                while not done:
+                    action = agent.take_action(state)
+                    next_state, reward, done, _ = env.step(action)
+                    replay_buffer.add(state, action, reward, next_state, done)
+                    state = next_state
+                    episode_return += reward
+                    if replay_buffer.size() > minimal_size:
+                        b_s, b_a, b_r, b_ns, b_d = replay_buffer.sample(batch_size)
+                        transition_dict = {'states': b_s, 'actions': b_a, 'next_states': b_ns, 'rewards': b_r, 'dones': b_d}
+                        agent.update(transition_dict)
+                return_list.append(episode_return)
+                if (i_episode+1) % 10 == 0:
+                    pbar.set_postfix({
+                            'episode': '%d' % (num_episodes/10 * i + i_episode+1), 
+                            'return': '%.3f' % np.mean(return_list[-10:])
+                        })
+                pbar.update(1)
+    return return_list
+
+
+def compute_advantage(gamma:float, lmbda:float, td_delta:torch.Tensor) -> torch.Tensor:
+    """
+    广义优势估计 (Generalized Advantage Estimation, GAE)，
+    解释：https://hrl.boyuai.com/chapter/2/trpo%E7%AE%97%E6%B3%95#116-%E5%B9%BF%E4%B9%89%E4%BC%98%E5%8A%BF%E4%BC%B0%E8%AE%A1
+    """
+    td_delta = td_delta.detach().numpy()
+    advantage_list = []
+    advantage = 0.0
+    for delta in td_delta[::-1]:
+        advantage = gamma * lmbda * advantage + delta
+        advantage_list.append(advantage)
+    advantage_list.reverse()
+    return torch.tensor(advantage_list, dtype=torch.float)
+                
+
+```
+训练代码,ppo
+```
+import gymnasium as gym
+import flappy_bird_gymnasium
+import torch
+import torch.nn.functional as F
+import numpy as np
+from tqdm import tqdm
+import matplotlib.pyplot as plt
+import rl_utils
+import os
+
+
+class PolicyNet(torch.nn.Module):
+    def __init__(self, state_dim, hidden_dim, action_dim):
+        super(PolicyNet, self).__init__()
+        self.fc1 = torch.nn.Linear(state_dim, hidden_dim)
+        self.fc2 = torch.nn.Linear(hidden_dim, action_dim)
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        return F.softmax(self.fc2(x), dim=1)
+
+
+class ValueNet(torch.nn.Module):
+    def __init__(self, state_dim, hidden_dim):
+        super(ValueNet, self).__init__()
+        self.fc1 = torch.nn.Linear(state_dim, hidden_dim)
+        self.fc2 = torch.nn.Linear(hidden_dim, 1)
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        return self.fc2(x)
+
+class PPO:
+    def __init__(self, state_dim, hidden_dim, action_dim, actor_lr, critic_lr,
+                 lmbda, epochs, eps, gamma, device):
+        self.actor = PolicyNet(state_dim, hidden_dim, action_dim).to(device)
+        self.critic = ValueNet(state_dim, hidden_dim).to(device)
+        self.actor_optimizer = torch.optim.Adam(self.actor.parameters(),
+                                                lr=actor_lr)
+        self.critic_optimizer = torch.optim.Adam(self.critic.parameters(),
+                                                 lr=critic_lr)
+        self.gamma = gamma
+        self.lmbda = lmbda
+        self.epochs = epochs
+        self.eps = eps
+        self.device = device
+
+    def take_action(self, state):
+        state = torch.tensor([state], dtype=torch.float).to(self.device)
+        probs = self.actor(state)
+        action_dist = torch.distributions.Categorical(probs)
+        action = action_dist.sample()
+        return action.item()
+
+    def update(self, transition_dict):
+        states = torch.tensor(transition_dict['states'],
+                              dtype=torch.float).to(self.device)
+        actions = torch.tensor(transition_dict['actions']).view(-1, 1).to(
+            self.device)
+        rewards = torch.tensor(transition_dict['rewards'],
+                               dtype=torch.float).view(-1, 1).to(self.device)
+        next_states = torch.tensor(transition_dict['next_states'],
+                                   dtype=torch.float).to(self.device)
+        dones = torch.tensor(transition_dict['dones'],
+                             dtype=torch.float).view(-1, 1).to(self.device)
+        td_target = rewards + self.gamma * self.critic(next_states) * (1 -
+                                                                       dones)
+        td_delta = td_target - self.critic(states)
+        advantage = rl_utils.compute_advantage(self.gamma, self.lmbda,
+                                               td_delta.cpu()).to(self.device)
+        old_log_probs = torch.log(self.actor(states).gather(1,
+                                                            actions)).detach()
+
+        for _ in range(self.epochs):
+            log_probs = torch.log(self.actor(states).gather(1, actions))
+            ratio = torch.exp(log_probs - old_log_probs)
+            surr1 = ratio * advantage
+            surr2 = torch.clamp(ratio, 1 - self.eps,
+                                1 + self.eps) * advantage
+            actor_loss = torch.mean(-torch.min(surr1, surr2))
+            critic_loss = torch.mean(
+                F.mse_loss(self.critic(states), td_target.detach()))
+            self.actor_optimizer.zero_grad()
+            self.critic_optimizer.zero_grad()
+            actor_loss.backward()
+            critic_loss.backward()
+            self.actor_optimizer.step()
+            self.critic_optimizer.step()
+
+    def save_model(self, model_save_path):
+        os.makedirs(os.path.dirname(model_save_path), exist_ok=True)
+        torch.save({
+            'actor': self.actor.state_dict(),
+            'critic': self.critic.state_dict(),
+            'actor_optimizer': self.actor_optimizer.state_dict(),
+            'critic_optimizer': self.critic_optimizer.state_dict()
+        }, model_save_path)
+
+    def load_model(self, model_save_path):
+        if os.path.exists(model_save_path):
+            checkpoint = torch.load(model_save_path)
+            self.actor.load_state_dict(checkpoint['actor'])
+            self.critic.load_state_dict(checkpoint['critic'])
+            self.actor_optimizer.load_state_dict(checkpoint['actor_optimizer'])
+            self.critic_optimizer.load_state_dict(checkpoint['critic_optimizer'])
+            print("模型成功加载！")
+        else:
+            print("模型路径不存在，将从头开始训练。")
+
+# 定义超参数和环境
+actor_lr = 1e-6
+critic_lr = 1e-5
+num_episodes = 10000
+hidden_dim = 64
+gamma = 0.99
+lmbda = 0.95
+epochs = 10
+eps = 0.2
+device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+env_name = 'FlappyBird-v0'
+
+# 创建环境和代理
+env = gym.make(env_name)
+state_dim = env.observation_space.shape[0]
+action_dim = env.action_space.n
+
+# 创建PPO代理
+agent = PPO(state_dim, hidden_dim, action_dim, actor_lr, critic_lr, lmbda,
+            epochs, eps, gamma, device)
+
+# 定义模型保存路径
+model_save_path = "model/ppo_model.pth"
+
+# 加载模型或训练新模型
+agent.load_model(model_save_path)
+
+# 训练或测试代理
+return_list = rl_utils.train_on_policy_agent(env, agent, num_episodes)
+
+agent.save_model(model_save_path)
+
+# 绘制训练曲线
+episodes_list = list(range(len(return_list)))
+plt.plot(episodes_list, return_list)
+plt.xlabel('num_episodes')
+plt.ylabel('reward')
+plt.title('PPO on {}'.format(env_name))
+plt.show()
+```
+测试代码，test
+```
+import gymnasium as gym
+import flappy_bird_gymnasium
+import torch
+import torch.nn.functional as F
+from time import sleep
+import os
+
+# 定义游戏环境和设备
+env = gym.make("FlappyBird-v0", render_mode="human")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+# 定义模型路径
+model_path = "ppo_model.pth"
+
+class PolicyNet(torch.nn.Module):
+    def __init__(self, state_dim, hidden_dim, action_dim):
+        super(PolicyNet, self).__init__()
+        self.fc1 = torch.nn.Linear(state_dim, hidden_dim)
+        self.fc2 = torch.nn.Linear(hidden_dim, action_dim)
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        return F.softmax(self.fc2(x), dim=1)
+
+# 定义 PPO 代理类
+class PPOAgent:
+    def __init__(self, state_dim, hidden_dim, action_dim, model_path):
+        self.model = PolicyNet(state_dim, hidden_dim, action_dim).to(device)
+        self.model.load_state_dict(torch.load(model_path)['actor'])  # 加载模型的 'actor' 部分
+        self.model.eval()  # 设置模型为评估模式
+
+    def take_action(self, state):
+        state_tensor = torch.tensor([state], dtype=torch.float).to(device)
+        with torch.no_grad():
+            action = self.model(state_tensor).argmax().item()
+        return action
+
+# 创建 PPO 代理
+state_dim = env.observation_space.shape[0]
+action_dim = env.action_space.n
+hidden_dim = 64
+agent = PPOAgent(state_dim, hidden_dim, action_dim, model_path)
+
+# 运行游戏并观察动画
+state, _ = env.reset()
+done = False
+total_reward = 0
+
+try:
+    while not done:
+        # 使用代理选择动作
+        action = agent.take_action(state)
+
+        # 执行动作并观察游戏动画
+        next_state, reward, terminate, truncated, _ = env.step(action)
+        done = terminate or truncated
+        total_reward += reward
+        env.render()
+
+        state = next_state
+
+finally:
+    # 输出游戏得分
+    print(f"游戏结束，得分：{total_reward}")
+    # 手动关闭游戏画面
+    input("按任意键关闭游戏画面...")
+    env.close()  # 关闭游戏环境
+
+```
 
 ## 补充知识
 
