@@ -1,7 +1,7 @@
 ---
 title: 论文思路——数据预处理
 date: 2024-04-28 21:49:52
-tags: 填坑
+tags: 论文思路
 ---
 
 ## 目前的数据预处理有
@@ -501,6 +501,83 @@ def create_data_text(path):
 if __name__ == "__main__":
     create_data_text("data_npy_cut")
 
+
+```
+
+
+
+6. 十折交叉验证
+
+```
+import os
+import math
+import shutil
+
+def split_data_into_folds(data_folders, output_folders):
+    for data_folder, output_folder in zip(data_folders, output_folders):
+        os.makedirs(output_folder, exist_ok=True)
+
+        # 获取数据集文件夹中的所有文件名
+        all_files = os.listdir(data_folder)
+
+        # 每个折中的文件数
+        files_per_fold = len(all_files) // 10
+
+        # 按照每个折的文件数划分文件列表
+        fold_files = [all_files[i:i+files_per_fold] for i in range(0, len(all_files), files_per_fold)]
+
+        # 保存到对应的折文件夹中
+        for i, files_in_fold in enumerate(fold_files):
+            fold_path = os.path.join(output_folder, f'fold_{i+1}')
+            os.makedirs(fold_path, exist_ok=True)
+            for file_name in files_in_fold:
+                shutil.copy(os.path.join(data_folder, file_name), fold_path)
+
+        # 检测是否存在fold_11文件夹
+        fold11_path = os.path.join(output_folder, 'fold_11')
+        if os.path.exists(fold11_path) and os.path.isdir(fold11_path):
+            # 将fold_11中的内容移动到fold_10中
+            fold10_path = os.path.join(output_folder, 'fold_10')
+            for file_name in os.listdir(fold11_path):
+                shutil.move(os.path.join(fold11_path, file_name), fold10_path)
+            
+            # 删除fold_11文件夹
+            os.rmdir(fold11_path)
+
+# 数据集文件夹路径列表
+data_folders = ['guding_channl/AD', 'guding_channl/MCI', 'guding_channl/CN']
+
+# 输出文件夹路径列表
+output_folders = ['output_folder/AD', 'output_folder/MCI', 'output_folder/CN']
+
+split_data_into_folds(data_folders, output_folders)
+
+def create_train_test_sets(input_folder, output_folder, test_folders):
+    for test_folder in test_folders:
+        os.makedirs(os.path.join(output_folder, test_folder, 'test', os.path.basename(input_folder)), exist_ok=True)
+        os.makedirs(os.path.join(output_folder, test_folder, 'train', os.path.basename(input_folder)), exist_ok=True)
+
+        train_folders = [folder for folder in os.listdir(input_folder) if folder != test_folder]
+
+        for file_name in os.listdir(os.path.join(input_folder, test_folder)):
+            shutil.copy(os.path.join(input_folder, test_folder, file_name), os.path.join(output_folder, test_folder, 'test', os.path.basename(input_folder)))
+
+        for train_folder in train_folders:
+            for file_name in os.listdir(os.path.join(input_folder, train_folder)):
+                shutil.copy(os.path.join(input_folder, train_folder, file_name), os.path.join(output_folder, test_folder, 'train', os.path.basename(input_folder)))
+
+# 输入文件夹路径列表，包含三个文件夹 AD、MCI、CN
+input_folders = ['output_folder/AD', 'output_folder/MCI', 'output_folder/CN']
+
+# 输出文件夹路径
+output_folder = 'output_folder_fixed'
+
+# 测试文件夹名称列表，代表每个input_folders中文件的参照测试文件夹
+test_folders = ['fold_1', 'fold_2', 'fold_3', 'fold_4', 'fold_5', 'fold_6', 'fold_7', 'fold_8', 'fold_9', 'fold_10']
+
+# 对每个输入文件夹调用函数
+for input_folder in input_folders:
+    create_train_test_sets(input_folder, output_folder, test_folders)
 
 ```
 ## 数据增强

@@ -1,11 +1,11 @@
 ---
-title: 英语-听力
+title: 英语-听力(2023年英语6级听力原文及翻译)
 date: 2024-05-19 20:08:40
 tags: 英语
 ---
 
 [在线练习网站](https://cet.itongzhuo.com/fourSix/exam/jumpFourSixExam.do?meType=11)
-2023年英语6级听力原文及翻译
+
 
 ## 第一段听力
 对话：1-4题

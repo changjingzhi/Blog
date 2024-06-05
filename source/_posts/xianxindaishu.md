@@ -1,5 +1,5 @@
 ---
-title: 线性代数1
+title: 线性代数-行列式
 date: 2024-04-29 21:53:18
 tags: 线性代数
 ---
@@ -14,3 +14,92 @@ tags: 线性代数
 6. 二次型 ，二次型及其矩阵表示，合同变换与合同矩阵，二次型的秩，惯性定理，二次型的标准形和规范形， 用正交变换和配方法化二次型为标准形，二次型及其矩阵的正定性。 
  
 
+## 行列式
+
+包含十一个公式，行列式的计算公式。
+![行列式公式](pic/xxds-hls1.jpg)
+
+
+###  公式三的例子
+
+| |
+| :------ |
+|![有规律的情况下，顺着规律相加减，会更简单](pic/xxds-hls2.jpg)|
+|![](pic/xxds-hls3.jpg)|
+|![](pic/xxds-hls4.jpg)|
+|![](pic/xxds-hls5.jpg)|
+
+### 公式四
+
+
+| |
+| :------ | 
+| ![](pic/xxds-hls6.jpg) |
+| ![](pic/xxds-hls7.jpg) |
+| ![](pic/xxds-hls8.jpg) |
+| ![](pic/xxds-hls9.jpg) |
+| ![](pic/xxds-hls10.jpg) |
+| ![](pic/xxds-hls11.jpg) |
+| ![](pic/xxds-hls12.jpg) |
+| ![](pic/xxds-hls13.jpg)|
+
+
+
+### 公式五
+
+| |
+| :------ | 
+| ![](pic/xxds-hls14.jpg)|
+| ![](pic/xxds-hls15.jpg)|
+
+### 公式六
+
+| |
+| :------ |
+| ![](pic/xxds-hls16.jpg)|
+| ![](pic/xxds-hls17.jpg)|
+
+### 公式七
+
+| |
+| :------ |
+|![](pic/xxds-hls18.jpg)|
+
+### 公式八
+
+| |
+| :------ |
+|![](pic/xxds-hls19.jpg)|
+
+
+### 公式九
+
+| |
+| :------ |
+|![](pic/xxds-hls20.jpg)|
+
+
+### 公式十：范德蒙德行列式
+
+| |
+| :------ |
+|![](pic/xxds-hls21.jpg)|
+|![](pic/xxds-hls22.jpg)|
+|![](pic/xxds-hls23.jpg)|
+|![](pic/xxds-hls24.jpg)|
+
+### 拉普拉斯行列式
+
+| |
+| :------ |
+|![](pic/xxds-hls25.jpg)|
+|![](pic/xxds-hls26.jpg)|
+
+
+### 代数余子式
+
+| |
+| :------ |
+|![](pic/xxds-hls27.jpg)|
+|![](pic/xxds-hls28.jpg)|
+|![](pic/xxds-hls29.jpg)|

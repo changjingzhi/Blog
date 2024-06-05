@@ -1,19 +1,19 @@
 ---
 title: 论文思路
 date: 2024-04-25 12:16:48
-tags: 填坑
+tags: 论文思路
 ---
 
 ## 数据预处理
 1. 傅里叶变换 （时间域变换为频域）
 2. 归一化（零归一化，批归一化，层归一化）
 3. 数据增强操作。
-guding_channl/AD -> 训练集大小: 64
-guding_channl/AD -> 测试集大小: 8
-guding_channl/CN -> 训练集大小: 97
-guding_channl/CN -> 测试集大小: 8
-guding_channl/MCI -> 训练集大小: 95
-guding_channl/MCI -> 测试集大小: 6
+guding_channl/AD -> 训练集大小: 65
+guding_channl/AD -> 测试集大小: 7
+guding_channl/CN -> 训练集大小: 95
+guding_channl/CN -> 测试集大小: 10
+guding_channl/MCI -> 训练集大小: 91
+guding_channl/MCI -> 测试集大小: 10
 
 ## 激活函数
 1. startRule

@@ -1,7 +1,7 @@
 ---
 title: 论文思路——论文阅读文献
 date: 2024-04-30 09:29:04
-tags: 填坑
+tags: 论文思路
 ---
 阅读工具[Kimi](https://kimi.moonshot.cn)
 ## 论文阅读记录
