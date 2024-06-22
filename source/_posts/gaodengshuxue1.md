@@ -5,6 +5,10 @@ tags: 高等数学
 ---
 [我在知乎学数学](https://zhuanlan.zhihu.com/p/105704401)
 [什么是微积分](https://www.zhihu.com/question/336322284/answer/918067537)
+[22 660 题目解析150-200](https://www.bilibili.com/video/BV1zb4y1X7t3?p=30&vd_source=9814cf6702c46a0b906cb31de22baa58)
+[22 660 题目解析201-250](https://www.bilibili.com/video/BV1cb4y19753/?spm_id_from=333.788.recommend_more_video.0&vd_source =9814cf6702c46a0b906cb31de22baa58)
+
+
 ## 背景介绍
 最近需要解析梯度下降算法，对于矩阵搞不清楚怎么进行多矩阵的梯度下降，算起来是补充基础了。
 

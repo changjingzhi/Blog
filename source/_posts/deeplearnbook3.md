@@ -275,3 +275,88 @@ cv2.imwrite('adaptive_image.jpg', adaptive_image)
 首先灰度图像中的一个像素点的范围为0-255，彩色图像可以理解为3个灰度图重合。
 
 ### 需要深度解析代码中的含义，比如一个参数有什么用处。
+
+使用权重标记人脸
+```
+import cv2
+
+
+
+# 打开摄像头
+
+cap = cv2.VideoCapture(0)
+
+
+
+# 设置图像分辨率为1024x768
+
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1024)
+
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 768)
+
+
+
+# 加载人脸检测器
+
+face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+
+
+
+while True:
+
+    # 从摄像头读取一帧
+
+    ret, frame = cap.read()
+
+
+
+    # 检查帧是否成功读取
+
+    if not ret:
+
+        print("无法从摄像头读取帧")
+
+        break
+
+
+
+    # 将帧转换为灰度图像
+
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+
+
+    # 检测人脸
+
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+
+
+
+    # 在检测到的人脸周围绘制蓝色框
+
+    for (x, y, w, h) in faces:
+
+        cv2.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
+
+
+
+    # 显示视频
+
+    cv2.imshow('Video', frame)
+
+
+
+    # 按下q键退出循环
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+
+        break
+
+
+
+# 释放摄像头并关闭窗口
+
+cap.release()
+
+cv2.destroyAllWindows()
+```

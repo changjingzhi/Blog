@@ -1,5 +1,5 @@
 ---
-title: 线性代数——向量
+title: 线性代数 —— 向量
 date: 2024-06-04 16:31:17
 tags: 线性代数
 ---
@@ -8,13 +8,15 @@ tags: 线性代数
 ## 向量的秩，极大无关组
 
 ![](pic/xxds-xl1.jpg)
-
+[极大无关组详细过程](https://blog.csdn.net/shenliang1985/article/details/114821049)
+计算完矩阵的秩后，计算单位向量，将
 ## 将向量使用其他向量表示
 
 ![](pic/xxds-xl2.jpg)
 
 ## 线性相关和线性无关
 ![](pic/xxds-xl3.jpg)
+满秩线性无关，非满秩线性相关。
 
 ## 向量的内积、模，夹角，正交
 ![](pic/xxds-xl4.jpg)

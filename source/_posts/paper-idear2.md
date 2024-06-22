@@ -30,6 +30,21 @@ It can be visually observed that AD group has lower delta connectivity than CN g
 
 ### 怎么计算模型的计算量。
 
+```
+# 创建模型实例
+model = IntegratedNet(input_size=1, in_feature=320)
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = model.to(device)
+
+# 随机输入数据
+x = torch.randn(1, 1, 11, 5120).to(device)
+
+from thop import profile
+flops, params = profile(model, inputs=(x,))
+print('Total FLOPs:', flops)
+
+
+```
 
 ## 看论文的心态
 Because it is an English paper, there is a kind of resistance. Take your time.
@@ -877,6 +892,129 @@ for k = 1:length(files)
     end
 end
 ```
+
+
+堆叠+横轴
+```
+import os
+import mne
+import numpy as np
+
+# 定义所需通道的列表
+channels = ['C3', 'Fz', 'F8', 'F4', 'C4', 'F3', 'Pz', 'P4', 'Cz', 'P3', 'F7']
+# 输入和输出文件夹路径列表
+input_folders = ['私有数据集/AD', '私有数据集/MCI', '私有数据集/NC', '公开数据集/AD', '公开数据集/CN']
+output_folders = ['guding_channl/AD', 'guding_channl/MCI', 'guding_channl/CN', 'guding_channl/AD', 'guding_channl/CN']
+
+# 定义函数来处理EDF文件
+def process_edf_file(file_path, output_folder):
+    # 读取EDF文件
+    raw = mne.io.read_raw_edf(file_path, preload=True)
+    
+    # 检查通道数量
+    if not all(ch in raw.ch_names for ch in channels):
+        print(f"文件 {file_path} 不包含所有所需通道，跳过处理。")
+        return
+    
+    # 删除不需要的通道，只保留指定的通道
+    raw.pick_channels(channels)
+    
+    # 按照指定顺序重新排列通道
+    raw.reorder_channels(channels)
+    
+    eeg_data = raw.get_data()
+
+    # 提取Alpha波段 (8-13 Hz)
+    alpha_data = raw.copy().filter(8, 13, fir_design='firwin').get_data()
+    
+    # 提取Theta波段 (4-8 Hz)
+    theta_data = raw.copy().filter(4, 8, fir_design='firwin').get_data()
+    
+    # 堆叠Alpha和Theta波段的数据
+    stacked_data = np.vstack((alpha_data, theta_data,eeg_data))
+ 
+    print(stacked_data.shape)
+    # 获取文件名（不包含扩展名）
+    file_name = os.path.splitext(os.path.basename(file_path))[0]
+    
+    # 构建保存路径
+    save_path = os.path.join(output_folder, f'{file_name}_processed.npy')
+    
+    # 保存处理后的EEG数据为npy文件
+    np.save(save_path, stacked_data)
+    print(f"处理并保存文件: {save_path}")
+
+
+def process_set_file(file_path, output_folder):
+    # 读取SET文件
+    raw = mne.io.read_raw_eeglab(file_path, preload=True)
+    
+    # 上采样到512采样率
+    raw.resample(512)
+    
+    # 检查通道数量
+    if not all(ch in raw.ch_names for ch in channels):
+        print(f"文件 {file_path} 不包含所有所需通道，跳过处理。")
+        return
+    
+    # 删除不需要的通道，只保留指定的通道
+    raw.pick_channels(channels)
+    
+    # 按照指定顺序重新排列通道
+    raw.reorder_channels(channels)
+    
+    eeg_data = raw.get_data()
+
+   # 提取Alpha波段 (8-13 Hz)
+    alpha_data = raw.copy().filter(8, 13, fir_design='firwin').get_data()
+    
+    # 提取Theta波段 (4-8 Hz)
+    theta_data = raw.copy().filter(4, 8, fir_design='firwin').get_data()
+    
+    # 堆叠Alpha和Theta波段的数据
+    stacked_data = np.vstack((alpha_data, theta_data,eeg_data))
+   
+    print(stacked_data.shape)
+    # 获取文件名（不包含扩展名）
+    file_name = os.path.splitext(os.path.basename(file_path))[0]
+    
+    # 构建保存路径
+    save_path = os.path.join(output_folder, f'{file_name}_processed.npy')
+    
+    # 保存处理后的EEG数据为npy文件
+    np.save(save_path, stacked_data)
+    print(f"处理并保存文件: {save_path}")
+
+
+# 定义函数来处理文件，根据文件后缀选择处理方法
+def process_file(file_path, output_folder):
+    file_extension = os.path.splitext(file_path)[1]
+    if file_extension == '.edf':
+        process_edf_file(file_path, output_folder)
+    elif file_extension == '.set':
+        process_set_file(file_path, output_folder)
+    else:
+        print(f"文件 {file_path} 格式不支持，跳过处理。")
+
+
+# 确保文件夹数量相同
+assert len(input_folders) == len(output_folders), "输入和输出文件夹数量不匹配"
+
+# 创建新文件夹
+for output_folder in output_folders:
+    os.makedirs(output_folder, exist_ok=True)
+
+# 遍历每个输入文件夹
+for input_folder, output_folder in zip(input_folders, output_folders):
+    for file_name in os.listdir(input_folder):
+        file_path = os.path.join(input_folder, file_name)
+        # 根据文件后缀选择处理方法
+        process_file(file_path, output_folder)
+
+
+```
+
+
 图片转换为npy数据格式，二值化输入
 
 ```
@@ -1236,6 +1374,40 @@ scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', factor=0
 ```
 
 ```
+
+| | |
+| :------ | :------ | 
+|batch-size|learning|
+|16|0.00005|
+| 8 |0.00005|
+|32|0.001|
+
+
+| | | |
+| :------ | :------ | :------ | 
+|time|wight_size|in_feature|
+|3|1536|96|
+|4|2048|128|
+|5|2560|160|
+|6|3072|192|
+|7|3584|224|
+|8|4096|256|
+|9|4608|288|
+|10|5120|320|
+|11|5632|352|
+|12|6144|384|
+|13|6656|416|
+
 ### 密码
 Qwer123@
 Qwer123.
+train-loss 和test-loss之间的关系
+变化趋势分析：train loss 不断下降，test loss不断下降，说明网络仍在学习;
+
+（最好的）train loss 不断下降，test loss趋于不变，说明网络过拟合；
+
+train loss 趋于不变，test loss不断下降，说明数据集100%有问题;
+
+（检查dataset）train loss 趋于不变，test loss趋于不变，说明学习遇到瓶颈，需要减小学习率或批量数目;
+
+（减少学习率）train loss 不断上升，test loss不断上升，说明网络结构设计不当，训练超参数设置不当，数据集经过清洗等问题；（最不好的情况）train_loss 不断下降， test_loss 不断上升，和第2种情况类似说明网络过拟合了。

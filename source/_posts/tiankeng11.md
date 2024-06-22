@@ -16,4 +16,6 @@ tags: 填坑
 
 5. 酷壳-陈皓[](https://coolshell.cn/)
 
-6. 
+6. 大语言模型[链接](https://github.com/LLMBook-zh/LLMBook-zh.github.io)
+
+7. github开源项目趋势[](https://open.itc.cn/?tab=trends)

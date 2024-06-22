@@ -1,5 +1,5 @@
 ---
-title: 2022年6月大学英语六级考试真题 （第一套）
+title: 作文 + 阅读 —— 2022年6月大学英语六级考试真题 （第一套）
 date: 2024-05-30 17:43:07
 tags: 英语
 ---
@@ -293,5 +293,162 @@ D) 合作努力可以克服个人在科学探究中的局限。
 
 
 
+## 2022年12月大学英语六级考试真题（第二套）
 
 
+
+第一篇
+
+ Some people in the US have asserted that forgiving student loan debt is one way to stimulate the economy and give assistance to those in need. One government proposition is to eliminate $ 10,000 of debt for 'economically distressed' students. Some in US Congress have gone so far as to suggest forgiving up to $50,000 in debt per student borrower, but does forgiving student debt necessarily correlate to helping the economically disadvantaged?
+
+一些美国人声称，宽恕学生贷款是刺激经济、帮助有需要的人的一种方式。政府的一个提议是为“经济困难”的学生减免10000美元的债务。一些美国国会议员甚至建议为每位学生借款人宽恕高达50000美元的债务，但宽恕学生债务是否必然意味着帮助经济弱势群体呢？
+
+
+46.Why do some people advocate forgiving student loan debt? （B）
+
+A)  They assert it will narrow the gap between the wealthy and the poor.   
+
+B)  They believe it will benefit both the economy and the underprivileged.   
+
+C)  They claim it will eliminate economic distress among college students.   
+
+D)  They think the cost of education is the responsibility of the government.
+
+为什么有些人主张宽恕学生贷款？
+
+A) 他们断言这将缩小富人和穷人之间的差距。
+
+B) 他们认为这将有利于经济和贫困人口。
+
+C) 他们声称这将消除大学生中的经济困扰。
+
+D) 他们认为教育费用是政府的责任。
+
+
+ The answer is no. This policy is just giving money away to universities and the most affluent students in attendance. Federal Reserve data reveals that the highest-income 40 percent of households owe approximately 60 percent of outstanding student debt, while the lowest 40 percent owe just under 20 percent. This could be due to a combination of factors：students from high-income households are more likely to go to expensive colleges, less likely to receive financial aid, and more likely to have high incomes post-graduation. Plus, the majority of student debt is held by graduate degree earners, who earn approximately 25 percent more than their undergraduate counterparts. Clearly, giving free reign to banks to forgive student debt is a step in the wrong direction.  
+
+ 这项政策实际上只是在向大学和出席的最富裕的学生散发钱财。美联储的数据显示，收入最高的40％家庭拥有约60％的未偿还学生贷款，而最低的40％仅拥有略低于20％。这可能是由于多种因素的结合：来自高收入家庭的学生更有可能上昂贵的大学，更不太可能获得助学金，并且更有可能在毕业后有高收入。此外，大多数学生贷款由获得研究生学位的人持有，他们的收入约比本科同行高25％。显然，给予银行自由原谅学生债务是朝着错误的方向迈出的一步。
+
+ 47.What do we learn from the Federal Reserve data? （B）
+ 
+ A)  Approximately 60% of student debt remains unpaid.   
+ 
+ B)  Cancelling student debt benefits wealthy families most.  
+ 
+ C)  Forgiving student debt provides little benefit to universities.   
+ 
+ D)   Low-income families owe the biggest amount of student debt.
+
+从美联储的数据中我们学到了什么？
+
+A) 学生债务约有60％仍未偿还。
+
+B) 取消学生债务最有利于富裕家庭。
+
+C) 原谅学生债务对大学的好处很少。
+
+D) 低收入家庭欠款最多。
+
+
+ Other proposals for broader, long-term student loan plans have some fundamental problems. One idea is to cancel student debt only for undergraduate degrees and for students making less than $ 125,000.            
+ 
+ This attempts to address the fact that Congress' previously mentioned student loan forgiveness plan largely helps out the wealthy, but is an adverse incentive for universities to keep raising tuition and for students to choose to major in low-earning degree programs. Colleges have no reason to make their programs more affordable if they believe students will just take out more debt. And, students will feel more comfortable making the irresponsible decision to go tens of thousands of dollars in debt to major in impractical or idealistic subjects if they know their loans will be forgiven.
+
+ 对于更广泛、长期的学生贷款计划，还有一些根本性问题。一个想法是只为本科学位和收入低于125,000美元的学生取消学生债务。
+
+ 这试图解决国会先前提到的学生贷款宽免计划主要帮助富人的事实，但对大学来说是一个逆向激励，他们会继续提高学费，而学生则会选择主修收入较低的学位课程。如果他们相信学生只会贷款更多，大学就没有理由让他们的项目变得更加负担得起。而且，如果学生知道他们的贷款会被宽免，他们会更容易地做出不负责任的决定，欠下数以万计的债务主修不切实际或理想主义的科目。
+
+ 48.What does the author say students are likely to do if they know they needn't repay their loans? 选（A） 错选（D）
+ A)  They will choose to study subjects without considering their job prospects.   
+ 
+ B)  They will be free to pursue their goals without being burdened financially.   
+ 
+ C)  They will over-borrow and live beyond their means.   
+ 
+ D)  They will be able to enroll in expensive universities.
+
+ 48. 如果学生知道他们不需要偿还贷款，作者说他们可能会做什么？
+
+ A) 他们将选择学习科目，而不考虑就业前景。
+ 
+ B) 他们将能够在不受财务负担的情况下追求自己的目标。
+ 
+ C) 他们会过度借贷，生活超出自己的能力范围。
+ 
+ D) 他们将能够在昂贵的大学就读。
+
+第48题   正确答案：A    您的答案：D
+
+【定位】由题干中的if they know和 needn't repay their loans定位到第四段最后一句。
+
+【精析】推理判断题。定位句指出 ，如果学生们知道自己的贷款会被免除，那么他们更容易做出不负责任的决定，主修不切实际或理想主义的科目，而不惜签下数万美元的债务。由此可知，作者认为学生提前知道学费债务免除的后果，主要是导致他们选择的专业不实际。再结合该段首句中所说的，学生因此会选择主修低收入学位课程，概括而言，如果学生知道债务可以免除,那么他们就会不太考虑就业后的收入前景，主修不切实际的课程，故A）为答案。
+
+【避错】B）项具有干扰性，但原文所说的“做出不负责任的决定”，学习“不切实际或理想主义的科目”明显是负面含义,不可等同于自由追求目标，故排除;原文说学生可能会不惜欠下数万债务，但并未说这样做是否会导致其生活入不敷出，C）项为过度推断,故排除;D）项所述内容在相关部分并未提及，故排除。
+
+
+  This is especially concerning given the pandemic (大流行病)has rendered a college education practically worthless. Students are paying tens of thousands of dollars per year to live at home and be lectured on the Internet. Do we really want to tell colleges that they can get away with providing below average service for an outrageous cost?
+这一点尤为令人担忧，因为大流行病使得大学教育几乎毫无价值。学生每年花费数万美元在家上网课。我们真的想告诉大学，他们可以用极高的费用提供低于平均水平的服务吗？
+
+49.What does the author imply about colleges offering online education? （C） 错选（A）
+
+ A)  They cannot get away with the serious consequences.   
+
+ B)  They have suffered greatly from the current pandemic.   
+
+ C)  The tuition they charge is not justified by the quality of their service.   
+
+ D)  The tuition they charge has surged outrageously during the pandemic.
+
+作者对提供在线教育的大学暗示了什么？
+
+A) 他们无法摆脱严重后果。
+
+B) 他们在当前大流行中遭受了巨大损失。
+
+C) 他们收取的学费与其服务质量不成比例。
+
+D) 他们在大流行期间收取的学费激增。
+
+第49题   正确答案：C    您的答案：A
+
+【定位】由题干中的 online education定位到第五段第二句。
+
+【精析】推理判断题。定位句提到，大流行病期间，学生们每年支付数万美元却只是待在家里，接受网上授课。在随后一句，作者批评这些大学收取高昂的费用而只提供低于平均水平的服务，可知其学费与服务质量不相匹配，故 答 案 为C)。
+
+【避错】A）表述含糊不清，文中并未提到在线教育会对大学产生什么后果，故排除;根据定位段可知，提供在线教育的大学并未降低学费，可知B）所说的遭受巨大损失并无依据; 作者只提到提供在线教育的大学收取高昂的学费，但没有说它们是否提高了学费，故排除D）。
+
+  In the case of any of these student debt plans, working-class Americans who chose not to or could not afford to go to college will be subsidizing the education of the professional class. Plumbers and retail workers will be paying for the degrees of doctors and lawyers.           
+
+  The US government's effort to help those in debt is commendable but is this really the solution that will help the poor financially recover?
+
+在任何这些学生债务计划的情况下，选择不上大学或无法负担上大学费用的工薪阶层美国人将为专业阶层的教育提供补贴。 水管工和零售工人将为医生和律师的学位买单。
+
+美国政府帮助负债者的努力值得赞赏，但这真的是有助于贫困人口经济复苏的解决方案吗？
+
+50.What will happen if any of the proposed student debt plans is implemented? （C） 错选（B）
+
+ A)  Plumbers and retail workers will have a chance of becoming professionals.   
+
+ B)  Working-class students will have increasing access to subsidized education.  
+
+ C)  Blue-collar workers will have to bear the cost of educating would-be high-eamers.   
+
+ D)  A growing number of students will be able to earn degrees in medicine and law.
+
+如果实施了任何提出的学生债务计划，会发生什么？
+
+A) 水管工和零售工人将有机会成为专业人士。
+
+B) 工薪阶层学生将逐渐获得更多受资助的教育机会。
+
+C) 蓝领工人将不得不承担培养未来高收入者的成本。
+
+D) 越来越多的学生将能够获得医学和法律学位。
+
+第50题   正确答案：C    您的答案：B
+
+【定位】由题干中的 student debt plans 和implemented定位到倒数第二段。
+
+【精析】事实细节题。定位段首句指出，无论施行何种学生债务计划，都是让美国工薪阶层资助专业阶层的教育，随后采用举例的方式,说管道工和零售工人将为医生和律师的学位支付学费，也就是蓝领阶层将为高收入的专业人士承担教育费用 ，故答案为C)。
+
+【避错】选项 A )和 B)均混淆了原句概念，定位段的意思是管道工和零售工人为他人的教育买单，工薪阶层资助专业人士的教育，而不是自己受教育成为专业人士或获得更多资助，故均排除; D)项偏离了定位段主题,该段主要探讨的是免除学生债务是否公平，是否不利于工人阶层，并未涉及获得学位的学生是否会增多的问题，故排除。y

@@ -1,9 +1,19 @@
 ---
-title: 听力-2022年12月大学英语六级考试真题（第一套）
+title: 听力-2022年12月大学英语六级考试真题 
 date: 2024-05-20 19:35:09
 tags: 英语
 ---
 
+[2022六级听力-做题方法合集](https://www.bilibili.com/video/BV1b44y1G7Xc/?spm_id_from=333.999.0.0&vd_source=9814cf6702c46a0b906cb31de22baa58)
+
+听前： 预测 读音 意思
+1. 长对话。
+2. 篇章
+3. 讲座
+
+思路：
+
+# 2022年12月大学英语六级考试真题（第一套）
 ## 第一段听力
 1-4题： 对话
 M: How's your dissertation going? Fm proofreading my first draft and will submit it to my professor tomorrow.
@@ -188,3 +198,4 @@ And it is these behaviors that make it easy for them to be socially indifferent.
 
 
 
+# 2022年12月大学英语六级考试真题（第二套）

@@ -392,12 +392,60 @@ def print_trade_info(context):
 
 ```
 
+有一个功能非常有意思，发送消息通过，stmp发送到qq邮箱。
+email库是 Python 标准库中用于处理电子邮件的模块。它提供了一组类和方法，用于创建、解析、格式化和发送电子邮件。
+smtaplib库 smtplib 是 Python 标准库中的一个模块，用于发送邮件。它提供了一个简单的接口，允许您连接到 SMTP 服务器并发送电子邮件。
+```
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+import smtplib
+from email.mime.text import MIMEText
+from email.utils import formataddr
+from datetime import datetime
+import time
+
+my_sender = ''    # 发件人邮箱账号
+my_pass = ''              # 发件人邮箱密码
+my_user = ''              # 收件人邮箱账号(这里发自己)
+
+def mail(message):
+    ret = True
+    try:
+        current_dt = time.strftime("%Y-%m-%d", time.localtime()) 
+        # current_dt = time.strftime("%Y-%m-%d", time.localtime())：获取当前日期，并按照"%Y-%m-%d"的格式转换为字符串形式。
+        
+        # current_dt = datetime.strptime(current_dt, '%Y-%m-%d')
+        title = current_dt.split(" ")[0] + "投资操作"
+        msg = MIMEText(message,'plain','utf-8')
+        msg['From'] = formataddr(["**", my_sender])         # 发件人昵称
+        msg['To'] = formataddr(["**", my_user])             # 接收人昵称
+        msg['Subject'] = title                              # 邮件的主题
+
+        server = smtplib.SMTP_SSL("smtp.qq.com", 465)       # 发件人邮箱中的SMTP服务器，端口是465
+        server.login(my_sender, my_pass)  # 发件人邮箱账号、邮箱密码
+        server.sendmail(my_sender, [my_user,], msg.as_string())  # 发件人邮箱账号、收件人邮箱账号、发送邮件
+        server.quit()  # 关闭连接
+    except Exception as e:  # 如果 try 中的语句没有执行，则会执行下面的 ret = False
+        ret = False
+        print(e)
+    return ret
+
+# 用mail函数发送测试邮件，并根据返回值打印相应的提示信息。
+
+if __name__ == "__main__":
+    ret = mail("Test")
+    if ret:
+        print("邮件发送成功")
+    else:
+        print("邮件发送失败")
 
 
+```
+![stmp](pic/stmp.png)
 
 
-
-
+框架建立对于一名极客是必须的，错误复现对于一名极客也是必须的。
 
 
 
@@ -419,7 +467,9 @@ def print_trade_info(context):
 ## 推荐书籍
 [股票大作手回忆录](https://weread.qq.com/web/reader/1b5325907159cacc1b5e0e1)
 
+[量化交易的指标](https://www.zhihu.com/question/547896059/answer/2916981222)
 
+[关于高频量化交易的代码项目]( https://zhuanlan.zhihu.com/p/558902211)
 
 ## 个人感悟
 炒股就是和自己修炼的过程，在整个过程中需要对抗自己的贪，疑，痴，慢。是使用一个自己来战胜另一个自己的过程。时机，多层次的关系。
