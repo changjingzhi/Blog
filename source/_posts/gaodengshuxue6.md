@@ -1,5 +1,5 @@
 ---
-title: 高等数学 —— 傅里叶变换 
+title: 高等数学 —— 级数
 date: 2024-06-09 11:11:07
 tags: 高等数学
 ---
@@ -20,9 +20,27 @@ tags: 高等数学
 
 3. 应用： 声音的处理 ，图像的处理 
 
-![](pic/gdsx-flybh2.png)
 
-
+| |
+| :------ | 
+|![](pic/gdsx-flybh2.png)|
+|![](pic/gdsx-hbs_56.png)|
+|![](pic/gdsx-hbs_57.png)|
+|![](pic/gdsx-hbs_58.png)|
+|![](pic/gdsx-hbs_59.png)|
+|![](pic/gdsx-hbs_60.png)|
+|![](pic/gdsx-hbs_61.png)|
+|![](pic/gdsx-hbs_62.png)|
+|![](pic/gdsx-hbs_63.png)|
+|![](pic/gdsx-hbs_64.png)|
+|![](pic/gdsx-hbs_65.png)|
+|![](pic/gdsx-hbs_66.png)|
+|![](pic/gdsx-hbs_67.png)|
+|![](pic/gdsx-hbs_68.png)|
+|![](pic/gdsx-hbs_69.png)|
+|![](pic/gdsx-hbs_70.png)|
+|![](pic/gdsx-hbs_71.png)|
+|![](pic/gdsx-hbs_72.png)|
 
 ## 波段
 

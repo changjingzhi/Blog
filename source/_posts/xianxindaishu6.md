@@ -11,3 +11,13 @@ tags: 线性代数
 |![](pic/xxds-ecx1.jpg)|
 |![](pic/xxds-ecx2.jpg)|
 |![](pic/xxds-ecx3.jpg)|
+
+
+## 相似和合同
+
+| |
+| :------ | 
+|![](pic/xxds-ecx4.png)|
+|![](pic/xxds-ecx5.png)|
+
+[合同定义链接](https://blog.csdn.net/hpdlzu80100/article/details/100751105)

@@ -3,7 +3,7 @@ title: How to be a Programmer ——如何做好一名程序员
 date: 2024-06-03 12:51:55
 tags: 阅读笔记
 ---
-
+![](pic/tsbji.png)
 
 1. 学会如何调试，简而言之就是Debug，真实的含义时通过检查来观察程序的运行，我的调试的方法是print，打印变量，但实际上python提供了调试窗口，只是我懒得使用罢了。调试方法的分类，一种是使用调试工具（IDE中的Debugger），一种是Printlining，对程序做一个临时的修改，比如使用print，一种使用日志。
 

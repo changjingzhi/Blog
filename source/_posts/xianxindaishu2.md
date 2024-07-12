@@ -49,3 +49,13 @@ tags: 线性代数
 |![](pic/xxds-jz10.jpg)|
 |![](pic/xxds-jz11.jpg)|
 |![](pic/xxds-jz12.jpg)|
+
+
+## 矩阵在信息加密中的应用
+
+
+| |
+| :------ | 
+|![](pic/xxds-jz14.png)|
+|![](pic/xxds-jz13.png)|
+|![](pic/xxds-jz15.png)|

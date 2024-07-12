@@ -19,6 +19,7 @@ GitHub是一个代码托管平台。一个共享和开源软件的流行平台
 README：GitHub 个人主页资料上 “关于我” 的介绍。 内容一般包含：介绍您的工作和兴趣，您引以为豪的贡献以及这些贡献的背景信息，在您参与的社区获得帮助的指南
 ## 配套软件
 [git for windown ](https://git-scm.com/download/win)
+[git cheatsheet](https://ndpsoftware.com/git-cheatsheet.html#loc=local_repo;)
 ## 使用命令
 初始命令，建立.git文件
 ```
@@ -33,8 +34,9 @@ git add .
 
 书写提交信息
 ```
-git commit -m "first commit              "
+git commit -m " first commit "           
 ```
+
 选取分支
 ```
 git branch -M main
@@ -55,6 +57,19 @@ git clone 克隆远端仓库。
 git clone 远端仓库地址
 ```
 
+## 创建开发分支（dev）和 主分支(master)
+
+创建分支dev
+```
+git branch dev
+```
+
+切换到dev分支
+
+```
+git checkout dev
+```
+
 
 ## python
 
@@ -65,7 +80,7 @@ pip freeze > requirements.txt
 ```
 
 
-model环境
+MateFormer 配置model环境
 ```
 absl-py==2.0.0
 addict==2.4.0

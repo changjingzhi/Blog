@@ -19,3 +19,4 @@ tags: 高等数学
 |![](pic/gdsx-hbs_75.png)|
 |![](pic/gdsx-hbs_76.png)|
 |![](pic/gdsx-hbs_77.png)|
+|![](pic/gdsx-hbs_78.png)|

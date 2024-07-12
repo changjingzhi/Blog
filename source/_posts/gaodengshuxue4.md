@@ -11,7 +11,7 @@ tags: 高等数学
 
 ## 例子
 
-
+[积分在线计算器](https://mathdf.com/int/cn/)
 | |
 | :------ | 
 |![](pic/gdsx-hbs.png)|
@@ -34,12 +34,26 @@ tags: 高等数学
 |![](pic/gdsx-hbs_25.png)|
 |![](pic/gdsx-hbs_26.png)|
 |![](pic/gdsx-hbs_27.png)|
+
+
+##  二重积分
+
+
+| |
+| :------ | 
 |![](pic/gdsx-hbs_28.png)|
 |![](pic/gdsx-hbs_29.png)|
 |![](pic/gdsx-hbs_30.png)|
 |![](pic/gdsx-hbs_31.png)|
 |![](pic/gdsx-hbs_32.png)|
+|![](pic/gdsx-dyhs-1.png)|
+|![](pic/gdsx-dyhs-2.png)|
+|![](pic/gdsx-dyhs-3.png)|
+|![](pic/gdsx-dyhs-4.png)|
+|![](pic/gdsx-dyhs-6.jpg)|
+|![](pic/gdsx-dyhs-5.png)|
 |![](pic/gdsx-hbs_33.png)|
+|[数学链接](https://zhaokaifeng.com/18556/)|
 |![](pic/gdsx-hbs_34.png)|
 |![](pic/gdsx-hbs_35.png)|
 |![](pic/gdsx-hbs_36.png)|
@@ -62,24 +76,7 @@ tags: 高等数学
 |![](pic/gdsx-hbs_53.png)|
 |![](pic/gdsx-hbs_54.png)|
 |![](pic/gdsx-hbs_55.png)|
-|![](pic/gdsx-hbs_56.png)|
-|![](pic/gdsx-hbs_57.png)|
-|![](pic/gdsx-hbs_58.png)|
-|![](pic/gdsx-hbs_59.png)|
-|![](pic/gdsx-hbs_60.png)|
-|![](pic/gdsx-hbs_61.png)|
-|![](pic/gdsx-hbs_62.png)|
-|![](pic/gdsx-hbs_63.png)|
-|![](pic/gdsx-hbs_64.png)|
-|![](pic/gdsx-hbs_65.png)|
-|![](pic/gdsx-hbs_66.png)|
-|![](pic/gdsx-hbs_67.png)|
-|![](pic/gdsx-hbs_68.png)|
-|![](pic/gdsx-hbs_69.png)|
-|![](pic/gdsx-hbs_70.png)|
-|![](pic/gdsx-hbs_71.png)|
-|![](pic/gdsx-hbs_72.png)|
-
+|![](pic/gdsx-hbs_99.png)|
 
 
 

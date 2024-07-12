@@ -10,6 +10,7 @@ tags: 线性代数
 ![](pic/xxds-xl1.jpg)
 [极大无关组详细过程](https://blog.csdn.net/shenliang1985/article/details/114821049)
 计算完矩阵的秩后，计算单位向量，将
+![](pic/xxds-xl3.png)
 ## 将向量使用其他向量表示
 
 ![](pic/xxds-xl2.jpg)
