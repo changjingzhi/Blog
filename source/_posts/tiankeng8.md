@@ -71,6 +71,33 @@ git checkout dev
 ```
 
 
+## 保存本地与远端仓库相同
+
+(1) 更新远程仓库的代码为最新的
+```
+ git fetch --all 
+```
+
+(2) 让本地代码与origin / master完全相同
+
+``` 
+git reset --hard origin/master
+```
+
+(3) git pull拉取远程代码
+
+``` 
+git pull origin master
+```
+
+(4) git merge将暂存区代码更新到本地工作区
+
+```
+ git merge master
+ 
+```
+
+
 ## python
 
 使用pip freeze命令生成requirements.txt文件：
