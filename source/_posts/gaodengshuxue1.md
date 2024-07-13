@@ -129,12 +129,13 @@ tags: 高等数学
 数列极限的定义： 对于数列{an}，如果对于任何给定的正数E，存在正整数N，使得当n>N时，有|an-A| < E ,称数列{an}收敛于A，记住lim n 趋近于无穷an = A
 函数极限的定义： 设函数f(x)在点x0的某个去心领域内有定义，如果对于任意给定的正数E，存在正数&，使得当0 < |x - x0| < & 时，有|f(x) - A | < E,则称函数f(x)在点x0处的极限为A，记住lim x——>f(x) = A
 性质：数列和函数极限都具有唯一性、局部有界性、四则运算性质。
-[](https://zhuanlan.zhihu.com/p/350844135)
+[极限](https://zhuanlan.zhihu.com/p/350844135)
 
 计算函数极限的方法有，带入计算，等价无穷小（泰勒展开的一阶展开。），泰勒展开，洛必达（只能乘除不能加减。）
 ![等价无穷小泰勒展开](pic/tailezhankai.png)
 ![泰勒展开](pic/tailezhankai2.png)
 ![泰勒展开](pic/tailezhankai3.png)
+[极限的7种未定型](https://zhuanlan.zhihu.com/p/553569134)
 
 
 

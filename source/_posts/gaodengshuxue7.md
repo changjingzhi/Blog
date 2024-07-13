@@ -38,3 +38,7 @@ tags: 高等数学
 
 - [2011年考研数二真题解析](https://zhaokaifeng.com/deconstructing-the-questions-in-the-2011-mathematics-paper-ii-for-national-postgraduate-entrance-examination/)
 
+
+### 660
+
+- 编号009：  ![](pic/660-009.png) [积分上下限改变的关系](https://zhaokaifeng.com/15349/#google_vignette)
