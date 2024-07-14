@@ -92,3 +92,13 @@ Early diagnosis of Alzheimer’s disease (AD) is a proceeding hot issue along wi
 ## 第六篇
 
 LCADNet: a novel light CNN architecture for EEG‑based Alzheimer disease detection [代码和pdf文件](https://github.com/SandeepSangle12/LCADNet/blob/main/s13246-024-01425-w.pdf)
+
+[Maxpool1D的解释](https://blog.csdn.net/yingluo54/article/details/122168364)
+
+
+## 第七篇
+
+Classification assessment methods
+
+## 第八篇
+Novelty detection-based approach for Alzheimer’s disease and mild cognitive impairment diagnosis from EEG  [链接-包含一个公开数据集](https://link.springer.com/article/10.1007/s11517-021-02427-6) [数据集下载链接](https://figshare.com/articles/dataset/dataset_zip/5450293)
