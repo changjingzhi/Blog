@@ -53,6 +53,7 @@ tags: 高等数学
 |![](pic/660-函数的连续性.png)|
 |![](pic/660-不等式.png)|
 |[一元和二元函数中可微、可（偏）导、连续与极限存在之间的关系 - 链接](https://zhaokaifeng.com/16856/)|
+|![](pic/660-jx.png)|
 
 
 | |
@@ -62,6 +63,8 @@ tags: 高等数学
 |234错选B、[二元函数偏导数的连续性可以被直接证明吗？](https://zhaokaifeng.com/16903/)|
 |![](pic/660-234.jpg)|
 |235错选C、236错选B（236的答案没有看好太懂）[链接](https://www.bilibili.com/video/BV1cb4y19753?p=45&vd_source=9814cf6702c46a0b906cb31de22baa58)|
+|上下同阶无穷小比较|
+|![](pic/666-wqx.png)|
 |![](pic/660-235-236.jpg)|
 |238错选D，|
 |![](pic/660-238.jpg)|
@@ -75,15 +78,37 @@ tags: 高等数学
 |[二元函数极值、极值点和驻点的一些结论](https://zhaokaifeng.com/15192/)|
 |[单调区间，凹凸区间，极值点](https://zhaokaifeng.com/16498/)|
 |![](pic/660-242-243.jpg)|
-||
+|[224链接](https://www.bilibili.com/video/BV1cb4y19753?p=53&vd_source=9814cf6702c46a0b906cb31de22baa58)|
 |![](pic/660-244-245.jpg)|
 |  [全微分的定义](https://blog.csdn.net/qq_39918677/article/details/121653012) |
 |![](pic/660-246.jpg)|
-||
+|![](pic/660-jzd.png)|
 |[确定隐函数的极值点](https://zhaokaifeng.com/17967/)|
 |![](pic/660-247-251.jpg)|
-||
+| [250链接6](https://www.bilibili.com/video/BV1cb4y19753?p=59&vd_source=9814cf6702c46a0b906cb31de22baa58) |
+|分界线|
 |![](pic/660-252.jpg)|
+
+任务： 明白怎么计算多元函数的极值，最大值，判断驻点。
+
+完成题目 253-255
+
+
+#### 编号 256 - 263
+
+| |
+| :------ | 
+| [补充-定积分知识-高等数学定积分补充例题](https://zhaokaifeng.com/17409/)  |
+| ![](pic/660-djf.png) |
+||
+|![](pic/660-256.jpg)|
+||
+|![](pic/660-257.jpg)|
+||
+|![](pic/660-258.jpg)|
+||
+|![](pic/660-260-263.jpg)|
+|![]()|
 
 
 256-275是积分（不定积分，定积分）
