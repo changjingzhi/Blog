@@ -4,6 +4,7 @@ date: 2024-06-08 19:56:50
 tags: 计算机网络
 ---
 
+[视频链接](https://www.bilibili.com/video/BV1NT411g7n6/?spm_id_from=333.337.search-card.all.click&vd_source=9814cf6702c46a0b906cb31de22baa58)
 # 层次划分 
 
 | |

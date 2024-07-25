@@ -41,3 +41,31 @@ Firstly, equipped with GPS and digital lock, shared bikes are only available to 
 
 To summarize, bike-sharing is a must in today's urban transportation system, but it won't  be a leader among transportation means.
 总之，共享单车在今天的城市交通系统中必不可少，但它不会成为交通工具中的领军者。
+
+## 第三篇
+
+Translation
+
+Translate the following text into chinese, Write your translation on the ANSWER SHEET.
+
+With the smell of coffee and freash bread floating in the air, stalls bursting with colorful vegetables and tempting cheeres, and the buzz of friendly chats,, farmers's markets are a feast for the senses. They also provide an opportunity to talk to rhe people responsible for growing or raising your food, support local economy and pick up fresh seasonal produce —— all at the same time.
+
+Farmers' markets are usually weekly or monthly events, most often with outdoor stalls, which allow farmers or producers to sell their food directly to customers. The size or regularity of markets can vary from season, depending on the area's agricultural calendar, and you're likely to find different produce on sale different time of the year. By cutting out the middlemen, the farmers secure more profit for their produce. Shoppers also benefit from seeing exactly where —— and to who —— their money is going.
+
+伴随着空气中飘荡的咖啡和新鲜面包的香味，摊位上五彩缤纷的蔬菜和诱人的奶酪，以及人们热情交谈的嗡嗡声，农贸市场是一场感官盛宴。它们还提供了一个机会，让你可以与负责种植或饲养食物的人交流、支持当地经济并购买新鲜的季节性产品——而这一切可以同时实现。
+
+农贸市场通常是每周或每月举办的活动，多数以户外摊位的形式出现，让农民或生产者可以直接向顾客销售他们的食品。市场的规模或频率会根据季节变化，取决于该地区的农业日历，你可能会在一年中的不同时间找到不同的销售产品。通过减少中间环节，农民可以为他们的产品获得更多利润。购物者也能从中受益，因为他们可以清楚地看到他们的钱来自何处以及流向何处。
+
+
+## 第四篇 
+
+part A 
+
+Suppose you and Jack are  going to do a survey on the protection of old houses in an ancient town. Write him an email to (1) put forward you plan, and (2) ask for his opinion. 
+You should write about 100 words on the ANSWER SHEET. DO not use your own name . Use "Li Ming" instead.
+
+| |
+| :------ |
+|![](pic/English-7-1-1.png)|
+| 注意信件的格式|
+| ![](pic/English-7-1-2.jpg) |

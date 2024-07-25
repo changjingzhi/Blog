@@ -24,3 +24,10 @@ tags: 论文思路
 |![公开数据集87数据集划分](pic/paper-idear-7-1.jpg)|
 |![公开世界经济92数据集划分](pic/paper-idear7-2.jpg)|
 |![AD-MCI-CN-8：2数据划分](pic/paper-idear-3.jpg)|
+
+
+
+3. 公开数据集链接
+
+[1](https://github.com/tsyoshihara/Alzheimer-s-Classification-EEG)
+[2](https://github.com/ipis-mjkim/caueeg-dataset)
