@@ -147,6 +147,7 @@ tags: 高等数学
 | [补充-定积分知识-高等数学定积分补充例题](https://zhaokaifeng.com/17409/)  |
 | ![](pic/660-djf.png) |
 | [快速判断奇偶性](https://zhaokaifeng.com/16033/) |
+| [积分的对称性](https://zhaokaifeng.com/17523/) |
 |![](pic/660-256.jpg)|
 |这里怎么判断对称函数的奇偶性的？(问题) 二重积分的对称性，关于y轴对称，被积函数看x。关于x轴对称，被积函数看y。关于（0，0），这里要讨论一下[256链接](https://www.bilibili.com/video/BV1M54y1j7Nr?p=6&vd_source=9814cf6702c46a0b906cb31de22baa58) 区间可分，线性性。 |
 |![](pic/660-257.jpg)|
