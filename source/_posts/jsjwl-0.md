@@ -242,5 +242,12 @@ OSI的七层协议体系结构（图1-18(a)）的概念清楚，理论也较完�
 | ![](pic/jsjwl-0-t-1-5.jpg) |
 | ![](pic/jsjwl-t-6-10.jpg) |
 | ![](pic/jsjwl-0-t-11-15.jpg) |
-| ![]() |
-| ![]() |
+| ![](pic/jsjwl-0-t-16-20.jpg) |
+| ![](pic/jsjwl-0-t-21-24.jpg) |
+| ![](pic/jsjwl-0-t-25-30.jpg) |
+| ![](pic/jsjwl-0-t-31.jpg) |
+| ![](pic/jsjwl-0-t-32.jpg) |
+| ![](pic/jsjwl-0-t-33.jpg) |
+| ![](pic/jsjwl-0-t-34.jpg) |
+| ![](pic/jsjwl-0-t-35.jpg) |
+| ![](pic/jsjwl-0-t-36.jpg) |
