@@ -136,3 +136,17 @@ N 为信道内部的高斯噪声功率。
     * 光纤到路边 FTTC (Fiber To The Curb)：从路边到各用户可使用星形结构双绞线作为传输媒体。 
 
 ![计算机网络-物理层](pic/jsjwl-1-1.png)
+
+| |
+| :------ |
+| ![](pic/jsjwl-1-t-1.jpg) |
+| ![](pic/jsjwl-1-t-2.jpg) |
+| ![](pic/jsjwl-1-t-3.jpg) |
+| ![](pic/jsjwl-1-t-4.jpg) |
+| ![](pic/jsjwl-1-t-5.jpg) |
+| ![](pic/jsjwl-1-t-6.jpg) |
+| ![](pic/jsjwl-1-t-7.jpg) |
+| ![](pic/jsjwl-1-t-8.jpg) |
+| ![](pic/jsjwl-1-t-9.jpg) |
+| ![](pic/jsjwl-1-t-10.jpg) |
+| ![](pic/jsjwl-1-t-11.jpg) |
