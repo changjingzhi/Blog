@@ -283,6 +283,73 @@ check_electrode_order(folder_path, expected_orders)
 
 ```
 
+
+第二版
+
+```
+import os
+import mne
+
+def check_electrode_order(folder_path, expected_orders):
+    # 获取文件夹中的所有EDF文件
+    edf_files = [file for file in os.listdir(folder_path) if file.endswith('.edf')]
+    
+    # 初始化匹配计数
+    match_counts = {tuple(order): 0 for order in expected_orders}
+    unexpected_orders = []  # To store any unexpected orders
+    i = 0
+    # 循环检查每个EDF文件的电极顺序
+    for edf_file in edf_files:
+        i = i+1
+        print(i)
+        edf_file_path = os.path.join(folder_path, edf_file)
+
+        # 读取EDF文件
+        raw = mne.io.read_raw_edf(edf_file_path, preload=True)
+
+        # 获取当前EDF文件的电极顺序
+        current_order = raw.ch_names
+
+        # 检查电极顺序是否符合任何一个预期顺序
+        matched = False
+        for order in expected_orders:
+            if current_order == order:
+                match_counts[tuple(order)] += 1
+                matched = True
+                break
+
+        if not matched:
+            print(f"{edf_file}: Electrode order is incorrect. Current order: {current_order}")
+            unexpected_orders.append(current_order)
+
+    for order, count in match_counts.items():
+        print(f"Order {list(order)} matches {count} files. Channel count is {len(list(order))}")
+
+    if unexpected_orders:
+        print("\nUnexpected electrode orders found:")
+        for order in unexpected_orders:
+            print(order)
+
+# 替换为实际的文件夹路径和期望的电极顺序
+folder_path = "CN"
+expected_orders = [
+    ['Fp1', 'Fp2', 'F7', 'F3', 'Fz', 'F4', 'F8', 'T3', 'C3', 'Cz', 'C4', 'T4', 'T5', 'P3', 'Pz', 'P4', 'T6', 'O1', 'O2', 'Status'],
+    ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'F7', 'F8', 'T7', 'T8', 'P7', 'P8', 'Fz', 'Cz', 'Pz', 'FC1', 'FC2', 'CP1', 'CP2', 'FC5', 'FC6', 'CP5', 'CP6', 'AF3', 'AF4', 'PO3', 'PO4', 'PO7', 'PO8', 'Oz', 'Status'],
+    ['Fp1', 'Fp2', 'F11', 'F7', 'F3', 'Fz', 'F4', 'F8', 'F12', 'FT11', 'FC3', 'FCz', 'FC4', 'FT12', 'T7', 'C3', 'Cz', 'C4', 'T8', 'CP3', 'CPz', 'CP4', 'P7', 'P3', 'Pz', 'P4', 'P8', 'O1', 'Oz', 'O2', 'Status'],
+    ['Fp1', 'Fp2', 'F11', 'F7', 'F3', 'Fz', 'F4', 'F8', 'F12', 'FT11', 'FC3', 'FCz', 'FC4', 'FT12', 'T7', 'C3', 'Cz', 'C4', 'T8', 'CP3', 'CPz', 'CP4', 'M1', 'M2', 'P7', 'P3', 'Pz', 'P4', 'P8', 'O1', 'Oz', 'O2', 'Trigger', 'Status'],
+    ['Fp1', 'Fp2', 'F3', 'F4', 'C3', 'C4', 'P3', 'P4', 'F7', 'F8', 'T7', 'T8', 'P7', 'P8', 'Fz', 'Cz', 'Pz', 'Oz', 'FC1', 'FC2', 'CP1', 'CP2', 'FC5', 'FC6', 'CP5', 'CP6', 'ECG', 'AF3', 'AF4', 'PO3', 'PO4', 'PO7', 'PO8', 'Status'],
+    ['Fp1', 'Fp2', 'Fz', 'F3', 'F4', 'F7', 'F8', 'FCz', 'FC3', 'FC4', 'FT7', 'FT8', 'Cz', 'C3', 'C4', 'T3', 'T4', 'CPz', 'CP3', 'CP4', 'TP7', 'TP8', 'Pz', 'P3', 'P4', 'T5', 'T6', 'Oz', 'O1', 'O2', 'HEOL', 'HEOR', 'Status'],
+    ['PO3', 'PO7', 'P3', 'P7', 'CP1', 'CP5', 'Cz', 'C3', 'T7', 'FC5', 'FC1', 'F7', 'F3', 'Fz', 'AF3', 'FP1', 'FP2', 'AF4', 'F4', 'F8', 'FC2', 'FC6', 'C4', 'T8', 'CP6', 'CP2', 'P8', 'P4', 'Pz', 'PO8', 'PO4', 'OZ', 'Status'],
+    ['Fp1', 'Fp2', 'AF3', 'AF4', 'F7', 'F3', 'Fz', 'F4', 'F8', 'FC5', 'FC1', 'FC2', 'FC6', 'T7', 'C3', 'Cz', 'C4', 'T8', 'CP5', 'CP1', 'CP2', 'CP6', 'P7', 'P3', 'Pz', 'P4', 'P8', 'PO7', 'PO3', 'PO4', 'PO8', 'OZ', 'AFZ', 'Status'],
+    ['Chan 1', 'Chan 2', 'Chan 3', 'Chan 4', 'Chan 5', 'Chan 6', 'Chan 7', 'Chan 8', 'Chan 9', 'Chan 10', 'Chan 11', 'Chan 12', 'Chan 13', 'Chan 14', 'Chan 15', 'Chan 16', 'Chan 17', 'Chan 18', 'Chan 19', 'Chan 20', 'Chan 21', 'Chan 22', 'Chan 23', 'Chan 24', 'Chan 25', 'Chan 26', 'Chan 27', 'Chan 28', 'Chan 29', 'Status'],
+    ['Fp1', 'Fp2', 'F11', 'F7', 'F3', 'Fz', 'F4', 'F8', 'F12', 'FT11', 'FC3', 'FCz', 'FC4', 'FT12', 'T7', 'C3', 'Cz', 'C4', 'T8', 'CP3', 'CPz', 'CP4', 'P7', 'P3', 'Pz', 'P4', 'P8', 'O1', 'Oz', 'O2', 'Trigger', 'Status']
+]
+
+# 执行检查
+check_electrode_order(folder_path, expected_orders)
+
+```
+
 数据预处理- 留一法验证
 
 1. 随机划分数据集。
