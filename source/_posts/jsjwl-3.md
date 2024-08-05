@@ -223,3 +223,34 @@ RIP 按固定的时间间隔仅和相邻路由器交换自己的路由表，经�
 ## 因为网络层是整个互联网的核心，因此应当让网络层尽可能简单。网络层向上只提供简单灵活的、无连接的、尽最大努力交互的数据报服务。
 
 
+## 题目
+
+| |
+| :------ |
+| ![](pic/jsjwl-3-t-1.jpg) |
+| ![](pic/jsjwl-3-t-2.jpg) |
+| ![](pic/jsjwl-3-t-3.jpg) |
+| ![](pic/jsjwl-3-t-4.jpg) |
+| ![](pic/jsjwl-3-t-5.jpg) |
+| ![](pic/jsjwl-3-t-6.jpg) |
+| ![](pic/jsjwl-3-t-7.jpg) |
+| ![](pic/jsjwl-3-t-8.jpg) |
+| ![](pic/jsjwl-3-t-9.jpg) |
+| ![](pic/jsjwl-3-t-10.jpg) |
+| ![](pic/jsjwl-3-t-11.jpg) |
+| ![](pic/jsjwl-3-t-12.jpg) |
+| ![](pic/jsjwl-3-t-13.jpg) |
+| ![](pic/jsjwl-3-t-14.jpg) |
+| ![](pic/jsjwl-3-t-15.jpg) |
+| ![](pic/jsjwl-3-t-16.jpg) |
+| ![](pic/jsjwl-3-t-17.jpg) |
+| ![](pic/jsjwl-3-t-18.jpg) |
+| ![](pic/jsjwl-3-t-19.jpg) |
+| ![](pic/jsjwl-3-t-20.jpg) |
+| ![](pic/jsjwl-3-t-21.jpg) |
+| ![](pic/jsjwl-3-t-22.jpg) |
+| ![](pic/jsjwl-3-t-23.jpg) |
+| ![](pic/jsjwl-3-t-24.jpg) |
+| ![](pic/jsjwl-3-t-25.jpg) |
+| ![](pic/jsjwl-3-t-26.jpg) |
+| ![](pic/jsjwl-3-t-27.jpg) |
