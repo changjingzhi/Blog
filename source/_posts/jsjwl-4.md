@@ -214,8 +214,12 @@ B 收到 A 的确认后释放连接。
 | ![](pic/jsjwl-4-t-3.jpg) |
 | ![](pic/jsjwl-4-t-4.jpg) |
 | ![](pic/jsjwl-4-t-5.jpg) |
-| ![]() |
-| ![]() |
-| ![]() |
-| ![]() |
-| ![]() |
+| ![](pic/jsjwl-4-t-6.jpg) |
+| ![](pic/jsjwl-4-t-7.jpg) |
+| ![](pic/jsjwl-4-t-8.jpg) |
+| ![](pic/jsjwl-4-t-9.jpg) |
+| ![](pic/jsjwl-4-t-10.jpg) |
+| ![](pic/jsjwl-4-t-11.jpg) |
+| ![](pic/jsjwl-4-t-12.jpg) |
+| ![](pic/jsjwl-4-t-13.jpg) |
+
