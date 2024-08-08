@@ -215,6 +215,8 @@ tags: 高等数学
 | ![](pic/660-294.jpg) |
 | ![](pic/660-295.jpg) |
 | ![](pic/660-296-297.jpg) |
+| ![](pic/660-295-t.jpg) |
+| ![](pic/660-295-t-1.jpg)  |
 
 #### 编号 298 — 307
 
@@ -347,6 +349,7 @@ tags: 高等数学
 |![泰勒展开](pic/tailezhankai2.png)|
 |![泰勒展开](pic/tailezhankai3.png)|
 | ![](pic/660-436.jpg) |
+| [438](https://www.bilibili.com/video/BV1Hy4y1g7Ui?p=51&vd_source=9814cf6702c46a0b906cb31de22baa58) |
 | ![](pic/660-441.jpg) |
 | ![](pic/660-442.jpg) |
 | ![](pic/660-506.jpg) |
@@ -369,23 +372,35 @@ tags: 高等数学
 
 | |
 | :------ | 
-| ![](source\pic\660-512.jpg) |
-| ![](source\pic\660-513.jpg) |
-| ![](source\pic\660-514.jpg) |
-| ![](source\pic\660-515.jpg) |
-| ![](source\pic\660-516.jpg) |
-| ![](source\pic\660-517-518.jpg) |
-| ![](source\pic\660-519-520.jpg) |
-| ![](source\pic\660-521-522.jpg) |
-| ![](source\pic\660-523-525.jpg) |
-| ![](source\pic\660-526.jpg) |
-| ![](source\pic\660-527.jpg) |
-| ![](source\pic\660-529.jpg) |
-| ![](source\pic\660-614.jpg) |
-| ![](source\pic\660-615.jpg) |
-| ![](source\pic\660-616.jpg) |
-| ![](source\pic\660-617.jpg) |
-| ![](source\pic\660-618-620.jpg) |
-| ![](source\pic\660-624-628.jpg) |
-| ![](source\pic\660-629-630.jpg) |
-| ![](source\pic\660-631-635.jpg) |
+| ![](pic/660-512.jpg) |
+| ![](pic/660-513.jpg) |
+| ![](pic/660-514.jpg) |
+| ![](pic/660-515.jpg) |
+| ![](pic/660-516.jpg) |
+| ![](pic/660-517-518.jpg) |
+| ![](pic/660-519-520.jpg) |
+| ![](pic/660-521-522.jpg) |
+| ![](pic/660-523-525.jpg) |
+| ![](pic/660-526.jpg) |
+| ![](pic/660-527.jpg) |
+| ![](pic/660-529.jpg) |
+| ![](pic/660-614.jpg) |
+| ![](pic/660-615.jpg) |
+| ![](pic/660-616.jpg) |
+| ![](pic/660-617.jpg) |
+| ![](pic/660-618-620.jpg) |
+| ![](pic/660-624-628.jpg) |
+| ![](pic/660-629-630.jpg) |
+| ![](pic/660-631-635.jpg) |
+
+
+#### 编号 8-8
+
+| |
+| :------ | 
+| ![](pic/660-642-644.jpg) |
+| ![](pic/660-645-648.jpg) |
+| ![](pic/660-649-651.jpg) |
+| ![](pic/660-652-654.jpg) |
+| ![](pic/660-658-660.jpg) |
+| ![](pic/660-665-657.jpg) |
