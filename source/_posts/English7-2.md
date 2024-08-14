@@ -20,7 +20,7 @@ tags: 英语
 | |
 | :------ |
 | ![](pic/English-2023-1.jpg) |
-| ![](pic/English-2023-2.jpg) |
+
 
 
 ## 2022年 英语二
@@ -28,3 +28,4 @@ tags: 英语
 | |
 | :------ |
 | ![](pic/English-2022-1.jpg) |
+| ![](pic/English-2022-2.jpg) |
