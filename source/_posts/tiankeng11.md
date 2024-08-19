@@ -27,9 +27,10 @@ tags: 填坑
 
 10. C++开发经验(链接)[https://github.com/wuxiaolie/Knowledge-Notes?tab=readme-ov-file]
 
-11. [Zlibraary](https://zh.1lib.sk/) 注意： Zlibrary的网站经常不确定，由于一些原因。
+11. [Zlibraary](https://zh.z-lib.gs/) 注意： Zlibrary的网站经常不确定，由于一些原因。
 
 12. [gaoxiao](https://2024.viclc.com/)
 
 13. [小纸条](https://o.gitcafe.net/)
 
+14. [腾讯开悟](https://aiarena.tencent.com/p/competition/stage/60/750/112/model-manage)
