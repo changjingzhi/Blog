@@ -196,16 +196,6 @@ FCS ：帧检验序列，使用的是 CRC 检验方法；
 | ![](pic/jsjwl-2-t-8.jpg) | 
 | ![](pic/jsjwl-2-t-9.jpg) | 
 | ![](pic/jsjwl-2-t-10.jpg) | 
-| ![](pic/jsjwl-2-t-11.jpg) | 
-| ![](pic/jsjwl-2-t-12.jpg) | 
-| ![](pic/jsjwl-2-t-13.jpg) |
-| ![](pic/jsjwl-2-t-14.jpg) |
-| ![](pic/jsjwl-2-t-15.jpg) |
-| ![](pic/jsjwl-2-t-16.jpg) |
-| ![](pic/jsjwl-2-t-17.jpg) |
-| ![](pic/jsjwl-2-t-18.jpg) |
-| ![](pic/jsjwl-2-t-19.jpg) |
-| ![](pic/jsjwl-2-t-20.jpg) |
 | ![](pic/jsjwl-2-t-21.jpg) |
 | ![](pic/jsjwl-2-t-22.jpg) |
 | ![](pic/jsjwl-2-t-23.jpg) |
