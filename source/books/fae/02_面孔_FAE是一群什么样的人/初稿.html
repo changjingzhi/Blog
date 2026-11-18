@@ -1,0 +1,504 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第 2 章 面孔：FAE 是一群什么样的人 - 怎么做 FAE</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="一本关于「怎么做 FAE」的书：Why / Who / What">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../00_前言_缘起/初稿.html"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded affix "><li class="part-title">正文</li><li class="chapter-item expanded "><a href="../01_鸿沟_为什么这个世界需要FAE/初稿.html"><strong aria-hidden="true">2.</strong> 第 1 章 鸿沟：为什么这个世界需要 FAE</a></li><li class="chapter-item expanded "><a href="../02_面孔_FAE是一群什么样的人/初稿.html" class="active"><strong aria-hidden="true">3.</strong> 第 2 章 面孔：FAE 是一群什么样的人</a></li><li class="chapter-item expanded "><a href="../03_长路_这门手艺怎么长出复利/初稿.html"><strong aria-hidden="true">4.</strong> 第 3 章 长路：这门手艺怎么长出复利</a></li><li class="chapter-item expanded "><a href="../04_做事上_把能做变成客户要的/初稿.html"><strong aria-hidden="true">5.</strong> 第 4 章 做事（上）：把"能做"变成"客户要的"</a></li><li class="chapter-item expanded "><a href="../05_做事下_让承诺立得住留得下/初稿.html"><strong aria-hidden="true">6.</strong> 第 5 章 做事（下）：让承诺立得住、留得下</a></li><li class="chapter-item expanded affix "><li class="part-title">尾声</li><li class="chapter-item expanded "><a href="../06_尾声_留给下一个FAE的话/初稿.html"><strong aria-hidden="true">7.</strong> 留给下一个 FAE 的话</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">怎么做 FAE</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/changjingzhi/fae-book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/changjingzhi/books/fae/edit/main/书稿/书稿/02_面孔_FAE是一群什么样的人/初稿.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="第-2-章-面孔fae-是一群什么样的人"><a class="header" href="#第-2-章-面孔fae-是一群什么样的人">第 2 章 面孔：FAE 是一群什么样的人</a></h1>
+<blockquote>
+<p><strong>本章要回答的问题</strong>：FAE 到底是谁？边界在哪？</p>
+</blockquote>
+<p><em>状态：初稿（2026-10-20，由原第 4、6、7 章合并）｜ 写法：提出问题 → 回答问题 ｜ 待核对事项见文末「写作备注」。</em></p>
+<hr />
+<h2 id="21-一天五张面孔"><a class="header" href="#21-一天五张面孔">2.1 一天五张面孔</a></h2>
+<p>如果只看职位名称，FAE 是一份工作。</p>
+<p>但如果你跟着一个 FAE 过一天，你会发现，这更像五份工作，装在同一个人身上。</p>
+<p>一个普通的工作日，大概是这样：</p>
+<p>早上去客户现场，你把方案里的技术细节讲清楚、把疑问答明白——这时候，你是一名<strong>专业技术人员</strong>。</p>
+<p>回公司的路上，销售打来电话："下午有个客户要见，这个需求能不能接？"你要在很短的时间里判断可行性、匹配度和风险——这时候，你是<strong>销售的技术搭档</strong>。</p>
+<p>下午，客户发来一段故障视频："你们的设备有问题。"你要先复现，再收日志、定位原因，把一句模糊的抱怨整理成研发能处理的问题——这时候，你是<strong>研发与产品之间的协调者</strong>。</p>
+<p>客户还在等答复，你得把技术上的来龙去脉，翻译成他能听懂的结果——"问题出在哪、什么时候能解决、暂时怎么绕过去"——这时候，你是<strong>客户的问题解决者</strong>。</p>
+<p>晚上，你还要把白天的会议整理成纪要，把测试数据写进文档，把明天的演示材料准备好——这时候，你是<strong>项目推进者与技术传播者</strong>。</p>
+<p>一天结束，五张面孔，轮着戴了一遍。</p>
+<p>职位只有一个，角色有五个。</p>
+<p>这也是为什么，很多 FAE 向别人介绍自己的工作时，会觉得有点难开口——"我是做 FAE 的"，一句话说不清。</p>
+<h2 id="22-五张面孔五条接口线"><a class="header" href="#22-五张面孔五条接口线">2.2 五张面孔，五条接口线</a></h2>
+<p>如果只是"累"，那还好办。</p>
+<p>真正难的是：每一张面孔的对面，都站着不同的一个人。而这些人关心的东西、说话的方式、评价你的标准，都不一样。</p>
+<p>所以，把五张面孔翻过来看，其实是几条接口线。</p>
+<p>接口这个词是从技术里借来的：两个系统要配合，得先定义好——谁给谁什么、什么时候给、出了问题谁负责。</p>
+<p>FAE 面对的接口，主要在五条线上：销售、产品经理、研发、商务，以及签单之后的交付链。</p>
+<h3 id="对销售搭档老师刹车"><a class="header" href="#对销售搭档老师刹车">对销售：搭档、老师、刹车</a></h3>
+<p>销售是 FAE 最常打交道的角色，关系也最复杂。我把它拆成三层：</p>
+<p><strong>第一层，军师。</strong> 帮他判断：客户的需求到底能不能接？我们的产品和方案匹不匹配？这个项目有哪些风险？——他要冲单，你要帮他把地图看清楚。</p>
+<p><strong>第二层，老师。</strong> 定期给销售做技术赋能：产品能做什么、不能做什么、跟竞品比优势在哪。销售不是技术专家，但他必须敢在客户面前聊技术——这份底气，一半是你给的。</p>
+<p><strong>第三层，刹车。</strong> 这是最容易被忽视、也最重要的一层。</p>
+<p>销售是油门，你是刹车。</p>
+<p>销售的本能是往前冲——多承诺一点，单子就可能近一点。你的职责，是在"不能承诺"的地方踩住刹车。</p>
+<p>踩刹车的时候，往往不好看：销售觉得你不配合，客户觉得你不够爽快。但如果你不踩，这个坑不会消失，它只会在交付那天炸开——到时候，站在坑边上的，还是你。</p>
+<p>顺便说一句：不是每个销售都值得你踩刹车。如果一个人对项目进展不上心、第一次见客户就拉着你去、随口就给客户承诺能力范围外的事情、出了问题就消失——那么你要小心，别让他的油门，把你的信用一起烧掉。</p>
+<h3 id="对产品经理能力的上游"><a class="header" href="#对产品经理能力的上游">对产品经理：能力的上游</a></h3>
+<p>产品经理掌握着两样东西：<strong>产品的路线图，和能力的边界。</strong></p>
+<p>一个产品能做什么、做到什么程度、下一个版本会补什么——这些不是 FAE 说了算，是产品线定义的。</p>
+<p>所以，跟产品经理的关系，是一个很清楚的"上下游"：</p>
+<p>他给你<strong>依据</strong>：能力边界表、规格、已知限制、版本计划；</p>
+<p>你给他<strong>输入</strong>：一线客户的需求、真实场景里的问题、竞品的动向、市场的反馈。</p>
+<p>有了这个关系，你对客户说的每一句"支持"，才能追到根上；没有这个关系，你就只能靠猜——而靠猜的承诺，迟早要出事。</p>
+<p>（这里有个经典的分歧：客户要的功能，产品暂时没有。是推动产品做定制，还是引导客户用现有能力？——这不是 FAE 一个人能决定的，要产品、研发、销售一起判断。你的角色，是把事实摆清楚，而不是替任何一方拍板。）</p>
+<h3 id="对研发问题的下游"><a class="header" href="#对研发问题的下游">对研发：问题的下游</a></h3>
+<p>研发最怕收到什么样的反馈？</p>
+<p>不是"客户那边出问题了"，而是——"客户说不行，你们看看。"</p>
+<p>这句话里没有信息：什么现象？什么环境？怎么复现？日志在哪？和什么操作有关？</p>
+<p>对研发来说，这不是需求，也不是问题，是一句情绪。</p>
+<p>所以，FAE 对研发的接口，只有一个动作：<strong>把"模糊的现场"，变成"可处理的问题"。</strong></p>
+<p>具体一点：先把问题复现，再收集日志，缩小范围，找到最小的复现条件，最后写成一份"案卷"——现象、环境、步骤、日志、初步判断。</p>
+<p>研发要的从来不是"客户很急"，而是"我知道该往哪里查"。</p>
+<p>一个好的 FAE 报问题，报的是案卷，不是情绪。</p>
+<p>（怎么写成一份能用的"案卷"，第 5 章的 5.1 会专门讲。）</p>
+<h3 id="对商务报价与风险的闸门"><a class="header" href="#对商务报价与风险的闸门">对商务：报价与风险的闸门</a></h3>
+<p>客户那边聊得再热络，最后都要落到一件事上：<strong>报多少钱、签什么条款、什么时候交付。</strong></p>
+<p>这是商务的战场。</p>
+<p>但它有一个前提：<strong>报价得有依据。</strong></p>
+<p>这个依据，是 FAE 给的。流程一般是这样：</p>
+<p><strong>FAE 确认需求（交付物、交付条件）→ 研发评估工作量 → 商务报价。</strong></p>
+<p>跳过任何一步，报价都是空中楼阁：报低了，交付时亏；报高了，单子飞了；交付条件没写清楚，验收时扯皮。</p>
+<p>还有一条老规矩，值得每个新人记在心里：<strong>没有写进合同里的，都不算数。</strong></p>
+<p>你跟客户口头说好的"到时候帮你们调一下"，到了验收的时候，一句"合同里没有"就能把它抹掉。所以，FAE 在售前阶段要做的，是把技术语言翻译成合同语言——交付物是什么、验收标准是什么、哪些不在范围内。</p>
+<p>FAE 不负责报价，但负责让报价有依据。</p>
+<h3 id="对交付链项目经理项目实施售后"><a class="header" href="#对交付链项目经理项目实施售后">对交付链：项目经理、项目实施、售后</a></h3>
+<p>签单之后，你的承诺就交到了另一群人手里。</p>
+<p>他们关心的东西，和你不一样：项目按时交付、现场不出岔子、客户不投诉、尾款能收回来。</p>
+<p>这条线上，有三个人你要认识；有些公司还会多一个运维，负责产品交付之后的长期保障。</p>
+<p><strong>项目经理——管项目的。</strong></p>
+<p>项目越复杂，PM 介入得越早。好的 PM，在售前阶段就会进来：把握需求、识别关键人、评估可行性、估算成本和进度、提前识别风险。</p>
+<p>而 FAE 要意识到一件事：<strong>签单不是终点，交付才是。</strong></p>
+<p>你交给 PM 的，应该是一份"能落地"的方案，而不是一份"能签单"的方案。</p>
+<p>行业里有句半开玩笑的话："售前和销售是负责挖坑的，项目经理和交付的同事是负责填坑的。"</p>
+<p>挖坑的人，最好也想想填坑的人。</p>
+<p><strong>项目实施——方案的施工队。</strong></p>
+<p>设计图画得再漂亮，也要有人去现场把它装出来。实施同事要面对的，是客户的机房、客户的网络、客户的"临时改一下"。</p>
+<p>所以你交出去的东西，不能只是一句"方案在附件里"，而应该包含：客户环境的前提假设、方案里的关键限制、已知的风险点、验收的标准。</p>
+<p>图画得越清楚，施工返工越少。</p>
+<p>有些公司里，小项目的项目经理，就是 FAE 自己——那更要记住：你今天为了签单埋下的每一个雷，都是你明天的班。</p>
+<p><strong>售后——你承诺的账单。</strong></p>
+<p>这句话听起来有点刺耳，但它是真的：<strong>你售前把话说得多满，售后就要还多少。</strong></p>
+<p>你承诺了"支持 32 路"，客户就会在 33 路的时候来找售后；你说过"肯定没问题"，售后就要在出问题的那天，替你面对客户。</p>
+<p>所以，面对售后，FAE 要做三件事：</p>
+<ul>
+<li><strong>把边界说清楚</strong>——你不是在"甩锅"，你是在给售后减负；</li>
+<li><strong>把已知问题交清楚</strong>——你踩过的坑，要写进排障文档，别让售后再踩一遍；</li>
+<li><strong>把一线的信号带回来</strong>——售后是最早发现"这个毛病又来了"的人，这些信号要回流到产品和研发。</li>
+</ul>
+<p>一句话：售后不是"下游的麻烦"，而是替你兑现承诺的人。</p>
+<h2 id="23-角色切换与位置感"><a class="header" href="#23-角色切换与位置感">2.3 角色切换与"位置感"</a></h2>
+<h3 id="为什么会觉得像好几个人"><a class="header" href="#为什么会觉得像好几个人">为什么会觉得像"好几个人"？</a></h3>
+<p>不是因为你"戏多"，而是因为这份工作，本质上就是在不同的目标之间来回切换：</p>
+<ul>
+<li>客户要<strong>快</strong>；</li>
+<li>研发要<strong>准</strong>；</li>
+<li>销售要<strong>签</strong>；</li>
+<li>商务要<strong>稳</strong>；</li>
+<li>产品要<strong>对</strong>。</li>
+</ul>
+<p>五个方向，五套标准。你一天切换五次，每一次都要换一套语言、换一个立场——累的不是身体，是心。</p>
+<p>还有一个更隐蔽的消耗：<strong>切换会"串味"。</strong></p>
+<p>在客户那里把耐心用完了，回到公司，对研发同事说话就容易冲；在内部会议上被质疑多了，转头面对客户，语气里就带上了防备。</p>
+<p>这不是修养问题，是精力问题。</p>
+<p>你的时间、注意力和精力，并不会因为角色变多而同步变多。</p>
+<p>能做的，只有两件事：<strong>认清哪些切换是必要的，给每一次切换留一点缓冲。</strong></p>
+<p>比如：从客户现场回公司的路上，别急着回消息，先把"客户的语言"在脑子里翻译回"公司的语言"；开完一个火药味重的会，喝口水再去接下一个电话。</p>
+<p>这些小事，比什么"沟通技巧"都管用。</p>
+<h3 id="小结位置感"><a class="header" href="#小结位置感">小结：位置感</a></h3>
+<p>写到这里，这五张面孔可以合成一句话：</p>
+<p><strong>FAE 不是一个"什么都要做"的人，而是一个"知道该找谁、能不能做、什么时候给答复"的人。</strong></p>
+<p>对销售，你给边界；</p>
+<p>对产品经理，你给需求；</p>
+<p>对研发，你给证据；</p>
+<p>对商务，你给依据；</p>
+<p>对交付链，你给清楚。</p>
+<p>这五条接口线，就是你在公司里的"位置"。</p>
+<p>1.5 说过，FAE 是翻译。这里想补一句：翻译不只发生在客户和产品之间，也发生在公司内部的这五类人之间。</p>
+<p>而你，就是那个站在所有接口中间、把话传对的人。</p>
+<h2 id="24-可以主动承担但边界要主动建立"><a class="header" href="#24-可以主动承担但边界要主动建立">2.4 可以主动承担，但边界要主动建立</a></h2>
+<h3 id="一个很小的问题为什么要学"><a class="header" href="#一个很小的问题为什么要学">一个很小的问题：为什么要学？</a></h3>
+<p>前一阵子，遇到一件很小的事。</p>
+<p>机器人那边的一位同事跟我说："你学习一下机械臂叠衣服的数据采集吧。"</p>
+<p>我的第一反应，是一句几乎脱口而出的话：</p>
+<p><strong>"为什么要学？"</strong></p>
+<p>说完之后，我自己也愣了一下。</p>
+<p>这句话听起来有点"不配合"——人家让你学个东西，你又不是学不会，为什么先问"为什么"？</p>
+<p>但事后我认真想了想：我真正想问的，其实不是"我为什么不学"，而是——</p>
+<p><strong>我学这个东西，最终是为了了解项目，还是意味着以后我要负责采集数据？</strong></p>
+<p>这两件事，差别很大。</p>
+<p>因为很多工作，一开始都只是"先学一下""先了解一下"。但学会之后，很可能就会变成"你顺便帮忙采一下"；再往后，就变成了"这个事情你来负责"。</p>
+<p>很多边界，就是这样一点点失守的——不是被人抢走的，是自己"顺手"送出去的。</p>
+<h3 id="请求--职责"><a class="header" href="#请求--职责">请求 ≠ 职责</a></h3>
+<p>职场上真正的边界问题，很少是"拒绝"和"接受"这么黑白分明。</p>
+<p>它往往从一句商量开始："你帮忙看一下？""你顺便弄一下？""你先了解一下？"</p>
+<p>我以前有一个默认的假设：别人找我，是因为这件事该我做。</p>
+<p>后来发现不是。</p>
+<p>很多时候，别人找你，只是因为"你在"、"你比较快"、"你上次做过"。</p>
+<p><strong>别人可以向我提出请求，但请求不等于我的职责。</strong></p>
+<p>这句话，值得每个新人写在工位上。</p>
+<h3 id="帮助--长期责任"><a class="header" href="#帮助--长期责任">帮助 ≠ 长期责任</a></h3>
+<p>第二句：</p>
+<p><strong>我可以帮助别人，但帮助不等于承担长期责任。</strong></p>
+<p>帮忙本身没有问题。问题在于："帮忙"往往没有终点，而你的时间有。</p>
+<p>第一次，你顺手帮了；</p>
+<p>第二次，对方默认还是你；</p>
+<p>第三次，这件事就长在了你身上。</p>
+<p>尤其是 FAE。这个岗位的工作天然容易扩张：技术支持、测试、模型部署、设备调试、客户问题、项目支持……每一件都像是"顺便"就能做。</p>
+<p>但如果什么都"顺便帮一下"，最后很容易变成：<strong>什么都做，却没有一件事情真正属于你。</strong></p>
+<h3 id="学习--接受任务"><a class="header" href="#学习--接受任务">学习 ≠ 接受任务</a></h3>
+<p>第三句：</p>
+<p><strong>我可以学习一个技能，但学习也不等于接受这个技能背后的工作任务。</strong></p>
+<p>回到开头那个"为什么要学"。</p>
+<p>学机械臂的数据采集，可能是为了：了解这个项目在做什么、知道数据是怎么来的、以后能判断相关的问题——这些都是合理的学习理由。</p>
+<p>但这和"以后数据采集由我负责"，是两码事。</p>
+<p>问题在于：这两件事，可能发生在同一句话里——"你学一下"。</p>
+<p>你以为是前者，对方可能默认后者。</p>
+<p>所以，先把话问清楚，不是不配合，是避免以后双方都尴尬。</p>
+<h3 id="那到底该怎么判断"><a class="header" href="#那到底该怎么判断">那到底该怎么判断？</a></h3>
+<p>有人可能会问：那是不是别人一找我，我就要先掂量、先推脱？那不成"老油条"了？</p>
+<p>不是。</p>
+<p>有一句话说得很准：职场的边界，<strong>并不是简单地拒绝别人，也不是用"他不是我直属领导"来判断做不做。</strong></p>
+<p>真正需要确认的，是四个问题：</p>
+<ol>
+<li><strong>这件事，是不是我的职责？</strong> 还是别人的、还是模糊地带？</li>
+<li><strong>需要投入多少时间？</strong> 一次性的，还是长期占用？</li>
+<li><strong>谁对结果负责？</strong> 是我做，还是我协助？</li>
+<li><strong>会不会影响我原本的工作？</strong> 如果冲突，优先级怎么排？</li>
+</ol>
+<p>四个问题问清楚，再决定"做到什么程度"——是全接、接一部分、还是只提供信息。</p>
+<p>这里有个心态很重要：</p>
+<p><strong>不要急着答应，也不要急着拒绝。</strong></p>
+<p>急着答应，是把边界送出去；急着拒绝，是把机会挡在门外。</p>
+<p>先搞清楚目的、职责、投入和优先级，再决定。</p>
+<h3 id="边界不是冷漠是负责"><a class="header" href="#边界不是冷漠是负责">边界不是冷漠，是负责</a></h3>
+<p>写到这里，可以回答"主动还是守边界"这个问题了。</p>
+<p>矛盾吗？</p>
+<p>不矛盾。</p>
+<p><strong>主动承担，承担的是"该我承担、我也承担得起"的事；边界挡住的，是"不该我、或者我承担不起"的事。</strong></p>
+<p>3.4 会讲到：真正负责任的人，恰恰是先把边界说清楚的人。</p>
+<p>说清楚了，才敢承诺；敢承诺，才叫责任。</p>
+<p>如果一个人什么都答应，看起来很"主动"——但他的承诺是打折的，因为他根本没有时间把每件事做好。</p>
+<p><strong>边界不是把别人挡在外面，是把承诺留给能兑现的事。</strong></p>
+<p>你的时间和精力，是你唯一真正的本钱。</p>
+<p>守住边界，不是为了少干活，而是为了把活干好。</p>
+<p>所以这句话，既是这一节的收尾，也是这一章的底色：</p>
+<p><strong>工作可以主动承担，但边界也要主动建立。</strong></p>
+<h2 id="25-什么样的人适合做-fae"><a class="header" href="#25-什么样的人适合做-fae">2.5 什么样的人适合做 FAE？</a></h2>
+<h3 id="先排除一个答案技术最好的人不一定最合适"><a class="header" href="#先排除一个答案技术最好的人不一定最合适">先排除一个答案：技术最好的人，不一定最合适</a></h3>
+<p>如果这个问题拿去问十个人，大概有九个会说：技术好的人呗。</p>
+<p>我见过技术很好、但做 FAE 做得很痛苦的人；也见过技术不算最顶尖、但客户点名要他负责项目的人。</p>
+<p>差别不在代码写得好不好，在别的地方。</p>
+<p>有一个"冰山模型"的说法：一个人在水面以上的部分，是知识和技能——这些可以学；水面以下的部分，是通用能力和底层特质——这些难改，但决定了一个人能走多远。</p>
+<p>对 FAE 来说，<strong>技术是入场券，不是通行证。</strong></p>
+<p>真正决定你适不适合的，是水面以下的东西。</p>
+<p>【待补：这里补一段"我见过的最好的 FAE / 最差的 FAE"——各写两三句具体的观察。比如最好的那个：客户为什么信任他？最差的那个：问题出在哪里？越具体越好。】</p>
+<h3 id="五个特质以及它们在-fae-工作里的样子"><a class="header" href="#五个特质以及它们在-fae-工作里的样子">五个特质，以及它们在 FAE 工作里的样子</a></h3>
+<p>如果一定要列，我会选五个：<strong>好奇、耐心、沟通、抗压、较真。</strong></p>
+<p>它们听起来都很"普通"，但放到 FAE 的工作里，各有各的具体长相。</p>
+<p><strong>好奇：不满足于"能用就行"。</strong></p>
+<p>FAE 每天面对的都是"没见过的东西"：新的芯片、新的模型、新的客户场景、新的报错。</p>
+<p>不刨根问底的人，也能干活——用以前的方案套一套，能用就用。但客户的问题一旦超出经验，就卡住了。</p>
+<p>好奇的人不一样：他会多问一句"为什么会这样"。</p>
+<p>这一句，就是下次遇到同类问题时，他比你快的原因。</p>
+<p>好奇不是八卦，是对"因果"的兴趣。</p>
+<p><strong>耐心：把问题拆小，一步一步来。</strong></p>
+<p>FAE 的工作，很大一部分是"等"和"磨"：等客户复现、等研发回消息、等环境准备好；磨一个查不出来原因的问题，一磨就是一天。</p>
+<p>耐心不是"脾气好"，是知道：<strong>复杂问题只能拆小了解决。</strong></p>
+<p>不耐烦的人，喜欢直接给结论——而直接给的结论，往往是错的。</p>
+<p><strong>沟通：不是能说会道，是"先听懂，再翻译"。</strong></p>
+<p>很多人以为沟通能力就是口才好。做 FAE 之后我才知道，沟通的第一步是听。</p>
+<p>看到过一句话，很认同：<strong>倾听，可能比表达更重要。</strong></p>
+<p>客户说的，不一定是问题本身；你要听出他真正在意的东西。</p>
+<p>听懂之后，还要会翻译：把客户的"我不满意"，翻译成研发能查的"现象 + 条件"；把研发的"这是正常现象"，翻译成客户能接受的"为什么会这样、我们怎么处理"。</p>
+<p><strong>抗压：把情绪和事实分开。</strong></p>
+<p>客户催、销售催、项目压着死线，出了问题你是第一个被找的人。</p>
+<p>抗压不是"硬扛"，也不是"没情绪"——是<strong>把情绪和事实分开</strong>。</p>
+<p>事情砸过来的时候，先问自己三个问题：事实是什么？我的感受是什么？下一步做什么？</p>
+<p>想清楚这三个，情绪就降下来了，事情才开始动。</p>
+<p><strong>较真：对证据较真，不和稀泥。</strong></p>
+<p>FAE 的话是要被验算的：你说"支持"，客户就要拿它去设计产品；你说"没问题"，出了问题就是你的问题。</p>
+<p>所以 FAE 必须较真：数据是什么条件下测的？复现步骤对不对？日志里到底写了什么？</p>
+<p>"大概、也许、应该"——这三个词，在 FAE 的嘴里是最危险的。</p>
+<p>较真，是你的信誉来源。</p>
+<h3 id="有些特质也可以慢慢练"><a class="header" href="#有些特质也可以慢慢练">有些特质，也可以慢慢练</a></h3>
+<p>看到这里，你可能会想：这五个我都不太够，是不是不适合？</p>
+<p>不一定。</p>
+<p>这五个特质，没有一个是"天生的"。它们都可以练，只是练法不神秘：</p>
+<ul>
+<li><strong>好奇</strong>：每天多问一句"为什么"，并把它记下来；</li>
+<li><strong>耐心</strong>：遇到大问题，先拆成三个小问题；</li>
+<li><strong>沟通</strong>：开口之前，先复述一遍对方的意思；</li>
+<li><strong>抗压</strong>：情绪上来时，先写下来，再处理；</li>
+<li><strong>较真</strong>：给每个结论留一条证据。</li>
+</ul>
+<p>练着练着，它们就变成了你的工作习惯。</p>
+<h3 id="什么样的人可能会做得比较难受"><a class="header" href="#什么样的人可能会做得比较难受">什么样的人可能会做得比较难受？</a></h3>
+<p>也有几种人，做 FAE 会格外累：</p>
+<ul>
+<li><strong>只想和机器打交道、不想和人打交道的人</strong>——FAE 的工作里，一半以上是"人"；</li>
+<li><strong>受不了模糊的人</strong>——FAE 的日常，是在信息不全的情况下做判断；</li>
+<li><strong>需要即时掌声的人</strong>——FAE 的很多工作，做得好是"应该的"，做不好才被看见。</li>
+</ul>
+<p>不是说这些人不能做，只是会做得比较辛苦。</p>
+<h3 id="最后适不适合做一遍才知道"><a class="header" href="#最后适不适合做一遍才知道">最后：适不适合，做一遍才知道</a></h3>
+<p>对学生：找一段实习、一个项目，做三个月，比想一年都准。</p>
+<p>对已经在做的人：问自己一个问题——</p>
+<p><strong>最近一次觉得"这活儿值得"，是什么时候？</strong></p>
+<p>如果想了很久都想不起来，可能是环境问题，也可能是真的不合适；</p>
+<p>如果经常有这种时刻——哪怕很小，比如客户说的一句"谢谢"、一个问题终于查清楚了——那这碗饭，你大概吃得下去。</p>
+<p>适合做 FAE 的人，不是不觉得累的人。</p>
+<p>是觉得"累得值"的人。</p>
+<hr />
+<p><strong>本章速记（一页纸）</strong></p>
+<ul>
+<li><strong>五张面孔</strong>：专业技术人员 / 客户的问题解决者 / 销售的技术搭档 / 研发与产品的协调者 / 项目推进者与技术传播者</li>
+<li><strong>五条接口线</strong>：销售=边界、产品经理=需求、研发=证据、商务=依据、交付链=清楚</li>
+<li><strong>一个提醒</strong>：切换会"串味"——给每次切换留一点缓冲</li>
+<li><strong>三句话</strong>：请求 ≠ 职责、帮助 ≠ 长期责任、学习 ≠ 接受任务</li>
+<li><strong>四个问题</strong>：是不是我的职责？要投入多少时间？谁对结果负责？会不会影响原本的工作？</li>
+<li><strong>五个特质</strong>：好奇、耐心、沟通、抗压、较真</li>
+<li><strong>一句话</strong>：适合的人，不是不觉得累的人，是觉得"累得值"的人</li>
+</ul>
+<hr />
+<p><strong>写作备注（不入正文）</strong></p>
+<ul>
+<li>本章为初稿，由原第 4、6、7 章合并而成；2.1–2.3 来自原第 4 章，2.4 来自原第 6 章，2.5 来自原第 7 章。</li>
+<li>2.1 的"一个普通工作日"是典型化写法（不是某一天的真实记录），如你愿意，可以换成你自己的真实一天，会更有画面感。</li>
+<li>【待补】"不靠谱的销售"（2.2）：目前是 <code>素材/07</code> 里的通用总结；如有亲历例子，补一个会更生动。</li>
+<li>【待补】"最好的 FAE / 最差的 FAE"（2.5）：需要你补两三句真实观察，这是本章最缺的现场感。</li>
+<li>【待核对】"商务"在你们公司的实际叫法与职能；售后、项目实施、运维的实际分工（有的公司售后含运维，有的实施归交付部）。</li>
+<li>【待核对】"机器人那边的一位同事"——按实际情况确认称呼（同部门/其他部门）。</li>
+<li>【来源】<code>素材/01</code>（五张面孔、角色切换、角色扩张）、<code>素材/03</code>（边界故事与三句话、四个确认问题）、<code>素材/07</code>（销售三层关系、冰山模型、倾听、项目经理）、<code>素材/05</code>（报价流程）、<code>素材/10</code>（岗位职责）。</li>
+<li>【请反馈】本章三个部分（面孔 / 边界 / 适不适合）放在一章里，是否顺；如果觉得"五张面孔"和"适不适合"距离太远，也可以把 2.5 单独拆出去。</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../01_鸿沟_为什么这个世界需要FAE/初稿.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../03_长路_这门手艺怎么长出复利/初稿.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../01_鸿沟_为什么这个世界需要FAE/初稿.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../03_长路_这门手艺怎么长出复利/初稿.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

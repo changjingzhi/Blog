@@ -1,0 +1,796 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第 5 章 做事（下）：让承诺立得住、留得下 - 怎么做 FAE</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="一本关于「怎么做 FAE」的书：Why / Who / What">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../00_前言_缘起/初稿.html"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded affix "><li class="part-title">正文</li><li class="chapter-item expanded "><a href="../01_鸿沟_为什么这个世界需要FAE/初稿.html"><strong aria-hidden="true">2.</strong> 第 1 章 鸿沟：为什么这个世界需要 FAE</a></li><li class="chapter-item expanded "><a href="../02_面孔_FAE是一群什么样的人/初稿.html"><strong aria-hidden="true">3.</strong> 第 2 章 面孔：FAE 是一群什么样的人</a></li><li class="chapter-item expanded "><a href="../03_长路_这门手艺怎么长出复利/初稿.html"><strong aria-hidden="true">4.</strong> 第 3 章 长路：这门手艺怎么长出复利</a></li><li class="chapter-item expanded "><a href="../04_做事上_把能做变成客户要的/初稿.html"><strong aria-hidden="true">5.</strong> 第 4 章 做事（上）：把"能做"变成"客户要的"</a></li><li class="chapter-item expanded "><a href="../05_做事下_让承诺立得住留得下/初稿.html" class="active"><strong aria-hidden="true">6.</strong> 第 5 章 做事（下）：让承诺立得住、留得下</a></li><li class="chapter-item expanded affix "><li class="part-title">尾声</li><li class="chapter-item expanded "><a href="../06_尾声_留给下一个FAE的话/初稿.html"><strong aria-hidden="true">7.</strong> 留给下一个 FAE 的话</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">怎么做 FAE</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/changjingzhi/fae-book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/changjingzhi/books/fae/edit/main/书稿/书稿/05_做事下_让承诺立得住留得下/初稿.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="第-5-章-做事下让承诺立得住留得下"><a class="header" href="#第-5-章-做事下让承诺立得住留得下">第 5 章 做事（下）：让承诺立得住、留得下</a></h1>
+<blockquote>
+<p><strong>本章要回答的问题</strong>：事情做完之后，怎么让它"立得住"，又"留得下"？</p>
+</blockquote>
+<p><em>状态：初稿（2026-10-20，由原第 13、14、15、16 章合并）｜ 写法：提出问题 → 回答问题 ｜ 待核对事项见文末「写作备注」。</em></p>
+<hr />
+<h2 id="51-报问题把现象变成研发能处理的问题"><a class="header" href="#51-报问题把现象变成研发能处理的问题">5.1 报问题：把现象变成研发能处理的问题</a></h2>
+<h3 id="一句你们的设备有问题"><a class="header" href="#一句你们的设备有问题">一句"你们的设备有问题"</a></h3>
+<p>客户在群里发来一段十五秒的视频，配一句话：</p>
+<p><strong>"你们的设备有问题，跑着跑着就卡住了。"</strong></p>
+<p>你把视频转给研发，附上一句："客户说有问题，看一下。"</p>
+<p>两个小时后，研发回：</p>
+<p><strong>"复现不了。"</strong></p>
+<p>然后，这个球就停在你脚下了。</p>
+<p>这一幕，可能是 FAE 日常里最消耗人的部分。不是因为问题难，而是因为<strong>问题在传递的过程中，丢了东西</strong>。</p>
+<p>客户那边有完整的现场：什么设备、什么版本、什么数据、什么操作、什么时候开始。传到研发那里，只剩下"卡住了"三个字。</p>
+<p>研发不是不配合。换你坐在他的位置上，面对"卡住了"和一段视频，你也复现不了。</p>
+<p>所以这一节要回答的问题是：</p>
+<p><strong>怎么把一个"现象"，变成研发"能处理的问题"？</strong></p>
+<p>【待补：一个"问题报上去被退回来"的真实经历——报了什么、研发回了什么、后来怎么补的信息。】</p>
+<h3 id="为什么研发总说复现不了"><a class="header" href="#为什么研发总说复现不了">为什么研发总说"复现不了"？</a></h3>
+<p>"复现不了"这四个字，常常被误解成"问题不存在"或者"你在瞎报"。</p>
+<p>它真正的意思往往是：<strong>按你给的信息，我试了，没出现。</strong></p>
+<p>而这中间，隔着三个断层。</p>
+<p><strong>第一个断层：时间。</strong></p>
+<p>"跑着跑着就卡了"——跑了多久？五分钟，还是五小时？是每天都有，还是一周一次？</p>
+<p>时间尺度不同，问题的性质完全不同：五分钟就卡，多半是配置或兼容性；跑五小时才卡，多半是泄漏或温度。</p>
+<p><strong>第二个断层：环境。</strong></p>
+<p>什么型号、什么软件版本、什么配置、什么码流、什么网络。</p>
+<p>你眼里的"我们的设备"，在研发眼里是一个型号矩阵。你不说清是哪一格，他就只能一格一格试。</p>
+<p><strong>第三个断层：条件。</strong></p>
+<p>卡住之前，客户做了什么？切了画面？换了码流？插了 U 盘？断了一次网？</p>
+<p>这些"无关紧要的小动作"，往往就是触发条件。</p>
+<p>三个断层叠加，你交出去的就不再是问题，而是一句情绪。</p>
+<p><strong>而研发收到的不是线索，是噪音。</strong></p>
+<h3 id="一份案卷的五个部分"><a class="header" href="#一份案卷的五个部分">一份"案卷"的五个部分</a></h3>
+<p>我习惯把报问题写成一份"案卷"。不是走形式，是因为这五样东西，正好补上前面那三个断层。</p>
+<div class="table-wrapper"><table><thead><tr><th>部分</th><th>写什么</th><th>常见错误</th></tr></thead><tbody>
+<tr><td><strong>现象</strong></td><td>可观察、可量化的事实</td><td>"卡"、"不稳定"、"有问题"</td></tr>
+<tr><td><strong>环境</strong></td><td>型号、版本、配置、数据来源</td><td>只写"我们的设备"</td></tr>
+<tr><td><strong>步骤</strong></td><td>从开机到复现的最短路径</td><td>把整个业务流程写一遍</td></tr>
+<tr><td><strong>证据</strong></td><td>日志、录屏、抓包、core dump</td><td>只发截图、截掉上下文</td></tr>
+<tr><td><strong>判断</strong></td><td>排查过什么、排除了什么、怀疑什么</td><td>什么都不写，或直接下结论</td></tr>
+</tbody></table>
+</div>
+<p>一条一条说。</p>
+<p><strong>现象，要可量化。</strong></p>
+<p>"卡"是感受，不是现象。</p>
+<p>"每 30 秒丢 2 帧，端到端延迟从 80ms 涨到 400ms，重启后恢复"——这才是现象。</p>
+<p>现象写得越具体，研发在你这份案卷上花的时间就越少。</p>
+<p><strong>环境，要写全。</strong></p>
+<p>硬件型号、软件版本号（具体到 commit 更好）、关键配置、数据来源（码流是什么格式、模型是什么版本）。</p>
+<p>一个偷懒的判断标准：<strong>研发拿着你写的东西，能不能搭出一模一样的环境？</strong></p>
+<p><strong>步骤，要最短。</strong></p>
+<p>不是"客户打开软件，登录，选设备，切到第三路……"，而是从"设备启动完成"开始的那几步。</p>
+<p>最短路径的意义，后面单独讲。</p>
+<p><strong>证据，要给原始件。</strong></p>
+<p>日志给原文，不要转述；录屏给全程，不要只给卡住的那三秒；抓包给文件，不要只给结论。</p>
+<p><strong>判断，要写你排除了什么。</strong></p>
+<p>"我换过网线、换过码流、换过设备，都能复现；只有这一台、只有这一版软件会出问题。"</p>
+<p>这段话对研发极其有价值——因为它把搜索范围直接缩小了一大半。</p>
+<p>但注意：写"判断"，不是写"结论"。"我怀疑是解码器的问题"是判断；"就是你们解码器有 bug"是下结论。前者是帮忙，后者是添乱。</p>
+<h3 id="最小化把一整个项目缩成一条命令"><a class="header" href="#最小化把一整个项目缩成一条命令">最小化：把"一整个项目"缩成"一条命令"</a></h3>
+<p>案卷里最见功夫的一项，是"最小复现"。</p>
+<p>研发的时间，是公司里最贵的资源之一。你给他一条二十步的复现路径，他很可能走到第三步就走偏了——不是他不专业，是路径越长，变量越多。</p>
+<p>所以要最小化。四个动作：</p>
+<ul>
+<li><strong>删</strong>：把和问题无关的业务全去掉。不用登录、不用界面、不用真实的客户数据；</li>
+<li><strong>换</strong>：把客户的特殊环境，换成标准环境。定制码流换成标准测试流，客户模型换成公开模型；</li>
+<li><strong>减</strong>：把数据量减到刚好能触发问题。两小时的数据缩到两分钟，一百路缩到刚好出问题的那几路；</li>
+<li><strong>隔</strong>：把可疑的那一段单独拎出来跑。整机有问题，就先单独跑解码；解码没问题，再往上加。</li>
+</ul>
+<p>最小化的目标只有一个：</p>
+<p><strong>让别人在自己的机器上，五分钟之内复现。</strong></p>
+<p>这里还有一个隐藏的好处：<strong>最小化的过程，经常自己就把问题找到了。</strong></p>
+<p>删着删着发现"去掉这个配置就不卡了"——那问题就在这个配置上。很多报上去的问题，最后是在 FAE 自己的最小化过程中解决的，研发根本没参与。</p>
+<p>这不是白干。<strong>这恰恰是 FAE 最值钱的能力：把问题缩小到别人能接手的大小。</strong></p>
+<h3 id="日志怎么给才有用"><a class="header" href="#日志怎么给才有用">日志怎么给，才有用</a></h3>
+<p>日志是最容易被浪费的证据。</p>
+<p>最常见的给法是：截一张图，图上有一行红字，然后说"报错了"。</p>
+<p>研发拿到这张图，只能看到一行字。他不知道这行字前面发生了什么、后面紧跟着什么、当时是什么版本、几点几分。</p>
+<p>给日志，有三个原则。</p>
+<p><strong>第一，给原始日志，不要转述。</strong></p>
+<p>你觉得"没什么用"的那几十行，可能正好是研发要找的上下文。</p>
+<p><strong>第二，给时间对齐。</strong></p>
+<p>告诉研发："问题发生在 14:32:17 左右。"他才能在几万行日志里，直接跳到那一段。</p>
+<p>录屏和日志要能对上——这是最省时间的一件事。</p>
+<p><strong>第三，开日志要有节制。</strong></p>
+<p>调试级别的日志一开，文件长得飞快，关键信息反而被淹没，磁盘还可能被写满。</p>
+<p>正确做法是：先按默认级别跑，复现一次；再针对可疑模块开调试，复现一次；两次日志对比着看。</p>
+<p><strong>日志不是越多越好，是越"对"越好。</strong></p>
+<h3 id="怎么催才不招人烦"><a class="header" href="#怎么催才不招人烦">怎么"催"，才不招人烦</a></h3>
+<p>报完问题，还有一件事：推动它被处理。</p>
+<p>这里有个残酷的现实：<strong>研发手上永远有比你更急的事。</strong></p>
+<p>所以"催"这件事，靠的不是次数，是两样东西：<strong>信息量</strong>和<strong>利害关系</strong>。</p>
+<p>先说分级。我一般会明确写清楚这个问题属于哪一档：</p>
+<ul>
+<li><strong>阻塞</strong>：客户产线停了、验收卡住了，必须当天有回应；</li>
+<li><strong>严重</strong>：影响功能，但客户还能绕过去，本周内要有方案；</li>
+<li><strong>一般</strong>：不影响使用，排进正常版本；</li>
+<li><strong>建议</strong>：体验或优化类，记录在案即可。</li>
+</ul>
+<p>再说利害关系。不要写"客户很急"——这句话对研发没有任何信息量。</p>
+<p>要写："这个客户下周三验收，卡在这一条，合同金额 XX 万，销售那边已经在问了。"</p>
+<p>同一个问题，"很急"和"下周三验收、卡在这一条"，研发的处理顺序会完全不同。</p>
+<p><strong>催进度，靠的是把利害关系说清楚，不是靠每小时问一次"怎么样了"。</strong></p>
+<p>还有一条经验：<strong>要给研发"可下手"的时间，而不是"随时打断"的时间。</strong></p>
+<p>信息给全、时间点说清、中间别反复打扰——这不是客气，这是效率。</p>
+<h3 id="和研发一起攻坚是什么样子"><a class="header" href="#和研发一起攻坚是什么样子">和研发一起攻坚，是什么样子？</a></h3>
+<p>有一种问题，案卷写完了、最小化也做了，还是查不出来。这时候就要一起攻坚。</p>
+<p>【待补：一次和研发一起攻坚的真实故事——什么问题、卡在哪、你是怎么配合的、最后定位到什么、花了多久。】</p>
+<p>我见过的攻坚，通常有这么几个阶段：</p>
+<ol>
+<li><strong>互相不理解</strong>：你觉得代码有问题，他觉得现场有问题；</li>
+<li><strong>你把现场搬回来</strong>：设备、数据、环境，尽量复刻到实验室；</li>
+<li><strong>一起缩小范围</strong>：二分法——关掉一半功能，看还出不出现；换一半配置，看还出不出现；</li>
+<li><strong>定位到一个点</strong>：某个驱动、某段代码、某个时序；</li>
+<li><strong>修复、验证、回填</strong>：修完在你的环境里跑长测，再把结果回填到能力边界表（4.1、4.4）。</li>
+</ol>
+<p>这个过程里，FAE 的价值不在"懂代码"，而在<strong>懂现场</strong>。</p>
+<p>研发的每一个假设，都要有人去现场验证："是不是客户的数据有问题？"——你去换数据试；"是不是供电不稳？"——你去量电压；"是不是只有这一批硬件？"——你去查序列号。</p>
+<p><strong>你是研发伸到现场的那只手。</strong></p>
+<p>有你在，他不用猜；没你在，他只能猜。</p>
+<h3 id="最后你报问题的方式决定了别人愿不愿意帮你"><a class="header" href="#最后你报问题的方式决定了别人愿不愿意帮你">最后：你报问题的方式，决定了别人愿不愿意帮你</a></h3>
+<p>写到这里，可以收尾了。</p>
+<p>这一节讲的是"报问题"，但它其实讲的是两件事：</p>
+<p><strong>对客户，你是承接者</strong>——把一句"你们的设备有问题"，接成一份可以处理的东西；</p>
+<p><strong>对研发，你是过滤器</strong>——把现场的噪音，滤成线索。</p>
+<p>这两件事，用的是同一种能力：<strong>把模糊的东西，变成清楚的东西。</strong></p>
+<p>这也是这本书里反复出现的那件事——1.5 叫翻译，4.1 叫边界，4.4 叫验证，这里叫报问题。</p>
+<p>名字不一样，活儿是同一个。</p>
+<p>顺带说一句：这一节，其实是这本书里最"不体面"的一段。它讲的不是怎么赢单，怎么讲方案，怎么被客户夸。它讲的是在出问题的时候，你怎么做一个靠得住的人。</p>
+<p>而一个 FAE 的口碑，往往不是在他顺利的时候建立的，是在出事的时候。</p>
+<p>所以这一节的最后一句是：</p>
+<p><strong>你报问题的水平，决定了研发愿意为你花多少时间。</strong></p>
+<h2 id="52-沟通与承诺对客户说不对内部说要"><a class="header" href="#52-沟通与承诺对客户说不对内部说要">5.2 沟通与承诺：对客户说"不"，对内部说"要"</a></h2>
+<h3 id="一个最难的场面"><a class="header" href="#一个最难的场面">一个最难的场面</a></h3>
+<p>会议室里坐了七八个人。客户的技术负责人指着屏幕问：</p>
+<p><strong>"这个，你们能不能做？"</strong></p>
+<p>你心里其实已经有答案了：不能。至少现在不能。</p>
+<p>但销售就坐在旁边，眼神在说"先答应下来"；客户一屋子人都在等；气氛正好。</p>
+<p>这一秒钟，你要决定一件事：说真话，还是说一句"我们回去评估一下"。</p>
+<p>说真话，可能当场冷场；说"回去评估"，等于把问题往后推了三天——三天后，还是要说。</p>
+<p>这一节要回答的，就是这种场面：</p>
+<p><strong>客户要的，我们给不了——这句话，怎么说？</strong></p>
+<p>以及它的另一半：客户要的，我们内部得给——这个"要"，又怎么要？</p>
+<p>一个 FAE 的职业生涯，几乎就是在这两句话之间来回：<strong>对外，管理承诺；对内，争取资源。</strong></p>
+<p>【待补：一个你"对客户说不"的真实场景——客户提了什么、当时什么气氛、你怎么回的、结果如何。这一段补上，本节就活了。】</p>
+<h3 id="先说清楚什么叫承诺"><a class="header" href="#先说清楚什么叫承诺">先说清楚：什么叫"承诺"</a></h3>
+<p>很多人以为，承诺就是"我答应你"。</p>
+<p>不完全是。</p>
+<p>一个站得住的承诺，必须同时有三样东西：</p>
+<ul>
+<li><strong>交付什么</strong>：具体的东西，不是"支持一下"；</li>
+<li><strong>在什么条件下</strong>：环境、版本、前提；</li>
+<li><strong>什么时候</strong>：一个明确的时间点。</li>
+</ul>
+<p>缺一样，都是坑。</p>
+<p>"这个我们支持"——没说条件。将来客户的环境一变，就成了"你们说过支持"。</p>
+<p>"我下周五给你"——没说交付什么、依赖什么。到周五交不出，就成了"你答应过的"。</p>
+<p>所以，<strong>承诺不是把话说满，是把话说准。</strong></p>
+<p>还有一件事，新人特别容易栽：<strong>承诺会转手。</strong></p>
+<p>研发说"理论上没问题"，你转给客户"支持"；销售说"这个肯定行"，你默认了；产品经理说"下个版本会有"，你告诉客户"下个版本就有"。</p>
+<p>最后出了事，客户找的是你。</p>
+<p>别人的"应该可以"，不是你的承诺；但它一旦从你嘴里出去，就变成了你的承诺。</p>
+<p>所以有一条铁律：<strong>转述承诺，必须先确认。</strong></p>
+<p>"理论可行"，要问成"什么条件下可行"；"下个版本"，要问成"哪个版本、什么时间、验证过没有"。</p>
+<p>你是承诺的最后一道关口。从你嘴里出去的话，就是公司的话。</p>
+<h3 id="为什么不这么难说"><a class="header" href="#为什么不这么难说">为什么"不"这么难说？</a></h3>
+<p>三个原因，每一个都很真实。</p>
+<p><strong>第一，怕丢单。</strong></p>
+<p>销售在旁边，气氛正热。你一句"不能"，单子好像就凉了半截。</p>
+<p><strong>第二，怕显得不专业。</strong></p>
+<p>在很多人的观念里，"做不到"等于"你不行"。承认边界，好像是在承认自己能力不够。</p>
+<p><strong>第三，怕伤关系。</strong></p>
+<p>客户是长期关系，当面拒绝，像打脸。</p>
+<p>这三个怕，都是真的。但还有一件更真的事：</p>
+<p><strong>你不说的那个"不"，不会消失。它只会在验收那天，变成一场事故。</strong></p>
+<p>2.2 说过，销售是油门，你是刹车。踩刹车不好看，但不踩，车会掉沟里——掉进去的时候，坐在驾驶座旁边的，还是你。</p>
+<p>还有一个公式，值得贴在工位上：</p>
+<p><strong>客户满意度 = 感知 − 期望。</strong></p>
+<p>销售把期望抬得越高，交付时的落差就越大。你每一次说"不"，其实都是在帮这个项目，把期望按回地面上。</p>
+<h3 id="怎么对客户说不"><a class="header" href="#怎么对客户说不">怎么对客户说"不"？</a></h3>
+<p>关键不是"说不"这个动作，是**"说不"之后，还剩下什么。**</p>
+<p>我的做法，分三步。</p>
+<p><strong>第一步：先接住，别急着否定。</strong></p>
+<p>客户提需求，先让他感到被听懂了：<strong>"这个需求我明白，对你们来说确实关键。"</strong></p>
+<p>这一句不是客套。它决定了后面那句"不能"，是被当成"拒绝"，还是被当成"专业意见"。</p>
+<p><strong>第二步：说清楚"现在能到哪儿"。</strong></p>
+<p>不要只说"不行"，要说"哪里行、哪里不行、为什么"。</p>
+<p>这里用的，就是 4.1 那套证据等级：</p>
+<ul>
+<li>"这个功能在标准产品里没有"——说清<strong>边界</strong>；</li>
+<li>"这个能力规格上支持，但我们没在你们的场景里验证过"——说清<strong>状态</strong>；</li>
+<li>"目前我们验证到的稳定值是 X，你要的是 Y"——说清<strong>距离</strong>。</li>
+</ul>
+<p>客户不怕听到边界，客户怕的是"说不清楚"。</p>
+<p><strong>第三步：给出路。</strong></p>
+<p>一个"不"后面，必须跟一条路。通常有三条：</p>
+<ol>
+<li><strong>换</strong>：用现有能力实现同样的目的（回到 4.2——他要的是洞，不是钻头）；</li>
+<li><strong>争</strong>：走项目支持或定制评估，把需求带回公司，研发评估、商务报价；</li>
+<li><strong>分</strong>：分阶段——这个版本先做到 A，B 放到下一阶段。</li>
+</ol>
+<p>所以，一句完整的"不"，长这样：</p>
+<p><strong>"这个现在不能按你说的方式承诺。原因是我们只在 X 条件下验证过，你的场景还没跑过。有三条路：换成 XX 方案、走定制评估、或者分两步走。你选哪条，我配合你。"</strong></p>
+<p>这就是 4.1 那个三段式的完整版：<strong>把已知的说满 + 把未知的说清 + 给一个确定的下一步。</strong></p>
+<p>注意，"不确定"本身也是可以承诺的东西：</p>
+<p><strong>"我现在不能告诉你行不行。但我可以承诺：周三之前，我拿测试数据给你一个明确答复。"</strong></p>
+<p>说"不知道"，比说一个假答案专业得多；给一个确定的下一步，比一句含糊的"我尽力"可靠得多。</p>
+<p>【待补：补一两句你实际用过的"说不"话术，越口语越好——真实的话，比总结出来的话有用。】</p>
+<h3 id="什么时候说不最省事"><a class="header" href="#什么时候说不最省事">什么时候说"不"，最省事？</a></h3>
+<p>答案是：<strong>越早越好。</strong></p>
+<p>因为承诺的成本，是随时间指数上升的：</p>
+<ul>
+<li>需求阶段说"不"，是一句话；</li>
+<li>方案阶段说"不"，是一页纸的修改；</li>
+<li>POC 阶段说"不"，是一轮测试白做；</li>
+<li>验收阶段说"不"，是一场事故、一次索赔、一段关系的结束。</li>
+</ul>
+<p>越早说，越像专业判断；越晚说，越像欺骗。</p>
+<p>我见过最糟的一种情况：问题其实在第一次交流时就发现了，但没人愿意当那个说"不"的人。于是方案写了、样机发了、POC 做了、合同签了——最后在验收会上，所有人一起面对那个早就知道的答案。</p>
+<p>那一刻，没有人感谢你的"配合"。</p>
+<p>所以，如果你在早期就看到了问题，请尽早说出来。哪怕当时不好看。</p>
+<p><strong>早说，是成本最低的诚实。</strong></p>
+<h3 id="对内怎么说要"><a class="header" href="#对内怎么说要">对内：怎么说"要"？</a></h3>
+<p>对外说"不"难，对内说"要"也不容易。</p>
+<p>很多 FAE 对内是这么说的："客户很急，这个能不能支持一下？"</p>
+<p>这句话，在研发耳朵里，等于没说。</p>
+<p>因为"急"不是理由，"支持一下"不是需求。</p>
+<p>对内说"要"，本质上是<strong>申请一个决策</strong>。而任何决策，都需要三样东西：</p>
+<ul>
+<li><strong>事实</strong>：客户是谁、项目多大、需求是什么、现在卡在哪；</li>
+<li><strong>方案</strong>：需要谁做什么、做多久、有没有替代方案；</li>
+<li><strong>代价</strong>：不做会怎样（丢单？丢客户？丢口碑？），做了要投入什么。</li>
+</ul>
+<p>我习惯把它写成一页纸：</p>
+<div class="table-wrapper"><table><thead><tr><th>项</th><th>内容</th></tr></thead><tbody>
+<tr><td>客户与商机</td><td>谁、什么项目、多大金额、什么阶段</td></tr>
+<tr><td>需求</td><td>要什么、什么场景、验收标准</td></tr>
+<tr><td>现状</td><td>现在能到哪、差在哪、卡在谁那里</td></tr>
+<tr><td>请求</td><td>需要研发 / 产品 / 商务做什么、什么时候要</td></tr>
+<tr><td>代价</td><td>不做会失去什么；做了要投入什么</td></tr>
+</tbody></table>
+</div>
+<p>一页纸不是形式主义。它逼你把"客户很急"，翻译成"这件事值不值得做"。</p>
+<p>因为对内部来说，你不是传声筒，你是<strong>过滤器</strong>。</p>
+<p>客户的所有要求，经过你，应该变成三种东西之一：</p>
+<ul>
+<li>我们能做的 → 变成承诺和方案；</li>
+<li>我们暂时不能做的 → 变成验证计划或替代方案；</li>
+<li>值得做的 → 变成内部立项，去要资源。</li>
+</ul>
+<p>而不是原封不动地倒给研发："客户要，你们看着办。"</p>
+<p>倒过去的是情绪，回来的也是敷衍。</p>
+<p>还有一条：<strong>对内的"要"，要带着客户的证据去要。</strong></p>
+<p>客户的原话、现场的视频、测试的日志、竞品的对比——这些东西，比"客户很急"有说服力一百倍。</p>
+<p>你要的不是同情，是资源；而资源，只会给"看得清价值"的事情。</p>
+<h3 id="什么时候找研发什么时候走商务"><a class="header" href="#什么时候找研发什么时候走商务">什么时候找研发，什么时候走商务？</a></h3>
+<p>这个问题，我在大纲里给自己留过。这里给一张判断表。</p>
+<div class="table-wrapper"><table><thead><tr><th>情况</th><th>找谁</th></tr></thead><tbody>
+<tr><td>在已验证的产品能力内</td><td>自己答，不用惊动任何人</td></tr>
+<tr><td>规格支持、但没在客户场景验证过</td><td>自己先验（4.4），有疑点再找研发</td></tr>
+<tr><td>技术可行，但需要研发投入</td><td>研发评估工作量 → 商务报价</td></tr>
+<tr><td>超出产品边界</td><td>拆需求：公司做哪部分、第三方或客户做哪部分 → 商务</td></tr>
+<tr><td>涉及价格、账期、合同条款、交付责任</td><td>商务；FAE 只提供技术依据</td></tr>
+</tbody></table>
+</div>
+<p>这里有两个常见的错。</p>
+<p><strong>错一：技术问题直接上商务桌。</strong></p>
+<p>客户问"能不能做"，你答不上来，就把球踢给商务："让商务跟你谈。"——商务不懂技术，客户得不到答案，只会觉得这家公司不专业。</p>
+<p><strong>错二：替商务答应条款。</strong></p>
+<p>"这个价格应该可以"、"交付时间问题不大"——这些话，不该从 FAE 嘴里出来。你没有报价权，也没有条款权；你答应得越爽快，将来商务越难做。</p>
+<p>反过来也一样：商务不能替你做技术承诺。</p>
+<p>分工是清楚的：<strong>技术问题，你负责说准；商务问题，商务负责谈定。</strong></p>
+<p>两边都要有依据：商务的报价，依据是你确认的交付物与交付条件；你的技术承诺，依据是验证数据和证据等级。</p>
+<h3 id="最后承诺的分量"><a class="header" href="#最后承诺的分量">最后：承诺的分量</a></h3>
+<p>写到这里，可以收尾了。</p>
+<p>这一节讲了两件事：对外怎么说"不"，对内怎么说"要"。</p>
+<p>看起来是两件事，其实是一件事：</p>
+<p><strong>都是在把"不确定"，变成"确定"。</strong></p>
+<p>对外，你把模糊的期望，变成清楚的边界和确定的下一步；对内，你把模糊的"客户要"，变成清楚的请求和可执行的决策。</p>
+<p>一个 FAE 值多少钱，很大程度上取决于他说出去的话值多少钱。</p>
+<p>而这个"值"，不来自你答应得多爽快，来自你答应的每一件事，都做到了。</p>
+<p>所以，这一节的最后一句是：</p>
+<p><strong>对客户说"不"，是为了让每一个"是"都值钱。</strong></p>
+<h2 id="53-沉淀让一次解决变成永远解决"><a class="header" href="#53-沉淀让一次解决变成永远解决">5.3 沉淀：让一次解决变成永远解决</a></h2>
+<h3 id="你不在的那一周"><a class="header" href="#你不在的那一周">你不在的那一周</a></h3>
+<p>有一年我休假回来，打开工作群，几十条消息在等我。</p>
+<p>其中同一个问题，被不同的人问了三遍："这个模型跑不起来，是什么原因？"</p>
+<p>同事在下面回了一句："这个只有他会。"</p>
+<p>以前我把这句话当成夸奖。</p>
+<p>后来我才明白，这不是夸奖，这是一个<strong>风险提示</strong>——说明有些东西只存在我的脑子里，人一走，它就断了。</p>
+<p>3.4 讲过，沉淀是职业的"产品化杠杆"，是一个人能不能积累复利的关键。但那节讲的是"为什么要沉淀"。这一节要讲的是另一半，也是更难的一半：</p>
+<p><strong>怎么沉淀？</strong></p>
+<p>因为大多数人都知道该沉淀，但真正留下来的东西很少。不是不想，是不知道怎么留、留什么、留在哪。</p>
+<p>所以这一节从一个问题开始：</p>
+<p><strong>同一个问题，为什么总要解决很多次？</strong></p>
+<p>【待补：一个真实例子——你不在场时，同事靠你留下的东西解决了问题；或者反面例子：因为没沉淀，同一个问题被反复问了很多次。】</p>
+<h3 id="为什么大多数经验沉淀不下来"><a class="header" href="#为什么大多数经验沉淀不下来">为什么大多数"经验"沉淀不下来？</a></h3>
+<p>四个原因，每一个都很常见。</p>
+<p><strong>第一，忙。</strong></p>
+<p>问题解决完，下一个客户已经在催了。写文档？等有空吧。而"有空"这一天，通常不会来。</p>
+<p><strong>第二，觉得"这太简单了，不用写"。</strong></p>
+<p>这是最隐蔽的一个原因。你现在觉得简单，是因为你已经踩过坑了——你忘了自己当初是怎么一脸茫然地查了三个小时的。</p>
+<p>这个现象有个名字，叫"知识的诅咒"：<strong>一旦你知道了，就很难想象不知道的人是什么样。</strong></p>
+<p>而下一个遇到这个问题的人，正站在你三小时之前的位置上。</p>
+<p><strong>第三，写了没人看。</strong></p>
+<p>位置太深、名字搜不到、格式不像给人看的——写了等于没写。</p>
+<p><strong>第四，只写结论，不写过程。</strong></p>
+<p>"这个问题的原因是内存不足，加点 swap 就行。"</p>
+<p>下次遇到"内存不足"但症状不同的情况，这条结论一点用都没有。因为你没有留下<strong>怎么找到它</strong>的路。</p>
+<p>所以，沉淀的本质不是"记录"，是：</p>
+<p><strong>让下一个遇到这个问题的人，不用再走一遍我走过的路。</strong></p>
+<h3 id="沉淀什么四样东西"><a class="header" href="#沉淀什么四样东西">沉淀什么：四样东西</a></h3>
+<p>FAE 的沉淀，不用写成一本书。有四样东西，最值得留。</p>
+<p><strong>第一样：能跑的——测试脚本与工具。</strong></p>
+<p>4.4 说过，验证的核心动作是递增压力、长跑、抓日志。这些事，手工做一次可以，做十次就该写成脚本。</p>
+<p>一个能一键跑完的测试脚本，价值不在于省了你两个小时，而在于：</p>
+<ul>
+<li>别人也能跑，结果可比；</li>
+<li>下个版本还能再跑，能看出版本之间的差异；</li>
+<li>你今天的数据，明年还能复现。</li>
+</ul>
+<p><strong>第二样：能照着走的——标准化流程。</strong></p>
+<p>部署流程、POC 流程、问题上报流程、交付前的检查清单。</p>
+<p>流程的价值，是让"会做的人"和"不会做的人"，做出来的结果差不多。</p>
+<p>尤其是给新人：一份好的流程文档，能让他在第一周就独立完成一次部署，而不是站在设备前面等你回来。</p>
+<p><strong>第三样：能查的——排障文档。</strong></p>
+<p>这是 FAE 最该写、也最容易写不好的东西。</p>
+<p>写得好不好，标准只有一个：<strong>一个没见过这个问题的人，拿着它，能不能一步步查到根因。</strong></p>
+<p>下面给了一个模板。</p>
+<p><strong>第四样：能直接用的——Demo、方案模板、能力边界表。</strong></p>
+<ul>
+<li>可复用的 Demo：下次演示不用从零搭；</li>
+<li>方案模板：4.3 那个七段骨架，填内容就行；</li>
+<li>能力边界表：4.1 那张表，每验证一次就回填一次——它是整个部门最值钱的一份文档。</li>
+</ul>
+<p>这四样东西，正好对应一个 FAE 的四种输出：<strong>跑出来的结果、走出来的路、查出来的病、说出来的话。</strong></p>
+<h3 id="怎么写别人才真的会用"><a class="header" href="#怎么写别人才真的会用">怎么写，别人才真的会用？</a></h3>
+<p>写完的东西没人用，通常是三个地方出了问题。</p>
+<p><strong>第一，从"结论"开始写，而不是从"现象"开始。</strong></p>
+<p>读者是带着一个现象来的："设备起不来"、"模型加载失败"、"画面卡住"。</p>
+<p>他不会带着你的结论来。</p>
+<p>所以排障文档的第一行，应该是他嘴里的那句话，而不是你脑子里的那个词。</p>
+<p>一个可用的排障文档，一般这么写：</p>
+<div class="table-wrapper"><table><thead><tr><th>部分</th><th>写什么</th></tr></thead><tbody>
+<tr><td>现象</td><td>用户会怎么描述这个问题（用他的原话）</td></tr>
+<tr><td>环境与版本</td><td>硬件型号、软件版本、关键配置</td></tr>
+<tr><td>排查路径</td><td>先查什么、再查什么；每一步怎么判断</td></tr>
+<tr><td>根因</td><td>最后定位到什么</td></tr>
+<tr><td>解决方案</td><td>怎么修，修完怎么验证</td></tr>
+<tr><td>相关问题</td><td>容易混淆的其它问题</td></tr>
+</tbody></table>
+</div>
+<p>注意"排查路径"这一栏——它比"根因"更值钱。因为根因只对这一个问题有效，排查路径对一类问题都有效。</p>
+<p><strong>第二，不写条件和版本。</strong></p>
+<p>技术文档最怕的不是写得糙，是"曾经对，现在错"。</p>
+<p>半年前写的步骤，软件已经换了两个大版本；新人照着做，卡在第三步，然后开始怀疑自己。</p>
+<p>所以每份文档都要写清楚：<strong>适用于什么版本、最后验证于哪一天。</strong></p>
+<p>过期的文档，比没有文档更危险。</p>
+<p><strong>第三，放在找不到的地方。</strong></p>
+<p>存在自己电脑的 D 盘、微信收藏里、某个聊天记录里——这些地方，对别人来说等于不存在。</p>
+<p>沉淀要放在<strong>下一个需要它的人会去找的地方</strong>：部门知识库、共享目录、项目文档库。</p>
+<p>名字也要可搜索：别叫"记录1"、"问题汇总_v3_最终版"，要叫"XX 设备 8K 解码失败排查"。</p>
+<h3 id="三种假沉淀"><a class="header" href="#三种假沉淀">三种"假沉淀"</a></h3>
+<p>有三种东西，看起来像沉淀，其实不是。</p>
+<p><strong>第一种：堆文档。</strong></p>
+<p>写得很多，但没人看、没人用、没人更新。</p>
+<p>3.4 说过：写出来没人看的文档，只是自我感动。这里补一句判断标准——</p>
+<p><strong>沉淀的验收标准，不是"我写了"，是"别人用它解决了问题"。</strong></p>
+<p><strong>第二种：只沉淀成功。</strong></p>
+<p>只写"最后怎么解决的"，不写中间试错的弯路。</p>
+<p>但弯路才是最省时间的部分：那个查了两小时才发现"不是这个原因"的方向，能帮下一个人省掉两小时。</p>
+<p><strong>失败和弯路，是排障文档里最贵的资产。</strong></p>
+<p><strong>第三种：沉淀在脑子里。</strong></p>
+<p>"这个我熟，有问我就行。"</p>
+<p>短期看，你是团队里最靠得住的人；长期看，你是团队里最大的单点故障。</p>
+<p>而且，等你哪天想休假、想转岗、想往上走的时候，会发现——<strong>你走不开，因为没人接得住。</strong></p>
+<h3 id="让沉淀活起来三步"><a class="header" href="#让沉淀活起来三步">让沉淀"活起来"：三步</a></h3>
+<p>写完只是开始。一份沉淀要真正有用，还得过三关。</p>
+<p><strong>第一步：自己用一次。</strong></p>
+<p>下一个项目，强迫自己照着自己写的东西做一遍。</p>
+<p>你会发现很多问题：步骤跳了、命令写错了、某个前提你以为是常识。改掉，它才像人话。</p>
+<p><strong>第二步：让别人用一次。</strong></p>
+<p>找一个没做过这件事的同事，把文档给他，什么都不说，看他在哪里卡住。</p>
+<p>他卡住的地方，就是文档的漏洞。这比你自己读十遍都有效。</p>
+<p><strong>第三步：定期回看。</strong></p>
+<p>每个季度，挑几条更新：改版本、补现象、加新坑。</p>
+<p>还有一个很实用的习惯：<strong>把"这个季度被问得最多的三个问题"，变成三篇文档。</strong></p>
+<p>被反复问的问题，一定是最值得沉淀的问题。</p>
+<h3 id="沉淀会不会让你变得可替代"><a class="header" href="#沉淀会不会让你变得可替代">沉淀，会不会让你变得"可替代"？</a></h3>
+<p>这个问题，几乎每个认真想过沉淀的人都会闪一下。</p>
+<p>"我把什么都写下来了，是不是谁都能干我的活了？"</p>
+<p>说句实话：<strong>是。你现在做的很多活，确实会变得谁都能干。</strong></p>
+<p>但这恰恰是好事。</p>
+<p>因为那些"谁都能干"的活，本来就不该由你来干——它们消耗你的时间，却不增加你的价值。</p>
+<p>沉淀把你从重复劳动里换出来，让你有时间去做那些还写不进文档的事：判断一个新场景、拆一个新问题、扛一次没人扛过的项目。</p>
+<p><strong>可替代的，是"知道答案"；不可替代的，是"能解决新问题"。</strong></p>
+<p>而且从另一个角度看：一个团队里，谁最愿意把东西留下来，谁就最容易被信任去带人、去开新战场。</p>
+<p>沉淀不是把自己的价值交出去，是把价值换了一种形式存起来。</p>
+<h3 id="最后让你不在成为一件好事"><a class="header" href="#最后让你不在成为一件好事">最后：让"你不在"成为一件好事</a></h3>
+<p>回到开头那个问题：同一个问题，为什么总要解决很多次？</p>
+<p>因为它从来没有被真正解决过——只被"你"解决过。</p>
+<p>你在，它就被压住；你不在，它就冒出来。</p>
+<p>而沉淀，是把"你解决"变成"它被解决"。</p>
+<p>所以，这一节的最后一句是：</p>
+<p><strong>一个 FAE 真正的作品，不是他解决过的那些问题，而是他离开之后，还留在那里解决问题的那些东西。</strong></p>
+<p><strong>最好的沉淀，是你不在场时，它还在替你工作。</strong></p>
+<h2 id="54-工具箱fae-的日常武功"><a class="header" href="#54-工具箱fae-的日常武功">5.4 工具箱：FAE 的日常武功</a></h2>
+<p>（本节为可选节。若全书以"心法"为主，可只保留 5.4.1、5.4.4 两段，或整节移入附录。）</p>
+<h3 id="笔记里那篇万用表使用方法"><a class="header" href="#笔记里那篇万用表使用方法">笔记里那篇"万用表使用方法"</a></h3>
+<p>我的笔记里，存过一篇很不起眼的资料：《万用表使用方法》。</p>
+<p>讲的是很基础的东西：表笔怎么拿、红黑怎么插、档位怎么拨。还有一句我记了很多年的话——</p>
+<p><strong>不知道被测值有多大的时候，从高量程往下测。</strong></p>
+<p>有人会问：FAE 不是跟软件、算法、方案打交道的吗？怎么还要学万用表？</p>
+<p>因为端侧 FAE 的世界，不只在屏幕里。</p>
+<p>设备不通电、供电掉到 4.7V、串口一声不吭、板子烫得不敢碰——这些问题，在软件里查不出来。你的手，必须能伸到硬件上。</p>
+<p>而"从高量程往下测"这句话，也不只是万用表的规矩。它其实是一整套排障的顺序：</p>
+<p><strong>先粗后细，先确认大类，再缩小范围。</strong></p>
+<p>先看是不是供电，再看是不是系统，再看是不是应用；先确认"哪一层出了问题"，再谈"具体是哪个参数"。</p>
+<p>所以这一节要回答的问题是：</p>
+<p><strong>工具那么多，该学哪些？学到多深？</strong></p>
+<p>【待补：一个"靠硬件工具定位问题"的真实例子——万用表查供电、串口看启动日志、测温找降频，都行。】</p>
+<h3 id="工具是什么感官的延伸"><a class="header" href="#工具是什么感官的延伸">工具是什么：感官的延伸</a></h3>
+<p>我给工具下过一个定义：</p>
+<p><strong>工具，是把你的感官和记忆，延伸到够不着的地方。</strong></p>
+<ul>
+<li><strong>万用表，是手的延伸</strong>——你看不见电压，但它能"摸"到；</li>
+<li><strong>串口，是耳朵的延伸</strong>——系统起不来的时候，它替你听它最后说了什么；</li>
+<li><strong>日志，是眼睛的延伸</strong>——出事的时候你不在场，但它替你看着；</li>
+<li><strong>脚本，是记忆和耐心的延伸</strong>——你记不住第 47 次循环的结果，但它记得；</li>
+<li><strong>热像仪，是隔着空气的触觉</strong>——你摸不到芯片，但它能"感觉"到温度。</li>
+</ul>
+<p>理解了这个定义，学工具就有了方向：</p>
+<p><strong>你缺哪种感官，就去补哪种工具。</strong></p>
+<p>而不是别人会什么，你就学什么。</p>
+<h3 id="fae-的最小工具箱"><a class="header" href="#fae-的最小工具箱">FAE 的最小工具箱</a></h3>
+<p>工具无穷，但真正常用的不多。我把它分成三层。</p>
+<p><strong>第一层：通用基本功——走到哪儿都带着</strong></p>
+<p>Linux 的四条线：<strong>进程、内存、磁盘、网络</strong>。</p>
+<p>对应到日常就是四个问题：系统卡不卡、内存漏不漏、磁盘满没满、网络通不通。这四条线，能覆盖现场问题的一大半。</p>
+<p>再往上，是日志：内核日志、系统日志、应用日志。</p>
+<p><strong>现场排障的第一个动作，几乎永远是"看日志"，而不是"猜原因"。</strong></p>
+<p>还有脚本：shell 和 Python。不要求写得多漂亮——能写循环、能批量跑测试、能自动抓日志，就够了。</p>
+<p><strong>第二层：硬件的手——端侧 FAE 的特别之处</strong></p>
+<ul>
+<li><strong>万用表</strong>：量电压、测通断，先确认供电正不正常；</li>
+<li><strong>USB 转串口</strong>：系统起不来时，它往往是唯一还愿意说话的通道；</li>
+<li><strong>可调电源</strong>：看功耗、看启动电流，判断是不是供电不足；</li>
+<li><strong>测温枪 / 热像仪</strong>：找发热点，判断有没有过热降频；</li>
+<li><strong>抓包与网线</strong>：判断问题在设备、在链路，还是在对面。</li>
+</ul>
+<p><strong>第三层：方法的工具——把"看"变成"测"</strong></p>
+<ul>
+<li><strong>性能</strong>：CPU、内存、带宽、NPU 利用率，找出瓶颈在哪一段；</li>
+<li><strong>媒体链路</strong>：用 GStreamer 这类工具一段一段试，从"能解"到"能稳定解"；</li>
+<li><strong>模型部署</strong>：转换、量化、编译、跑分——每一步都要有工具告诉你"错在哪一步"；</li>
+<li><strong>抓包与复现</strong>：把现场的一次偶发，变成实验室里可以反复触发的一次必然。</li>
+</ul>
+<p>三层合起来，可以收成一张表：</p>
+<div class="table-wrapper"><table><thead><tr><th>现场现象</th><th>第一反应看什么</th><th>常用工具</th></tr></thead><tbody>
+<tr><td>开不了机 / 反复重启</td><td>供电、启动日志</td><td>万用表、可调电源、串口</td></tr>
+<tr><td>系统卡顿、越跑越慢</td><td>内存、CPU、温度</td><td>top / free、测温、日志</td></tr>
+<tr><td>模型跑不起来</td><td>转换或编译哪一步失败</td><td>转换工具链、运行日志</td></tr>
+<tr><td>视频卡顿、花屏</td><td>解码链路、带宽</td><td>GStreamer 调试、码流分析</td></tr>
+<tr><td>网络不通、时通时断</td><td>链路、IP、丢包</td><td>ping、抓包、连接状态</td></tr>
+<tr><td>偶发、复现不了</td><td>条件、记录、时间</td><td>日志、脚本、录屏</td></tr>
+</tbody></table>
+</div>
+<p>这张表不深，但它能让你在客户现场<strong>第一分钟不做错事</strong>。</p>
+<p>（具体的命令和操作，更适合放在附录或配套资料里。这本书以心法为主，本节只回答"用哪些、什么时候用"。）</p>
+<h3 id="工具不能代替判断"><a class="header" href="#工具不能代替判断">工具不能代替判断</a></h3>
+<p>有句老话：<strong>手里拿着锤子的人，看什么都像钉子。</strong></p>
+<p>做 FAE 久了，会见到它的反面版本：<strong>会工具的人，容易以为"用了工具"就是"解决了问题"。</strong></p>
+<p>命令行跑出一屏输出，不代表你有了结论。</p>
+<p>工具只做一件事：<strong>把现象变成数据。</strong></p>
+<p>从数据到结论，是人做的。</p>
+<p>所以用工具，应该有一个固定的顺序：</p>
+<ol>
+<li>先问：<strong>我要验证什么假设？</strong></li>
+<li>再选：<strong>哪个工具能给我这个证据？</strong></li>
+<li>最后才是：<strong>怎么用？</strong></li>
+</ol>
+<p>顺序反了，就会变成"把会的工具都跑一遍"——top 看了、日志翻了、包也抓了，两个小时过去，还是不知道问题在哪。</p>
+<p><strong>工具解决"看得见"，判断解决"看得懂"。</strong></p>
+<h3 id="怎么学按问题学不按清单学"><a class="header" href="#怎么学按问题学不按清单学">怎么学：按问题学，不按清单学</a></h3>
+<p>网上有很多"FAE 必备技能清单"，几十项，看完只会更焦虑。</p>
+<p>我的建议是：<strong>别按清单学，按问题学。</strong></p>
+<p>三条。</p>
+<p><strong>第一，先学"最小够用集"。</strong></p>
+<p>就是前面那三层里最基础的部分：会看日志、会看四条线、会用万用表和串口、会写简单脚本。</p>
+<p>这些，够你应付大半的现场。</p>
+<p><strong>第二，遇到问题再学下一个。</strong></p>
+<p>工具是长在问题上的。被一个问题卡住时，去学能解决它的工具——学得最快，记得最牢。</p>
+<p>为了"以后可能用得上"去学，通常学完就忘。</p>
+<p><strong>第三，学到"能定位"就够，不必学到"能开发"。</strong></p>
+<p>FAE 和研发的工具深度不一样。</p>
+<p>你要能把问题定位到"哪一层、哪一段、在什么条件下复现"——这是你的专业。</p>
+<p>至于怎么改代码把它修好，是研发的专业。</p>
+<p>越界去追研发的深度，容易两头不讨好；定位不到，就只是把问题原样甩给研发。</p>
+<h3 id="三个最被低估的工具"><a class="header" href="#三个最被低估的工具">三个最被低估的"工具"</a></h3>
+<p>有三样东西，不算软件，但比很多软件更重要。</p>
+<p><strong>第一个：记录。</strong></p>
+<p>一面记"过程"：时间、版本、配置、操作、结果。出了问题，这些是唯一能救你的东西。</p>
+<p>另一面记"现象"：截图、录屏、日志原文。</p>
+<p>客户说"它老是卡"，你说"能不能再演示一次"，然后录下来——这一分钟的录屏，可能比十封邮件都有用。</p>
+<p><strong>第二个：可复现的环境。</strong></p>
+<p>能在自己手里复现的问题，才谈得上定位。</p>
+<p>所以真正的本事，是<strong>把现场搬回来</strong>：同型号设备、同版本软件、同数据、同网络条件。</p>
+<p>一个能稳定复现的环境，本身就是一件工具。</p>
+<p><strong>第三个：问对问题。</strong></p>
+<p>"什么时候开始的？""之前动过什么？""只有这一台这样，还是都这样？""换个方式还会不会？"</p>
+<p>这几句话不要钱，但能省掉几个小时。</p>
+<p>工具再好，方向问错了，也是白跑。</p>
+<h3 id="ai-时代的新工具"><a class="header" href="#ai-时代的新工具">AI 时代的新工具</a></h3>
+<p>这两年，工具箱里多了一类东西：AI。</p>
+<p>读一大段日志、解释一个报错、写一段测试脚本、把一堆现象整理成报告——这些事，AI 现在比大多数人快。</p>
+<p>但它改变的是<strong>效率</strong>，不是<strong>责任</strong>。</p>
+<p>AI 给的结论，可能对，也可能"看起来很像对"。</p>
+<p>而你是那个要在客户面前为它签字的人。</p>
+<p>所以用 AI 的规矩，和用其它工具一样：</p>
+<ul>
+<li>它给的是<strong>线索</strong>，不是结论；</li>
+<li>任何结论，都要回到设备上验证；</li>
+<li>越是"说得很顺"的答案，越要多看一眼。</li>
+</ul>
+<p><strong>工具越强，判断越贵。</strong></p>
+<p>这句话，在 AI 时代只会更真。</p>
+<h3 id="最后武功与内功"><a class="header" href="#最后武功与内功">最后：武功与内功</a></h3>
+<p>这一节讲了很多工具，但我想说的，其实是反面。</p>
+<p><strong>工具是武功，判断是内功。</strong></p>
+<p>武功好看，见效快；但没有内功，招式再花，也打不动人。</p>
+<p>这本书从 4.1 写到这里——边界、需求、方案、验证、报问题、承诺、沉淀——那些才是内功。</p>
+<p>工具让你<strong>看得见</strong>，判断让你<strong>看得懂</strong>。</p>
+<p>而真正让客户信你的，是你看懂之后，敢说的那句话。</p>
+<p>所以，这一节的最后一句是：</p>
+<p><strong>工具箱里最贵的一件，是知道什么时候不用工具。</strong></p>
+<p>（很多问题，先问三句话，比先跑十个命令更快。）</p>
+<hr />
+<p><strong>本章速记（一页纸）</strong></p>
+<ul>
+<li><strong>三个断层</strong>：时间（多久一次）、环境（什么版本配置）、条件（之前做了什么）</li>
+<li><strong>案卷五部分</strong>：现象（可量化）/ 环境（能复刻）/ 步骤（最短）/ 证据（原始件）/ 判断（排除了什么）</li>
+<li><strong>最小化四动作</strong>：删、换、减、隔——目标是"别人五分钟能复现"</li>
+<li><strong>承诺三要素</strong>：交付什么 / 在什么条件下 / 什么时候</li>
+<li><strong>说"不"三步</strong>：先接住 → 说清现在能到哪儿 → 给出路（换 / 争 / 分）</li>
+<li><strong>对内一页纸</strong>：客户与商机 / 需求 / 现状 / 请求 / 代价</li>
+<li><strong>沉淀四样</strong>：能跑的脚本 / 能照着走的流程 / 能查的排障文档 / 能直接用的 Demo·模板·边界表</li>
+<li><strong>沉淀的验收标准</strong>："别人用它解决了问题"，不是"我写了"</li>
+<li><strong>工具三层</strong>：通用四条线 + 日志 + 脚本 / 硬件的手 / 方法的工具</li>
+<li><strong>四句话</strong>：你报问题的水平，决定了研发愿意为你花多少时间；对客户说"不"，是为了让每一个"是"都值钱；最好的沉淀，是你不在场时它还在替你工作；工具箱里最贵的一件，是知道什么时候不用工具</li>
+</ul>
+<hr />
+<p><strong>写作备注（不入正文）</strong></p>
+<ul>
+<li>本章为初稿，由原第 13、14、15、16 章合并而成；5.1 来自原第 13 章，5.2 来自原第 14 章，5.3 来自原第 15 章，5.4 来自原第 16 章（可选节）。</li>
+<li>【待补】"问题报上去被退回来"的经历（5.1）；"和研发一起攻坚的故事"（5.1）；"对客户说不"的真实场景与口语话术（5.2）；"沉淀起作用/没沉淀"的例子（5.3）；"靠硬件工具定位问题"的例子（5.4）。</li>
+<li>【待核对】5.1 的四档分级是否符合公司缺陷管理流程；5.2 的定制/项目支持由谁发起、一页纸模板是否与内部表单一致；5.3 的沉淀类型与知识库载体；5.4 的工具清单与"现象→第一反应"表。</li>
+<li>【待定·重要】5.4 为可选节：可保留（现为"心法 + 招式目录"）、可删、也可扩成《最小工具箱手册》附录。请拍板。</li>
+<li>【来源】<code>素材/01</code>（研发与产品之间的协调者、长期价值）、<code>素材/05</code>（POC 带回需求、交付物与交付条件 → 研发评估 → 商务报价）、<code>素材/06</code>（万用表）、<code>素材/07</code>（客户满意度 = 感知 − 期望）、<code>素材/10</code>（硬件选型、软件适配、模型迁移）。</li>
+<li>【请反馈】本章四节分别是"报问题 / 承诺 / 沉淀 / 工具"，节奏是先苦后甜；如果觉得 5.4 与前三条不在一个层级上，可以移到附录。</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../04_做事上_把能做变成客户要的/初稿.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../06_尾声_留给下一个FAE的话/初稿.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../04_做事上_把能做变成客户要的/初稿.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../06_尾声_留给下一个FAE的话/初稿.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

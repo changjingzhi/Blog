@@ -1,0 +1,524 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>第 3 章 长路：这门手艺怎么长出复利 - 怎么做 FAE</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="一本关于「怎么做 FAE」的书：Why / Who / What">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../00_前言_缘起/初稿.html"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded affix "><li class="part-title">正文</li><li class="chapter-item expanded "><a href="../01_鸿沟_为什么这个世界需要FAE/初稿.html"><strong aria-hidden="true">2.</strong> 第 1 章 鸿沟：为什么这个世界需要 FAE</a></li><li class="chapter-item expanded "><a href="../02_面孔_FAE是一群什么样的人/初稿.html"><strong aria-hidden="true">3.</strong> 第 2 章 面孔：FAE 是一群什么样的人</a></li><li class="chapter-item expanded "><a href="../03_长路_这门手艺怎么长出复利/初稿.html" class="active"><strong aria-hidden="true">4.</strong> 第 3 章 长路：这门手艺怎么长出复利</a></li><li class="chapter-item expanded "><a href="../04_做事上_把能做变成客户要的/初稿.html"><strong aria-hidden="true">5.</strong> 第 4 章 做事（上）：把"能做"变成"客户要的"</a></li><li class="chapter-item expanded "><a href="../05_做事下_让承诺立得住留得下/初稿.html"><strong aria-hidden="true">6.</strong> 第 5 章 做事（下）：让承诺立得住、留得下</a></li><li class="chapter-item expanded affix "><li class="part-title">尾声</li><li class="chapter-item expanded "><a href="../06_尾声_留给下一个FAE的话/初稿.html"><strong aria-hidden="true">7.</strong> 留给下一个 FAE 的话</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">怎么做 FAE</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/changjingzhi/fae-book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/changjingzhi/books/fae/edit/main/书稿/书稿/03_长路_这门手艺怎么长出复利/初稿.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="第-3-章-长路这门手艺怎么长出复利"><a class="header" href="#第-3-章-长路这门手艺怎么长出复利">第 3 章 长路：这门手艺怎么长出复利</a></h1>
+<blockquote>
+<p><strong>本章要回答的问题</strong>：同样做 FAE，为什么几年后差距那么大？这条路又能往哪里走？</p>
+</blockquote>
+<p><em>状态：初稿（2026-10-20，由原第 5、8 章合并）｜ 写法：提出问题 → 回答问题 ｜ 待核对事项见文末「写作备注」。</em></p>
+<hr />
+<h2 id="31-差距是从哪里拉开的"><a class="header" href="#31-差距是从哪里拉开的">3.1 差距，是从哪里拉开的？</a></h2>
+<p>我见过两个差不多同时入行的 FAE。</p>
+<p>（为了叙述方便，就叫 A 和 B。）</p>
+<p>刚入行的时候，两个人几乎看不出差别：同样的产品，同样的客户，同样手忙脚乱。</p>
+<p>三年后再看，差距已经很明显了：</p>
+<ul>
+<li>A 还是"接到什么做什么"：客户来了问题，解决；销售来了需求，响应；每天都很忙，但年底盘点，说不出自己"长"出了什么。</li>
+<li>B 已经成了"别人搞不定时会想到的人"：同类问题，他十分钟就能定位；新来的同事，先看他的文档；一些复杂的项目，公司会点名让他去。</li>
+</ul>
+<p>两个人加班都不少。差别不在"努力程度"，在另一个地方——</p>
+<p><strong>A 把时间"卖掉"了，B 把时间"存下来"了一部分。</strong></p>
+<p>同样解决一个问题：</p>
+<p>A 解决完，结束。下次遇到同类问题，再从头来一遍。</p>
+<p>B 解决完，多花半小时：把过程写成笔记，把重复的步骤写成脚本，把结论整理成别人能看懂的一页纸。</p>
+<p>这半小时，当时看不出什么。三年后，它变成了 B 的护城河。</p>
+<p>我把这件事，总结成三层楼：<strong>专长、杠杆、责任</strong>——再加一条，复利。</p>
+<h2 id="32-第一层专长你的根有多深"><a class="header" href="#32-第一层专长你的根有多深">3.2 第一层·专长：你的"根"有多深？</a></h2>
+<p>三层楼的第一层，是专长。</p>
+<p>专长是什么？</p>
+<p>《纳瓦尔宝典》里有个定义很狠：<strong>专长，是无法通过培训获得的知识。如果社会可以培训你，那么社会也可以培训别人来取代你。</strong></p>
+<p>放到 FAE 身上，这句话可以翻译成：</p>
+<ul>
+<li>"会用某个工具"，不是专长——培训一下，谁都会；</li>
+<li>"知道这个产品怎么配置"，也不算——换个产品，就归零了；</li>
+<li>真正的专长是：<strong>见到一个现象，你能在脑子里快速列出几种可能，知道先查哪里，判断"这大概是什么问题"。</strong></li>
+</ul>
+<p>这种东西，写在手册里是写不全的，只能从现场长出来。</p>
+<p>这也是为什么，2.1 说"专业技术人员"是五张面孔里最不能丢的一张。有一句话说得很直接：<strong>不能因为沟通和协调工作很多，就失去技术深度。</strong></p>
+<p>根如果丢了，上面盖得再热闹，都是空的。</p>
+<p>怎么检验自己的根扎得深不深？有一个很简单的标准：</p>
+<p><strong>换个产品、换家公司，你还剩下什么？</strong></p>
+<p>会某个产品的细节，那是产品知识，会过期；会排查问题的方法、对底层原理的理解、对客户场景的判断——那些才是你的。</p>
+<h2 id="33-第二层协作杠杆让能力从你的电脑里走出来"><a class="header" href="#33-第二层协作杠杆让能力从你的电脑里走出来">3.3 第二层·协作杠杆：让能力从你的电脑里走出来</a></h2>
+<p>第一层是"你有多强"。第二层，是"你的强，能被多少人用上"。</p>
+<p>同一份技术结论，价值可以完全不同：</p>
+<ul>
+<li>它只在你脑子里——只有你能回答，只有你在场才有用；</li>
+<li>它写成了方案、报告、依据——销售能拿去跟客户沟通，研发能据此定位，下一个 FAE 能直接引用。</li>
+</ul>
+<p>第二种，就是杠杆。</p>
+<p>所谓的"工作杠杆"，是让技术能力不只停留在自己电脑上的实验结果，而是变成<strong>客户可以运行的方案、研发能够复现的问题、销售可以使用的技术依据</strong>。</p>
+<p>注意，这三样东西有一个共同点：<strong>它们都不是给你自己用的。</strong></p>
+<ul>
+<li>方案是给客户跑的；</li>
+<li>问题单是给研发查的；</li>
+<li>依据是给销售讲的。</li>
+</ul>
+<p>所以，做 FAE 有一个很重要的习惯：<strong>每做完一件事，问自己一句——我交出去的这份东西，别人拿过去能直接用吗？</strong></p>
+<p>这个标准不用自己猜，看对方拿到之后的反应就行：客户照着方案能把环境跑起来，研发照着问题单能复现并定位，销售照着依据能跟客户把技术讲清楚——这就是别人接得住。反过来，如果对方拿到之后还要回来问你几遍才弄明白，那你的能力就只值你一个人的时间。</p>
+<h2 id="34-第三层产品化杠杆把一次性变成可复用"><a class="header" href="#34-第三层产品化杠杆把一次性变成可复用">3.4 第三层·产品化杠杆：把"一次性"变成"可复用"</a></h2>
+<p>第二层让能力"被别人用"，第三层让它"在你不在场时也能用"。</p>
+<p>我更愿意把它叫"长期价值"：<strong>把反复解决的问题，变成测试脚本、标准化部署流程、排障文档、技术方案和可复用的 Demo。</strong></p>
+<p>《纳瓦尔宝典》里把这种杠杆叫"复制边际成本为零的产品"——代码、媒体、文档，都是这一类。做一次，可以被用无数次，而且用的时候不需要你在场。</p>
+<p>对 FAE 来说，这意味着：</p>
+<ul>
+<li>一次排查 → 一篇排障文档 → 整个部门少踩一次坑；</li>
+<li>一次部署 → 一个部署脚本 → 每个项目少花两天；</li>
+<li>一次方案 → 一个可复用的 Demo → 下次见客户，十分钟就能演示。</li>
+</ul>
+<p>判断一件事值不值得"产品化"，也有一句简单的标准：</p>
+<p><strong>这件事，我做过之后，第二次还需要我亲自做吗？</strong></p>
+<p>如果答案是"还需要"，那就说明：它还没有变成资产。</p>
+<p>这里要提醒一句：<strong>沉淀不等于堆文档。</strong></p>
+<p>写出来没人看、没人用的文档，只是自我感动。真正有用的沉淀，是有人在用、在引用、在更新的东西。</p>
+<p>（具体怎么沉淀，第 5 章的 5.3 会细讲。）</p>
+<h2 id="35-地基责任为什么署名是最贵的资产"><a class="header" href="#35-地基责任为什么署名是最贵的资产">3.5 地基·责任：为什么"署名"是最贵的资产？</a></h2>
+<p>三层楼讲完了，你可能觉得少了点什么。</p>
+<p>少了地基。</p>
+<p>专长和杠杆，解决的是"你能不能干"和"你的能力能放大多少"。但还有一个问题：<strong>别人为什么要把机会交给你？</strong></p>
+<p>答案是责任。</p>
+<p>《纳瓦尔宝典》里说，要以个人名义承担风险——社会才会根据责任大小给你回报。</p>
+<p>在 FAE 的世界里，责任很具体：</p>
+<ul>
+<li>你敢在方案上签自己的名字吗？</li>
+<li>你敢对客户说"这个结论，我负责"吗？</li>
+<li>出了事，你是先解释，还是先解决？</li>
+</ul>
+<p><strong>署名，是你最贵的资产。</strong></p>
+<ul>
+<li><strong>涨得慢</strong>：要很多次"说到做到"</li>
+<li><strong>跌得快</strong>：一次"甩锅"就够了</li>
+</ul>
+<p>这里要分清一件事：责任不等于"什么都接"。</p>
+<p>真正负责任的人，恰恰是<strong>先把边界说清楚的人</strong>：哪些能做、做到什么程度、出了什么问题怎么处理——说清楚了，才敢承诺；敢承诺，才叫责任。</p>
+<p>这一点，2.4（工作边界）和 4.1（产品边界）会分别展开。</p>
+<h2 id="36-复利三层楼怎么叠起来"><a class="header" href="#36-复利三层楼怎么叠起来">3.6 复利：三层楼怎么叠起来？</a></h2>
+<p>现在把三层楼放在一起看：</p>
+<ul>
+<li><strong>专长</strong>是根——没有它，一切都是空的；</li>
+<li><strong>杠杆</strong>是放大器——专长 × 杠杆，能力开始复利；</li>
+<li><strong>责任</strong>是地基兼信用——它决定了别人愿不愿意把更大的机会交给你。</li>
+</ul>
+<p>而这三样东西，都有一个共同的规律：<strong>复利。</strong></p>
+<p>不是一年长一级，是每天存一点，几年后突然拉开差距。</p>
+<p>有人算过一笔账：每天进步 1%，一年后是 37 倍。这个算法很鸡汤，但方向没错——<strong>真正拉开差距的，从来不是某一次爆发，而是"每天多存的那一点"。</strong></p>
+<p>所以我特别认同一句话：</p>
+<p><strong>生活中所有的回报，无论是财富、人际关系，还是知识，都来自复利。</strong></p>
+<p>有人开玩笑说：职场里最怕的，是"把一年经验用了十年"。</p>
+<p>三层楼的意义，就是让你别成为那个人。</p>
+<p>对 FAE 来说，怎么开始滚这个雪球？</p>
+<p>答案很土：<strong>别等"有空了再沉淀"。</strong></p>
+<ul>
+<li>这周解决了一个棘手问题，花半小时写下来；</li>
+<li>这个月重复做了三次同样的操作，写个脚本；</li>
+<li>这次方案客户很喜欢，把骨架存下来，下次改一改就能用。</li>
+</ul>
+<p>这些事，每件都只要半小时。但一年下来，就是几十份"别人拿不走的东西"。</p>
+<p><strong>"工作从消费者的角度，变成一个生产者的角度。"</strong></p>
+<p>消费者的视角是：我今天又消耗了 8 小时。</p>
+<p>生产者的视角是：我今天生产了什么，能留到明天？</p>
+<p>这，就是三层楼的地基逻辑。</p>
+<h2 id="37-从哪里来我这条路与三条来路"><a class="header" href="#37-从哪里来我这条路与三条来路">3.7 从哪里来：我这条路，与三条来路</a></h2>
+<h3 id="我自己是怎么走上这条路的"><a class="header" href="#我自己是怎么走上这条路的">我自己是怎么走上这条路的</a></h3>
+<p>说起来有点偶然。</p>
+<p>我是人工智能专业的应届毕业生，毕业那年，投了 FAE 这个岗位。</p>
+<p>面试之前，我做了很多准备。当时在笔记本上写过一句话，大意是：FAE 是"技术"与"商业"之间的桥梁。</p>
+<p>现在回头看，那句话只对了一半——桥梁是对的，但桥上的风，比我想的大得多。</p>
+<p>后来我才明白，风是这么几样东西：</p>
+<ul>
+<li>
+<p><strong>两头受气</strong>：客户觉得你是厂商的人，公司觉得你替客户说话。桥没有立场，可站在桥上的人必须有立场，而两边都会盯着你站哪边。</p>
+</li>
+<li>
+<p><strong>替"不确定"签字</strong>：入行前以为翻译是"把 A 语言换成 B 语言"，做了才知道，翻译是<strong>把不确定说成一条可承诺的边界</strong>。语言说错了可以重说，承诺说错了要赔钱、要丢客户。</p>
+</li>
+<li>
+<p><strong>没人替你判断</strong>：现场信息不全、客户在等、销售在催，你必须在很短的时间里给出一个方向；而这个方向，将来会在验收会上被翻出来算账。</p>
+</li>
+</ul>
+<p>所以"桥梁"这个词，只描述了"连接"，没描述"承重"和"天气"。学生时代看到的是桥的形状；做了才知道，桥要扛的是这些。</p>
+<p>【待补：这里补充你的真实入行细节——为什么投 FAE 这个岗位？面试时印象最深的问题是什么？入职第一个任务是什么？两三段即可，越具体越好。】</p>
+<p>我讲这个，不是想说明入行容易或者难。</p>
+<p>而是想说：这个岗位不像医生、律师，从小有人立志去做。大部分人，是在某个岔路口，碰上了它。</p>
+<h3 id="三条来路"><a class="header" href="#三条来路">三条来路</a></h3>
+<p>我见过（和听说过）的 FAE，来路大概有三种。</p>
+<p><strong>第一种，应届生。</strong></p>
+<p>优势是学习能力强、没有包袱，敢问、敢试。劣势也很明显：缺现场经验，容易被"专业感"绑架——明明不懂，但是不好意思说"我不知道"。</p>
+<p>对这类人，我只有一句建议：**前两年，脸皮要厚一点。**不懂就问，问完记下来。装懂的代价，比不懂大得多。</p>
+<p><strong>第二种，技术转岗。</strong></p>
+<p>研发、测试、售后、实施，转过来做 FAE 的，技术底子好，这是最大的本钱。</p>
+<p>但他们容易掉进一个坑：**技术思维太重。**只关心问题本身，不关心客户的情绪、项目的节奏、商务的边界。一个问题解决了，但客户不领情；一个方案做对了，但项目没签下来。</p>
+<p>从"解决问题的人"变成"让问题不再发生的人"，是这类人要过的关。</p>
+<p><strong>第三种，售前、销售转过来。</strong></p>
+<p>他们懂客户、懂商务、懂怎么把话说到点子上。缺的是技术深度——客户问一个底层原理，容易答不上来。</p>
+<p>这类人要补的，是 3.2 说的"专长"：不是背参数，是能从现象推原因的那种能力。</p>
+<p>三条来路，各有各的短板。</p>
+<p>但有一件事是一样的：<strong>进来之后，都要从头学一遍"现场"。</strong></p>
+<h2 id="38-到哪里去三类去处与三个问题"><a class="header" href="#38-到哪里去三类去处与三个问题">3.8 到哪里去：三类去处与三个问题</a></h2>
+<h3 id="三类去处"><a class="header" href="#三类去处">三类去处</a></h3>
+<p>这个问题，比"从哪里来"更常被问到。</p>
+<p>我把见过的去向，分成三类。</p>
+<p><strong>第一类，往深里走。</strong></p>
+<p>继续做技术，成为某个领域的专家：资深 FAE、技术支持专家、解决方案架构师。</p>
+<p>这类路径的特点是：越老越值钱，但前提是——你真的在往深里扎，而不是把一年经验用了十年（3.6）。</p>
+<p><strong>第二类，往旁边走。</strong></p>
+<ul>
+<li><strong>转销售</strong>：懂技术的销售，是稀缺品。客户信你，单子就好谈。代价是：你要开始背指标、扛业绩，性格上要能享受"不确定"。</li>
+<li><strong>转产品经理</strong>：离客户最近的人，天然适合做产品。你知道客户骂什么、缺什么、愿意为什么付钱。</li>
+<li><strong>转研发</strong>：比较少见，但确实有人走。优势是：你比大多数研发更懂"为什么做这个功能"。</li>
+<li><strong>转管理</strong>：带团队，当 FAE 团队的负责人。代价是：你要从"自己把事做好"，变成"让别人把事做好"——这两件事，需要的能力完全不同。</li>
+</ul>
+<p><strong>第三类，往外面走。</strong></p>
+<p>咨询顾问、独立顾问、创业。</p>
+<p>这些路，通常需要两样东西：一是足够深的行业积累，二是能自己找到客户的口碑。</p>
+<p>有一句话说得很实在：这个岗位，"入行容易，但是要做到优秀，需要不断地学习提升自己的各项能力"。</p>
+<p>FAE 也是一样。</p>
+<h3 id="转之前先问三个问题"><a class="header" href="#转之前先问三个问题">转之前，先问三个问题</a></h3>
+<p>我见过一些转岗转得后悔的人，也见过转得很好的。</p>
+<p>后来我发现，转得好的那些人，在转之前都想过三个问题：</p>
+<p><strong>第一个问题：我是想逃离什么，还是想奔向什么？</strong></p>
+<p>因为讨厌现在的领导、现在的客户、现在的项目而转岗的人，往往会在新岗位上，遇到同样的自己。</p>
+<p><strong>第二个问题：我能带走什么？</strong></p>
+<p>3.2–3.6 的三层楼——专长、杠杆、责任。转岗不是"重新开始"，是"带着你的三层楼，换个地方继续盖"。</p>
+<p>如果这三层楼是空的，换个地方，也还是空的。</p>
+<p><strong>第三个问题：我愿意付出什么代价？</strong></p>
+<p>转销售，要接受收入的不确定性；转产品，要接受背锅；转管理，要接受"不再是自己动手"。</p>
+<p>没有一条路是没有代价的。想清楚代价，再决定要不要走。</p>
+<h2 id="39-路是走出来的"><a class="header" href="#39-路是走出来的">3.9 路是走出来的</a></h2>
+<p>经常有人问我：做 FAE，以后能干什么？</p>
+<p>我的答案一般是：能干的很多。但更重要的，不是"能干什么"，而是"你想成为什么样的技术人"。</p>
+<ul>
+<li>想成为"技术最深的人"，就往下扎；</li>
+<li>想成为"最懂客户的人"，就往客户那边靠；</li>
+<li>想成为"能带团队的人"，就开始学着让别人把事做好。</li>
+</ul>
+<p>FAE 不是终点，也不是跳板。</p>
+<p>它是一段经历。你在这段经历里攒下的东西——现场的判断力、跨部门的信用、客户的信任——才是你走到哪里都带得走的。</p>
+<p>至于路怎么选：</p>
+<p><strong>路不是想出来的，是走出来的。</strong></p>
+<p>先把手上这件事做好。很多答案，会在做事的过程中，慢慢浮出来。</p>
+<h2 id="310-fae-与-fde同一个位置两个时代的名字"><a class="header" href="#310-fae-与-fde同一个位置两个时代的名字">3.10 FAE 与 FDE：同一个位置，两个时代的名字</a></h2>
+<h3 id="一个新名字"><a class="header" href="#一个新名字">一个新名字</a></h3>
+<p>这两年，AI 圈里冒出一个岗位：<strong>FDE</strong>，Forward Deployed Engineer，前沿部署工程师。</p>
+<p>OpenAI 从 2024 年起组建 FDE 团队，把工程师直接派到摩根士丹利、克利夫兰诊所这类大客户的办公室里；Anthropic、谷歌、微软、亚马逊随后跟进。</p>
+<p>我看到这个岗位的第一反应是：这不就是 FAE 吗？</p>
+<p>再往下看，又不太一样。</p>
+<h3 id="为什么是现在"><a class="header" href="#为什么是现在">为什么是现在？</a></h3>
+<p>因为 AI 卡在了同一个地方。</p>
+<p>2025 年 8 月，MIT 的 NANDA 项目发布《The GenAI Divide》：分析了 300 个企业 AI 项目，访谈了 150 位负责人，结论是约 95% 的生成式 AI 试点没有产生可衡量的利润影响。</p>
+<p>报告特别强调：问题不在模型。模型能力是够的，演示的时候人人都惊艳；但从"惊艳的演示"到"天天能用的工具"之间，隔着数据杂乱、系统陈旧、流程复杂、员工抵触。报告管这叫"学习鸿沟"——<strong>不是 AI 不行，是组织不会用。</strong></p>
+<p>这道沟，需要有人去填。</p>
+<p>FDE 火起来的原因，一句话就能概括：<strong>AI 的能力过剩了，而把能力转化成价值的人手，严重不足。</strong></p>
+<p>经济史里有个类似的时刻：电动机早就发明了，工厂的生产率却要再过很多年才明显提升——卡住的不是电，是"改造"。</p>
+<p>现在轮到 AI 了。那个"改造"的角色，就是 FDE。</p>
+<h3 id="三个词把这个岗位拆开"><a class="header" href="#三个词把这个岗位拆开">三个词，把这个岗位拆开</a></h3>
+<p><strong>Forward（前沿）</strong>：词是从军事来的，"前沿部署部队"驻扎在离前线最近的地方。对科技公司来说，前线就是客户的办公室、工厂、产线——技术真正要起作用的地方。</p>
+<p><strong>Deployed（部署）</strong>：不只是安装。还包括理解客户的业务、打通杂乱的数据、绕过老旧的系统、说服犹豫的员工。</p>
+<p><strong>Engineer（工程师）</strong>：这是它和"售前顾问""客户经理"最大的区别——FDE 自己动手写代码。他们不是画 PPT 讲方案的人，而是当场把方案做出来的人。</p>
+<p>有一句话我很喜欢：<strong>FDE 是"懂技术的人"和"有问题的人"之间的那座桥，而且这座桥自己会施工。</strong></p>
+<h3 id="fae-与-fde差在哪"><a class="header" href="#fae-与-fde差在哪">FAE 与 FDE，差在哪？</a></h3>
+<div class="table-wrapper"><table><thead><tr><th></th><th>FAE（售前技术支持）</th><th>FDE（前沿部署工程师）</th></tr></thead><tbody>
+<tr><td>出现在什么时候</td><td>签单之前</td><td>签单之后，直到真正用起来</td></tr>
+<tr><td>管到哪儿</td><td>产品能力边界之内</td><td>从定义问题到上线，全包</td></tr>
+<tr><td>交付什么</td><td>方案、验证结论、承诺</td><td>一个能跑起来的系统</td></tr>
+<tr><td>待多久</td><td>项目周期，来回跑</td><td>常驻数月</td></tr>
+<tr><td>对总部的作用</td><td>反馈需求</td><td>反向影响产品设计</td></tr>
+</tbody></table>
+</div>
+<p>一句话：<strong>FAE 负责"能不能成"，FDE 负责"成了之后，真的能用"。</strong></p>
+<h3 id="但它们其实是同一个物种"><a class="header" href="#但它们其实是同一个物种">但它们其实是同一个物种</a></h3>
+<p>把名字剥掉，只看动作，你会发现三件事一模一样。</p>
+<p><strong>第一，翻译。</strong> 客户说"我们想数字化转型"，这句话在技术上没有任何可执行的含义；要翻译成"把理赔材料的信息抽取从 20 分钟压到 2 分钟"。反过来，也要把"模型幻觉率"翻译成"它偶尔会一本正经地写错数字，所以关键数字要人工复核"。</p>
+<p><strong>第二，管期望。</strong> 媒体把 AI 吹得太高，客户带着过高的期望来；你要把它按回地面，再用一个个小胜利把信任攒回来。这更多是心理工作，不是技术工作。</p>
+<p><strong>第三，扛责任。</strong> 在客户眼里，你就是那家公司。出了问题，没有"这是产品部门的锅"可讲。业内管这叫 radical ownership——问题到我为止。</p>
+<p>翻译、管期望、扛责任——这不就是 1.5 说的翻译、验证、兜底吗？</p>
+<p><strong>名字是新的，活儿是老的。</strong></p>
+<h3 id="ai-时代fae-有什么变化"><a class="header" href="#ai-时代fae-有什么变化">AI 时代，FAE 有什么变化？</a></h3>
+<p>这是我最想跟你说清楚的一件事。变化有，但不在你以为的地方。</p>
+<p><strong>变了的：</strong></p>
+<ul>
+<li><strong>问题变了。</strong> 客户不再问"你们板子支持什么接口"，而是问"能不能跑 7B 的模型""能不能接我们自己的模型""能不能做 Agent"。问题的技术栈变长了（1.8 讲过）。</li>
+<li><strong>"答案"变便宜了。</strong> 查资料、读日志、写脚本，AI 比人快。你靠"知道得多"建立的优势，正在缩水。</li>
+<li><strong>"落地"变贵了。</strong> 模型能跑，不等于能用；能用，不等于天天能用。中间那一段，AI 替不了你。</li>
+<li><strong>你的位置往后移了。</strong> 以前很多 FAE 是"客户有问题—我来答"，现在更多是"客户要落地—我陪他跑完"。从"给答案的人"，变成"对结果负责的人"。</li>
+</ul>
+<p><strong>没变的：</strong></p>
+<ul>
+<li>客户要的还是确定性；</li>
+<li>你还是得说清楚边界、拿得出证据、留得下退路；</li>
+<li>出了事，还是得有人到现场。</li>
+</ul>
+<p>所以，AI 对 FAE 的真正影响，不是"取代"，而是<strong>把你的价值从"信息中转"挤向"落地负责"</strong>。</p>
+<p>信息中转这一段，会越来越不值钱；落地负责这一段，会越来越值钱。</p>
+<h3 id="那要不要去做-fde"><a class="header" href="#那要不要去做-fde">那要不要去做 FDE？</a></h3>
+<p>如果你动了这个念头，先看三件事。</p>
+<p>第一，FDE 主要面向有几年经验的人，不是应届生的主赛道；国内大厂通常要求五年以上。它的常见来源有三类：想离业务更近的工程师、技术底子扎实的咨询顾问、愿意深挖技术的售前和解决方案架构师——FAE 正好是第三类。</p>
+<p>第二，光环背后有代价：常驻意味着高铁、酒店、错过的晚饭；夹在客户和总部之间，功劳常算在产品头上，卡壳时你是离炮火最近的人；长期驻场，离总部最前沿的技术讨论也会越来越远。</p>
+<p>第三，问自己一句：<strong>你是喜欢"从定义到上线都归你"，还是喜欢"把一件事做深、边界清楚"？</strong></p>
+<p>前者，FDE 是自然的下一步；后者，留在 FAE 这条线、往技术专家走，也很好。</p>
+<p>而且说实话，不转也用得上。FDE 那套思维方式——离问题近一点、会翻译、把"这不归我管"从字典里删掉、即时学习——你在现在的岗位上就能练。</p>
+<h3 id="最后名字会变位置不会"><a class="header" href="#最后名字会变位置不会">最后：名字会变，位置不会</a></h3>
+<p>从"售前技术支持"到"FAE"，再到今天的"FDE"，这个位置的名字一直在变。</p>
+<p>变的，是技术栈、是交付方式、是客户嘴里的词。</p>
+<p>不变的，是那个位置本身：<strong>站在技术与人之间，把不确定变成确定。</strong></p>
+<p>所以，不必纠结自己叫 FAE 还是 FDE。</p>
+<p>技术每换一代，就会给这个位置起一个新名字。</p>
+<p><strong>名字会过时，位置不会。</strong></p>
+<hr />
+<p><strong>本章速记（一页纸）</strong></p>
+<ul>
+<li><strong>一个分岔</strong>：A 把时间卖掉，B 把时间存下来——差别不在努力，在有没有留下东西</li>
+<li><strong>三层楼</strong>：专长（根）/ 协作杠杆（别人接得住）/ 产品化杠杆（你不在场也能用）</li>
+<li><strong>地基</strong>：责任＝署名；署名的资产涨得慢、跌得快</li>
+<li><strong>复利</strong>：别把一年经验用十年</li>
+<li><strong>三条来路</strong>：应届生 / 技术转岗 / 售前销售转——进来之后，都要从头学一遍"现场"</li>
+<li><strong>三类去处</strong>：往深走 / 往旁走 / 往外走</li>
+<li><strong>三个问题</strong>：逃离还是奔向？能带走什么？愿意付什么代价？</li>
+<li><strong>FDE</strong>：Forward Deployed Engineer；翻译 / 管期望 / 扛责任——和 FAE 是同一个位置的两个名字</li>
+<li><strong>AI 时代的变化</strong>：答案变便宜，落地变贵——价值从"信息中转"移向"落地负责"</li>
+<li><strong>三句话</strong>：路不是想出来的，是走出来的；名字会过时，位置不会</li>
+</ul>
+<hr />
+<p><strong>写作备注（不入正文）</strong></p>
+<ul>
+<li>本章为初稿，由原第 5、8 章合并而成；3.1–3.6 来自原第 5 章，3.7–3.9 来自原第 8 章。</li>
+<li>【待补】3.7 的入行故事留了空位——请补真实细节（<code>素材/09、10</code> 的面试稿可作回忆线索：为什么投 FAE？面试问了什么？入职第一个任务？）。涉及学校、公司名的部分，成书时再决定是否脱敏。</li>
+<li>【待补】"沉淀救了自己一次"的真实例子：可补进 3.4。</li>
+<li>【待核对】"我是人工智能专业的应届毕业生，毕业那年，投了 FAE 这个岗位"——来自 <code>素材/09、10</code>；如有出入请改。</li>
+<li>【待核对】3.2、3.4、3.5、3.6 引用的纳瓦尔观点，来自 <code>素材/11</code> 的译文；书内引用时建议统一出处处理（书末注明或随文说明）。</li>
+<li>【待定】3.6 的"1% 复利"是通用算法，如觉得偏"鸡汤"，可删掉，保留"把一年经验用了十年"的说法。</li>
+<li>3.10 依据 <code>素材/08</code>（FDE 定义三个词、MIT《The GenAI Divide》、Palantir、即时学习、radical ownership）；<strong>成书前需核对一手来源</strong>：MIT 报告的准确标题与数据、OpenAI/Anthropic 组建 FDE 团队的时间与客户案例。</li>
+<li>【待补】3.10 可补一个你身边"FDE 或类似岗位"的实例（认识的、听说的都行），比引用二手资料更有说服力。</li>
+<li>【来源】<code>素材/01</code>（三层楼：核心能力 / 工作杠杆 / 长期价值）、<code>素材/04</code>（生产者视角）、<code>素材/07</code>（售前发展阶段与转岗方向）、<code>素材/08</code>（三类来源、转行路线）、<code>素材/09、10</code>（入行素材）、<code>素材/11</code>（专长、杠杆、责任、复利）。</li>
+<li>【请反馈】这一章前半讲"怎么长"，后半讲"往哪走"，合在一章是否顺？如果觉得跨度大，可以把 3.7–3.9 再压缩成两节。</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../02_面孔_FAE是一群什么样的人/初稿.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../04_做事上_把能做变成客户要的/初稿.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../02_面孔_FAE是一群什么样的人/初稿.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../04_做事上_把能做变成客户要的/初稿.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

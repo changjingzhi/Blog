@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>缘起 - 怎么做 FAE</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="一本关于「怎么做 FAE」的书：Why / Who / What">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="00_前言_缘起/初稿.html" class="active"><strong aria-hidden="true">1.</strong> 缘起</a></li><li class="chapter-item expanded affix "><li class="part-title">正文</li><li class="chapter-item expanded "><a href="01_鸿沟_为什么这个世界需要FAE/初稿.html"><strong aria-hidden="true">2.</strong> 第 1 章 鸿沟：为什么这个世界需要 FAE</a></li><li class="chapter-item expanded "><a href="02_面孔_FAE是一群什么样的人/初稿.html"><strong aria-hidden="true">3.</strong> 第 2 章 面孔：FAE 是一群什么样的人</a></li><li class="chapter-item expanded "><a href="03_长路_这门手艺怎么长出复利/初稿.html"><strong aria-hidden="true">4.</strong> 第 3 章 长路：这门手艺怎么长出复利</a></li><li class="chapter-item expanded "><a href="04_做事上_把能做变成客户要的/初稿.html"><strong aria-hidden="true">5.</strong> 第 4 章 做事（上）：把"能做"变成"客户要的"</a></li><li class="chapter-item expanded "><a href="05_做事下_让承诺立得住留得下/初稿.html"><strong aria-hidden="true">6.</strong> 第 5 章 做事（下）：让承诺立得住、留得下</a></li><li class="chapter-item expanded affix "><li class="part-title">尾声</li><li class="chapter-item expanded "><a href="06_尾声_留给下一个FAE的话/初稿.html"><strong aria-hidden="true">7.</strong> 留给下一个 FAE 的话</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">怎么做 FAE</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/changjingzhi/fae-book" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/changjingzhi/books/fae/edit/main/书稿/书稿/00_前言_缘起/初稿.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="前言--缘起"><a class="header" href="#前言--缘起">前言 · 缘起</a></h1>
+<blockquote>
+<p><strong>本篇要回答的问题</strong>：我为什么要写这本书？</p>
+</blockquote>
+<p><em>状态：初稿（2026-10-19）｜ 写法：提出问题 → 回答问题 ｜ 待核对事项见文末「写作备注」。</em></p>
+<hr />
+<h2 id="一一部拍了十三年的纪录片"><a class="header" href="#一一部拍了十三年的纪录片">一、一部拍了十三年的纪录片</a></h2>
+<p>前段时间，我看了一部纪录片。它拍了十三年，片名很长，我记得其中一句：</p>
+<p><strong>死亡，只是一个炎热的夏天午后。</strong></p>
+<p>那几天，我正好在外面出差，给一场活动做执行支持。任务结束的那个傍晚，我一个人在陌生的街上走了很久，吃了点当地的饭，看了一会儿不认识的人来来往往。</p>
+<p>那天没有解决任何问题，也没有产出任何东西。但那个傍晚我一直记得——我当时想的是：<strong>这就是生活本身。</strong></p>
+<p>片子看完，一个问题却留了下来，反复出现在我的脑子里：</p>
+<p><strong>如果有一天我突然离开，这个世界会发生什么变化？我身边的人，会怎样想起我？</strong></p>
+<p>我希望自己离开以后，仍然有人记得我。不是因为我有多么伟大，而是因为我曾经真实地参与过他们的生命，曾经带给他们一些温暖、帮助，或者一段值得回忆的时光。</p>
+<p>然后，问题又往前走了一步：</p>
+<p><strong>我究竟能给这个世界留下什么？</strong></p>
+<p>是一些文字，一些思想，一些创造出来的东西，还是人与人之间那些无法被量化的情感？</p>
+<p>我没有答案。但我想，或许不必急着找到答案。</p>
+<h2 id="二两个问题"><a class="header" href="#二两个问题">二、两个问题</a></h2>
+<p>后来我意识到，"留下什么"这个问题前面，其实还站着另一个问题：</p>
+<p><strong>在我离开这个世界之前，我想怎样度过这一生？</strong></p>
+<p>这两个问题并不矛盾，方向却不同：前一个关注你能给世界什么，后一个关注你愿意怎样生活。</p>
+<p>最近读《纳瓦尔宝典》，有一句话很喜欢：</p>
+<p><strong>人有两次生命，第二次生命，始于你意识到生命只有一次的那一刻。</strong></p>
+<p>我想，我大概正走在第二次生命的开头。</p>
+<p>如果一个人一生都在追求"留下什么"，却没有真正体验过自己的人生，那么即使留下了很多东西，也未必是他想要的一生。</p>
+<p>反过来，一个人认真生活、认真创造、认真对待身边的人，即使没有留下惊天动地的成就，他的一生，也不必因此被判定为失败。</p>
+<p>所以，我没有给自己设定什么宏大的使命。我能做的，是认真地生活，保持好奇，继续探索这个世界；把自己的经历和思考记录下来，把学到的知识转化成有用的东西；珍惜那些值得珍惜的人。</p>
+<p>我无法决定自己什么时候离开，也无法保证自己最终能留下多大的影响。</p>
+<p>但至少，我可以决定如何度过今天。</p>
+<p>如果生命终有一天会结束，那么在那一天到来之前，我希望自己不只是活着，而是真正地生活过。</p>
+<p>工作会占去生活的一大部分。我不希望它只是"用时间换钱"，也不希望自己一直"为了一个想象中的明天，牺牲今天"。</p>
+<p>所以我想过：人为什么需要工作？</p>
+<p>在列这份清单之前，我想先摆一句容易被跳过的话：**钱是生活的条件，不是生活本身。**它最大的用处，未必是能买到什么，而是能拒绝什么——累的时候可以歇，不喜欢一份工作的时候还有得选。</p>
+<ul>
+<li><strong>谋生</strong>。工作首先提供收入，让人能安顿生活、承担对家人的责任。这一层不必美化，也不必回避——不谈它，后面的讨论都容易悬空。</li>
+<li><strong>长本事</strong>。处理过的问题会慢慢沉淀成判断力：同样的现象摆在面前，别人还在试探，你已经知道该从哪儿查起。这种能力跟着人走，不随岗位更换而归零。</li>
+<li><strong>信用</strong>。客户愿意把项目交给你，往往不是因为方案写得多漂亮，而是因为上一次你说"能"，就真的兑现了。</li>
+<li><strong>被需要</strong>。这一层不太会挂在嘴边：设备半夜出问题，客户第一个想到你；同事遇到棘手的案子，会说"问问他"。这种被依赖的感觉，往往比发薪日更让人愿意继续干下去。</li>
+</ul>
+<p>并不是每份工作都能给出这些。有些岗位只提供收入，做十年，也只提供收入。</p>
+<p>我不敢说工作一定要有多大的意义。我只是希望，自己这份工作，除了养活我，还能留下点什么——一个被解决的问题，一份别人能接着用的文档，一个被我帮过、后来也去帮别人的人。</p>
+<h2 id="三为什么偏偏写-fae"><a class="header" href="#三为什么偏偏写-fae">三、为什么偏偏写 FAE？</a></h2>
+<p>有人把"给世界留下点什么"拆成四个方向：留下你的思想，留下你的创造，留下你走过的路，留下人与人之间的连接。</p>
+<p>我对着这四条想了很久，最后决定从最熟悉的地方开始：<strong>把每天在做的事，想清楚，写下来。</strong></p>
+<p>那件事就是：<strong>我是怎么做一个 FAE 的。</strong></p>
+<p>我是 FAE，售前技术支持工程师。</p>
+<p>我的日常工作，大多是从客户的一句"这个能不能……"开始的。</p>
+<p>问题来了，第一件事是分拣。</p>
+<ul>
+<li>
+<p><strong>常规问题</strong>：答案在公司现成的文档里。支持什么接口、怎么配置、有哪些注意事项——把文档和链接发过去，再补一句提醒，这类问题就结束了。</p>
+</li>
+<li>
+<p><strong>没见过的问题</strong>，或者客户咬定"我们这边跑不通"的：文档答不了，得自己上设备——复现、抓日志、测数据、缩小范围，最后给一个带条件的结论：在什么环境下、能到什么程度、还有哪些没验证。</p>
+</li>
+<li>
+<p><strong>产品层面的问题</strong>：客户要的功能现在没有、手册上的规格对不上、需要定制或者单独报价。这类我做不了主，也不该做主——我把它整理成一份能评估的材料，找产品经理和研发确认，再决定是排进版本、走项目支持，还是老实告诉客户"这个我们做不了"。</p>
+</li>
+</ul>
+<p>所以一个客户的问题，通常会走向三个地方：<strong>文档、我的测试台、或者产品经理的评估表。</strong></p>
+<p>这也决定了这份工作的样子：我在产品、技术、客户、销售和研发之间来回翻译；把"能不能做"这样一句话，拆成"做到什么程度、谁来保证、什么时候交付"；再把答案，用客户听得懂的话说回去。</p>
+<p>FAE 这份工作，说到底是在做一件事：<strong>让别人在你不出现的时候，也能把事情做成。</strong></p>
+<p>把客户的需求翻译给内部，让研发看懂问题；把内部的能力交付给客户，让客户自己能跑起来；把一次问题的解决沉淀成方法，让下一个 FAE 不用再从头摸索。</p>
+<p>可如果这些经验只停留在我的脑子里、我的工位上，那么有一天我不在了，它们就会和我一起离开。</p>
+<p><strong>写下来，它们才有可能留下来。</strong></p>
+<p>而且我后来发现：写这本书这件事本身，就是在做 FAE。只不过这一次，"客户"变成了下一个 FAE，"交付物"从一台设备、一份方案，变成了一本书；"技术支持"变成了这些文字。</p>
+<p>这几年，讲销售的书很多，讲售前的书也有，但把 FAE 这个岗位拆开、讲透的书，我还没有见到。</p>
+<p>我见过的 FAE，大多是从"技术做得不错"开始的：被机会推到了客户面前，突然发现要一个人面对产品、客户、销售、研发和项目。技术问题还能靠查资料解决；可"什么时候该承诺、什么时候该说不""产品的边界在哪里""这个坑要不要往里跳"——这些问题，没有人系统地教过。</p>
+<p>这本书想补的，就是这一块。</p>
+<h2 id="四这本书想写什么写给谁"><a class="header" href="#四这本书想写什么写给谁">四、这本书想写什么，写给谁</a></h2>
+<p>如果你打开这本书，是因为对"FAE 到底是什么"感到好奇，那么它想告诉你的是：</p>
+<p><strong>FAE 做的事，是把「技术能做到的」翻译成「客户想要的」，再把「客户想要的」翻译回「技术能做的」。</strong></p>
+<p>这本书分五章，每一章回答一个问题：</p>
+<ul>
+<li><strong>第 1 章 · 鸿沟</strong>：技术越来越强，为什么还需要一个"翻译"的人？</li>
+<li><strong>第 2 章 · 面孔</strong>：FAE 到底是谁？边界在哪？</li>
+<li><strong>第 3 章 · 长路</strong>：同样做 FAE，为什么几年后差距那么大？这条路又能往哪里走？</li>
+<li><strong>第 4 章 · 做事（上）</strong>：从客户问出"能不能"，到它真的跑得住，中间要走完哪几段路？</li>
+<li><strong>第 5 章 · 做事（下）</strong>：事情做完之后，怎么让它"立得住"，又"留得下"？</li>
+</ul>
+<p>它不是一本产品手册，也不是一套万能话术。它是我把自己的经历、教训和方法，整理成的一条线。</p>
+<p>它主要写给三类人：</p>
+<ul>
+<li><strong>刚入行的 FAE</strong>：希望它能陪你度过最手忙脚乱的第一年；</li>
+<li><strong>对 FAE 感到好奇的学生和工程师</strong>：希望它能告诉你，这个职业究竟在做什么；</li>
+<li><strong>带 FAE 团队的管理者</strong>：希望它能替你说出一些，平时没时间细说的话。</li>
+</ul>
+<h2 id="五最后"><a class="header" href="#五最后">五、最后</a></h2>
+<p>至于"我给这个世界留下了什么"这个问题——</p>
+<p>我到现在也没有答案。</p>
+<p>但我想，也许不必急着找到答案。</p>
+<p>那本书里还有一句话：<strong>如果有什么事情是你以后想做的，现在就去做。人生没有"以后"。</strong></p>
+<p>所以，想说的话，现在就写下来。</p>
+<p>我可以一边生活，一边记录，一边把手上的事情做好。这本书，就是我在"留下点什么"这件事上，交出的一份作业。</p>
+<p>说到底，这本书表面上写的是工作，问的却是一个关于生活的问题：一个人，怎样把自己有限的时间，变成一些能留下来的东西。</p>
+<p>它不惊天动地。</p>
+<p>但如果有一天，某个刚入行的 FAE 翻开它，在某一页停了一下，说一句"原来可以这样"，那么它就是我留在这个世界上的一小段痕迹。</p>
+<p>这样就够了。</p>
+<hr />
+<p><strong>写作备注（不入正文）</strong></p>
+<ul>
+<li>本篇依据 <code>素材/12_写作缘起_我给世界留下什么.md</code>（原根目录 <code>缘起.md</code>）改写：保留"死亡意识 → 留下什么 → 两个问题 → 认真生活"的主线；并补上大纲待补项——"想留下点什么"与"为什么偏偏写 FAE"的关系（第三节）。</li>
+<li>【待核对】纪录片只引用了片名里的那句话（"死亡，只是一个炎热的夏天午后"）；如与你的记忆或影片实际内容有出入，告诉我改。</li>
+<li>【待核对】"讲售前的书也有，但把 FAE 拆开、讲透的书，我还没有见到"——基于我们之前的判断，若觉得不妥可删，或改软（如"并不多见"）。</li>
+<li>【可选】如果愿意，第一节可以补一个具体的"瞬间"（某次出差、某个深夜、某个项目结束时），会比纯思辨更抓人——你提供素材，我来织。</li>
+<li>2026-10-19 补写：第二、五节加入"职业与人生"的底色，并引用 <code>素材/11 纳瓦尔宝典</code> 的思考——"人有两次生命……"（第二节）、"人生没有‘以后’"（第五节）、"为了想象中的明天，牺牲今天"（第二节，化用）；成书时出处可在书末统一注明。</li>
+<li>2026-10-20 修订：第三节按作者实际工作重写 FAE 日常介绍，改为"问题分拣"三条路（常规问题→发文档 / 没见过的问题→自己上设备测 / 产品问题→找产品经理与研发评估）。</li>
+<li>2026-10-20 补写：第二节末加入"人为什么需要工作"一段（谋生 / 长本事 / 信用 / 被需要），分条列举。曾试过编号式三层与纯散文两版，按作者意见定为"分条 + 适度书面语"。</li>
+<li>2026-10-26 修订（据 <code>素材/15_人活着是为了什么.md</code>）：① 第一节补入一次出差的傍晚作为具体瞬间，按作者要求隐去城市名，只留"陌生的街"；② 第二节在清单前列出一句前提——"钱是生活的条件，不是生活本身"，避免四条读起来过于正向。</li>
+<li>【请反馈】语气（真诚、克制）与长度（约两千字）是否合适；第三节的论证是否"说透"了。</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next prefetch" href="01_鸿沟_为什么这个世界需要FAE/初稿.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next prefetch" href="01_鸿沟_为什么这个世界需要FAE/初稿.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
